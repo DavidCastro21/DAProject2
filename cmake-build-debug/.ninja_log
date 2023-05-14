@@ -1,0 +1,5 @@
+# ninja log v5
+15	533	1684029955386087571	CMakeFiles/untitled1.dir/main.cpp.o	e3c52b8fdbd8bdec
+16	550	1684029955403989264	CMakeFiles/untitled1.dir/src/Graph.cpp.o	587d57348f2939b4
+8	681	1684030141206064344	CMakeFiles/untitled1.dir/src/ReadFiles.cpp.o	b908a5794ee1d52b
+681	732	1684030141260839534	untitled1	6e3314fe543fb5f8

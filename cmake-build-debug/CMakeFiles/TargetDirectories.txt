@@ -1,0 +1,3 @@
+/Users/davidcastro/Desktop/DAProject2_2023/cmake-build-debug/CMakeFiles/untitled1.dir
+/Users/davidcastro/Desktop/DAProject2_2023/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/davidcastro/Desktop/DAProject2_2023/cmake-build-debug/CMakeFiles/rebuild_cache.dir
