@@ -1,12 +1,9 @@
 // By: Gonçalo Leão
 
 #include "Graph.h"
-#include <iostream>
-#include <vector>
-#include <queue>
 #include <limits>
 #include <algorithm>
-#include <list>
+#include <utility>
 
 using namespace std;
 
@@ -45,7 +42,7 @@ Graph:: Vertex::Vertex(int id, double longitude, double latitude) {
 }
 Graph:: Vertex::Vertex(int id, string name) {
     this->id = id;
-    this->name = name;
+    this->name = std::move(name);
     this->visited = false;
     this->path = nullptr;
 }
@@ -60,26 +57,26 @@ Graph::Graph(int nrVertex) {
 bool Graph::addVertex(const int &id) {
     if (findVertex(id) != nullptr)
         return false;
-    Vertex *v1 = new Vertex(id);
+    auto *v1 = new Vertex(id);
     vertexSet.insert(v1);
     return true;
 }
 bool Graph::addVertex(const int &id, double longitude, double latitude) {
     if (findVertex(id) != nullptr)
         return false;
-    Vertex *v1 = new Vertex(id, longitude, latitude);
+    auto *v1 = new Vertex(id, longitude, latitude);
     vertexSet.insert(v1);
     return true;
 }
 bool Graph::addVertex(const int &id, string name) {
     if (findVertex(id) != nullptr)
         return false;
-    Vertex *v1 = new Vertex(id, name);
+    auto *v1 = new Vertex(id, std::move(name));
     vertexSet.insert(v1);
     return true;
 }
 
-bool Graph::addEdge(const int &sourc, const int &dest, double w) {
+bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
     Vertex *v1 = findVertex(sourc);
     Vertex *v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)

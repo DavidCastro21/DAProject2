@@ -1,5 +1,11 @@
 # ninja log v5
-15	533	1684029955386087571	CMakeFiles/untitled1.dir/main.cpp.o	e3c52b8fdbd8bdec
-16	550	1684029955403989264	CMakeFiles/untitled1.dir/src/Graph.cpp.o	587d57348f2939b4
-8	681	1684030141206064344	CMakeFiles/untitled1.dir/src/ReadFiles.cpp.o	b908a5794ee1d52b
-681	732	1684030141260839534	untitled1	6e3314fe543fb5f8
+8	423	1684095568135629507	CMakeFiles/untitled1.dir/main.cpp.o	e715cffd74b311ed
+9	372	1684095568083707401	CMakeFiles/untitled1.dir/src/Graph.cpp.o	9a967de15566d90f
+9	488	1684095568200782509	CMakeFiles/untitled1.dir/src/ReadFiles.cpp.o	38a983cbe46fecae
+488	533	1684095568248067857	untitled1	6e3314fe543fb5f8
+7	584	1684428343996714364	CMakeFiles/untitled1.dir/main.cpp.o	e715cffd74b311ed
+8	599	1684428344011185761	CMakeFiles/untitled1.dir/src/Graph.cpp.o	9a967de15566d90f
+8	610	1684428344022054807	CMakeFiles/untitled1.dir/src/ReadFiles.cpp.o	38a983cbe46fecae
+610	664	1684428344078049156	untitled1	6e3314fe543fb5f8
+7	725	1684428516304637853	CMakeFiles/untitled1.dir/src/ReadFiles.cpp.o	38a983cbe46fecae
+725	776	1684428516358868215	untitled1	6e3314fe543fb5f8

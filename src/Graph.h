@@ -16,7 +16,7 @@ class Graph {
 protected:
     struct Edge{
         Edge();
-        Edge(int dest);
+        explicit Edge(int dest);
         Edge(int dest, double weight);
         int dest;
         double weight;
@@ -24,7 +24,7 @@ protected:
 
     struct Vertex{
         Vertex();
-        Vertex(int id);
+        explicit Vertex(int id);
         Vertex(int id, double longitude, double latitude);
         Vertex(int id, string name);
         int id;
@@ -42,12 +42,12 @@ protected:
     set<Vertex *> vertexSet;
 public:
     Graph();
-    Graph(int nrVertex);
+    explicit Graph(int nrVertex);
 
     bool addVertex(const int &id);
     bool addVertex(const int &id, double longitude, double latitude);
     bool addVertex(const int &id, string name);
-    bool addEdge(const int &sourc, const int &dest, double w);
+    bool addEdge(const int &sourc, const int &dest, double w) const;
     bool addEdge(const int &sourc, const int &dest);
     bool removeVertex(const int &id);
 
