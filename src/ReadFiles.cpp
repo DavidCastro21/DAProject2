@@ -5,13 +5,7 @@
 #include "ReadFiles.h"
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <limits>
 #include <algorithm>
-#include <list>
-#include <set>
-#include <fstream>
-#include <sstream>
 #include <string>
 
 using namespace std;
@@ -20,9 +14,6 @@ using namespace std;
 
 ReadFiles::ReadFiles() {
     this->graph = Graph();
-}
-ReadFiles::ReadFiles(int input){
-    readExtraFully(input);
 }
 
 Graph ReadFiles::getGraph() {
@@ -74,7 +65,6 @@ void ReadFiles::readExtraFully(int input) {
     }
     ifstream file(filename);
     string line;
-    int i = 0;
     while (getline(file, line)) {
         stringstream ss(line);
         string token;
@@ -97,16 +87,16 @@ void ReadFiles::readRealWorld(int input) {
     string filename_nodes;
     switch (input) {
         case 1:
-            filename_edges = "/Users/davidcastro/Desktop/ProjectDA2/dataset/Real-world Graphs/graph1/edges.csv";
-            filename_nodes = "/Users/davidcastro/Desktop/ProjectDA2/dataset/Real-world Graphs/graph1/nodes.csv";
+            filename_edges = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph1/edges.csv";
+            filename_nodes = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph1/nodes.csv";
             break;
         case 2:
-            filename_edges = "dataset/Real_World_Graphs/graph2/edges.csv";
-            filename_nodes = "dataset/Real_World_Graphs/graph2/nodes.csv";
+            filename_edges = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph2/edges.csv";
+            filename_nodes = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph2/nodes.csv";
             break;
         case 3:
-            filename_edges = "dataset/Real_World_Graphs/graph3/edges.csv";
-            filename_nodes = "dataset/Real_World_Graphs/graph3/nodes.csv";
+            filename_edges = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph3/edges.csv";
+            filename_nodes = "/Users/davidcastro/Desktop/DAProject2_2023/dataset/Real-world Graphs/graph3/nodes.csv";
             break;
         default:
             cout << "Invalid input" << endl;
@@ -118,33 +108,35 @@ void ReadFiles::readRealWorld(int input) {
     getline(file_nodes, line_nodes);
     while (getline(file_nodes, line_nodes)) {
         stringstream ss(line_nodes);
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
-        }
-            int node = stoi(tokens[0]);
-            double lat = stod(tokens[2]);
-            double lon = stod(tokens[1]);
-            cout << node << " " << lat << " " << lon << endl;
-            this->graph.addVertex(node, lat, lon);
-
+        string nodeid, lon, lat;
+        getline(ss, nodeid, ',');
+        cout << nodeid << endl;
+        getline(ss, lon, ',');
+        cout << nodeid << lon << endl;
+        getline(ss, lat, ',');
+        cout << nodeid << lon << lat << endl;
+        int id1 = stoi(nodeid);
+        cout << i << endl;
+        double lat2 = stod(lat);
+        cout << lat2 << endl;
+        double lon2 = stod(lon);
+        cout << lon2 << endl;
+        this->graph.addVertex(id1, lat2, lon2);
     }
     ifstream file_edges(filename_edges);
     string line_edges;
-    i = 0;
     while (getline(file_edges, line_edges)) {
         stringstream ss(line_edges);
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
-        }
-        int node1 = stoi(tokens[0]);
-            int node2 = stoi(tokens[1]);
-            double weight = stod(tokens[2]);
-            this->graph.addEdge(node1, node2, weight);
-
+        string node1;
+        string node2;
+        string weight;
+        getline(ss, node1, ',');
+        getline(ss, node2, ',');
+        getline(ss, weight, ',');
+        int node1_ = stoi(node1);
+        int node2_ = stoi(node2);
+        double weight_ = stod(weight);
+        this->graph.addEdge(node1_, node2_, weight_);
     }
     file_nodes.close();
     file_edges.close();
@@ -166,7 +158,6 @@ void ReadFiles::readToyGraphs(int input) {
     }
     ifstream file(filename);
     string line;
-    int i = 0;
     if(input == 3){
         while (getline(file, line)) {
             stringstream ss(line);
