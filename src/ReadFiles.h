@@ -23,7 +23,7 @@ class ReadFiles {
     Graph graph;
 public:
     ReadFiles();
-    ReadFiles(int input);
+    ReadFiles(int type, int input);
     void readRealWorld(int input);
 
     void readExtraFully(int input);
@@ -31,7 +31,6 @@ public:
     void readToyGraphs(int input);
 
     Graph getGraph();
-
 };
 
 

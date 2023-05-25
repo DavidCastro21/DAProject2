@@ -16,13 +16,24 @@
 
 using namespace std;
 
-
-
 ReadFiles::ReadFiles() {
     this->graph = Graph();
 }
-ReadFiles::ReadFiles(int input){
-    readExtraFully(input);
+ReadFiles::ReadFiles(int type, int input){
+    switch (type) {
+        case 1:
+            readToyGraphs(input);
+            break;
+        case 2:
+            readRealWorld(input);
+            break;
+        case 3:
+            readExtraFully(input);
+            break;
+        default:
+            cout << "Invalid input" << endl;
+            break;
+    }
 }
 
 Graph ReadFiles::getGraph() {
@@ -33,42 +44,42 @@ void ReadFiles::readExtraFully(int input) {
     string filename;
     switch(input){
         case 1:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_25.csv";
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_25.csv";
             break;
-    case 2:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_50.csv";
+        case 2:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_50.csv";
             break;
-    case 3:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_75.csv";
+        case 3:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_75.csv";
             break;
-    case 4:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_100.csv";
+        case 4:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_100.csv";
             break;
-    case 5:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_200.csv";
+        case 5:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_200.csv";
             break;
-    case 6:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_300.csv";
+        case 6:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_300.csv";
             break;
-    case 7:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_400.csv";
+        case 7:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_400.csv";
             break;
-    case 8:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_500.csv";
+        case 8:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_500.csv";
             break;
-    case 9:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_600.csv";
+        case 9:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_600.csv";
             break;
-    case 10:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_700.csv";
+        case 10:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_700.csv";
             break;
-    case 11:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_800.csv";
+        case 11:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_800.csv";
             break;
-    case 12:
-            filename = "dataset/Extra_Fully_Connected_Graphs/edges_900.csv";
+        case 12:
+            filename = "../dataset/Extra_Fully_Connected_Graphs/edges_900.csv";
             break;
-    default:
+        default:
             cout << "Invalid input" << endl;
             return;
     }
@@ -97,24 +108,25 @@ void ReadFiles::readRealWorld(int input) {
     string filename_nodes;
     switch (input) {
         case 1:
-            filename_edges = "/Users/davidcastro/Desktop/ProjectDA2/dataset/Real-world Graphs/graph1/edges.csv";
-            filename_nodes = "/Users/davidcastro/Desktop/ProjectDA2/dataset/Real-world Graphs/graph1/nodes.csv";
+            filename_edges = "../dataset/Real-world Graphs/graph1/edges.csv";
+            filename_nodes = "../dataset/Real-world Graphs/graph1/nodes.csv";
             break;
         case 2:
-            filename_edges = "dataset/Real_World_Graphs/graph2/edges.csv";
-            filename_nodes = "dataset/Real_World_Graphs/graph2/nodes.csv";
+            filename_edges = "../dataset/Real_World_Graphs/graph2/edges.csv";
+            filename_nodes = "../dataset/Real_World_Graphs/graph2/nodes.csv";
             break;
         case 3:
-            filename_edges = "dataset/Real_World_Graphs/graph3/edges.csv";
-            filename_nodes = "dataset/Real_World_Graphs/graph3/nodes.csv";
+            filename_edges = "../dataset/Real_World_Graphs/graph3/edges.csv";
+            filename_nodes = "../dataset/Real_World_Graphs/graph3/nodes.csv";
             break;
         default:
             cout << "Invalid input" << endl;
             return;
     }
+
     ifstream file_nodes(filename_nodes);
     string line_nodes;
-    int i = 0;
+
     getline(file_nodes, line_nodes);
     while (getline(file_nodes, line_nodes)) {
         stringstream ss(line_nodes);
@@ -123,16 +135,18 @@ void ReadFiles::readRealWorld(int input) {
         while (getline(ss, token, ',')) {
             tokens.push_back(token);
         }
-            int node = stoi(tokens[0]);
-            double lat = stod(tokens[2]);
-            double lon = stod(tokens[1]);
-            cout << node << " " << lat << " " << lon << endl;
-            this->graph.addVertex(node, lat, lon);
+        int node = stoi(tokens[0]);
+        double lon = stod(tokens[1]);
+        double lat = stod(tokens[2]);
+        cout << node << " " << lat << " " << lon << endl;
+        this->graph.addVertex(node, lat, lon);
 
     }
+
     ifstream file_edges(filename_edges);
     string line_edges;
-    i = 0;
+
+    getline(file_edges, line_edges);
     while (getline(file_edges, line_edges)) {
         stringstream ss(line_edges);
         string token;
@@ -141,9 +155,9 @@ void ReadFiles::readRealWorld(int input) {
             tokens.push_back(token);
         }
         int node1 = stoi(tokens[0]);
-            int node2 = stoi(tokens[1]);
-            double weight = stod(tokens[2]);
-            this->graph.addEdge(node1, node2, weight);
+        int node2 = stoi(tokens[1]);
+        double weight = stod(tokens[2]);
+        this->graph.addEdge(node1, node2, weight);
 
     }
     file_nodes.close();
@@ -155,19 +169,18 @@ void ReadFiles::readToyGraphs(int input) {
     string filename;
     switch(input){
         case 1:
-            filename = "dataset/Toy_Graphs/shipping.csv";
+            filename = "../dataset/Toy_Graphs/shipping.csv";
             break;
         case 2:
-            filename = "dataset/Toy_Graphs/stadiums.csv";
+            filename = "../dataset/Toy_Graphs/stadiums.csv";
             break;
         case 3:
-            filename = "dataset/Toy_Graphs/airports.csv";
+            filename = "../dataset/Toy_Graphs/tourism.csv";
             break;
     }
     ifstream file(filename);
     string line;
-    int i = 0;
-    if(input == 3){
+    if (input == 3) {
         while (getline(file, line)) {
             stringstream ss(line);
             string token;
@@ -200,5 +213,4 @@ void ReadFiles::readToyGraphs(int input) {
         this->graph.addEdge(node1, node2, weight);
     }
     file.close();
-
 }
