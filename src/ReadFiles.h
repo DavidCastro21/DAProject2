@@ -2,7 +2,7 @@
 // Created by David Castro on 14/05/2023.
 //
 
-#ifndef DA_2ND_PROJECT_READFILES_H
+#ifndef DA_2ND_PROJECT_READFILES_HF
 #define DA_2ND_PROJECT_READFILES_H
 
 #include "Graph.h"

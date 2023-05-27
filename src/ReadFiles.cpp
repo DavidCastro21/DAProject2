@@ -5,13 +5,7 @@
 #include "ReadFiles.h"
 #include <iostream>
 #include <vector>
-#include <queue>
-#include <limits>
 #include <algorithm>
-#include <list>
-#include <set>
-#include <fstream>
-#include <sstream>
 #include <string>
 
 using namespace std;
@@ -19,6 +13,7 @@ using namespace std;
 ReadFiles::ReadFiles() {
     this->graph = Graph();
 }
+
 ReadFiles::ReadFiles(int type, int input){
     switch (type) {
         case 1:
@@ -35,6 +30,7 @@ ReadFiles::ReadFiles(int type, int input){
             break;
     }
 }
+
 
 Graph ReadFiles::getGraph() {
     return this->graph;
@@ -83,9 +79,9 @@ void ReadFiles::readExtraFully(int input) {
             cout << "Invalid input" << endl;
             return;
     }
+
     ifstream file(filename);
     string line;
-    int i = 0;
     while (getline(file, line)) {
         stringstream ss(line);
         string token;
@@ -94,8 +90,11 @@ void ReadFiles::readExtraFully(int input) {
             tokens.push_back(token);
         }
         int node1 = stoi(tokens[0]);
+        cout << node1 << endl;
         int node2 = stoi(tokens[1]);
-        int weight = stoi(tokens[2]);
+        cout << node2 << endl;
+        double weight = stod(tokens[2]);
+        cout << weight << endl;
         this->graph.addVertex(node1);
         this->graph.addVertex(node2);
         this->graph.addEdge(node1, node2, weight);
@@ -130,39 +129,40 @@ void ReadFiles::readRealWorld(int input) {
     getline(file_nodes, line_nodes);
     while (getline(file_nodes, line_nodes)) {
         stringstream ss(line_nodes);
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
-        }
-        int node = stoi(tokens[0]);
-        double lon = stod(tokens[1]);
-        double lat = stod(tokens[2]);
-        cout << node << " " << lat << " " << lon << endl;
-        this->graph.addVertex(node, lat, lon);
 
+        string nodeId, lon, lat;
+        getline(ss, nodeId, ',');
+        getline(ss, lon, ',');
+        getline(ss, lat, '\0');
+
+        int id1 = stoi(nodeId);
+        double lat2 = stod(lat);
+        double lon2 = stod(lon);
+        this->graph.addVertex(id1, lon2, lat2);
     }
 
     ifstream file_edges(filename_edges);
     string line_edges;
 
-    getline(file_edges, line_edges);
+    getline(file_edges,line_edges);
     while (getline(file_edges, line_edges)) {
         stringstream ss(line_edges);
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
-        }
-        int node1 = stoi(tokens[0]);
-        int node2 = stoi(tokens[1]);
-        double weight = stod(tokens[2]);
-        this->graph.addEdge(node1, node2, weight);
 
+        string node1;
+        string node2;
+        string weight;
+        getline(ss, node1, ',');
+        getline(ss, node2, ',');
+        getline(ss, weight, '\0');
+
+        int node1_ = stoi(node1);
+        int node2_ = stoi(node2);
+        double weight_ = stod(weight);
+        this->graph.addEdge(node1_, node2_, weight_);
     }
+
     file_nodes.close();
     file_edges.close();
-
 }
 
 void ReadFiles::readToyGraphs(int input) {
@@ -178,8 +178,10 @@ void ReadFiles::readToyGraphs(int input) {
             filename = "../dataset/Toy_Graphs/tourism.csv";
             break;
     }
+
     ifstream file(filename);
     string line;
+    getline(file, line);
     if (input == 3) {
         while (getline(file, line)) {
             stringstream ss(line);
@@ -190,7 +192,7 @@ void ReadFiles::readToyGraphs(int input) {
             }
             int node1 = stoi(tokens[0]);
             int node2 = stoi(tokens[1]);
-            int weight = stoi(tokens[2]);
+            double weight = stod(tokens[2]);
             string name1 = tokens[3];
             string name2 = tokens[4];
             this->graph.addVertex(node1, name1);
@@ -198,19 +200,21 @@ void ReadFiles::readToyGraphs(int input) {
             this->graph.addEdge(node1, node2, weight);
         }
     }
-    while (getline(file, line)) {
-        stringstream ss(line);
-        string token;
-        vector<string> tokens;
-        while (getline(ss, token, ',')) {
-            tokens.push_back(token);
+    else {
+        while (getline(file, line)) {
+            stringstream ss(line);
+            string token;
+            vector<string> tokens;
+            while (getline(ss, token, ',')) {
+                tokens.push_back(token);
+            }
+            int node1 = stoi(tokens[0]);
+            int node2 = stoi(tokens[1]);
+            double weight = stod(tokens[2]);
+            this->graph.addVertex(node1);
+            this->graph.addVertex(node2);
+            this->graph.addEdge(node1, node2, weight);
         }
-        int node1 = stoi(tokens[0]);
-        int node2 = stoi(tokens[1]);
-        int weight = stoi(tokens[2]);
-        this->graph.addVertex(node1);
-        this->graph.addVertex(node2);
-        this->graph.addEdge(node1, node2, weight);
     }
     file.close();
 }
