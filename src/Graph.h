@@ -10,36 +10,10 @@
 #include <algorithm>
 #include <list>
 #include <set>
+#include "VertexEdge.h"
 using namespace std;
 
 class Graph {
-protected:
-    struct Edge{
-        Edge();
-        explicit Edge(int dest);
-        Edge(int dest, double weight);
-        int dest;
-        double weight;
-    };
-
-    struct Vertex{
-        Vertex();
-        explicit Vertex(int id);
-        Vertex(int id, double longitude, double latitude);
-        Vertex(int id, string name);
-        int id;
-        string name;
-        int dist = 0;
-        double longitude = 0.0;
-        double latitude = 0.0;
-        bool visited = false;
-        list<Edge> adj;
-        Edge *path = nullptr;
-        bool operator<(Vertex & vertex) const;
-    };
-
-    int numVertex;
-    set<Vertex *> vertexSet;
 public:
     Graph();
     explicit Graph(int nrVertex);
@@ -60,6 +34,12 @@ public:
     void resetVisited();
     void resetDist();
     void resetPath();
+
+protected:
+    int numVertex;
+    set<Vertex *> vertexSet;
 };
+
+
 
 #endif /* DA_TP_CLASSES_GRAPH */
