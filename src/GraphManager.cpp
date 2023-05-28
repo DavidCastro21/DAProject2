@@ -222,3 +222,46 @@ void GraphManager::readToyGraphs(int input) {
     }
     file.close();
 }
+
+
+void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
+    if(currentIndex == n) {
+        // add the distance back to the initial node
+        currentDist += dists[currentPath[n - 1]][currentPath[0]];
+        if(currentDist < minDist) {
+            minDist = currentDist;
+            // Copy the current state to the array storing the best state found so far
+            for(unsigned int i = 0; i < n; i++) {
+                path[i] = currentPath[i];
+            }
+        }
+        return;
+    }
+    // Try to move to the i-th vertex if the total distance does not exceed the best distance found and the vertex is not yet visited in curPath
+    for(unsigned int i = 1; i < n; i++) { // i starts at 1 and not 0 since it is assumed that node 0 is the initial node so it will not be in the middle of the path
+        if(currentDist + dists[currentPath[currentIndex - 1]][i] < minDist) {
+            bool isNewVertex = true;
+            for(unsigned int j = 1; j < currentIndex; j++) {
+                if(currentPath[j] == i) {
+                    isNewVertex = false;
+                    break;
+                }
+            }
+            if(isNewVertex) {
+                currentPath[currentIndex] = i;
+                tspBTRec(dists,n,currentIndex+1,currentDist + dists[currentPath[currentIndex - 1]][i],currentPath,minDist,path);
+            }
+        }
+    }
+}
+
+unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path[]) {
+    unsigned int currentPath[10000]; // static memory allocation is faster :)
+    unsigned int minDist = std::numeric_limits<unsigned int>::max();
+
+    // Assumes path starts at node 0 ...
+    currentPath[0] = 0;
+    // ... so in the first recursive call currentIndex starts at 1 rather than 0
+    tspBTRec(dists, n, 1, 0, currentPath, minDist, path);
+    return minDist;
+}

@@ -31,6 +31,8 @@ public:
     void readToyGraphs(int input);
 
     vector<Vertex*> preOrderPath(Graph graph);
+    void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int curIndex, unsigned int curDist, unsigned int curPath[], unsigned int &minDist, unsigned int path[]);
+    unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path[]);
 };
 
 
