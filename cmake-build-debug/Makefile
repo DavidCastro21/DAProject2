@@ -176,54 +176,6 @@ src/Graph.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/Graph.cpp.s
 .PHONY : src/Graph.cpp.s
 
-src/GraphManager.obj: src/GraphManager.cpp.obj
-.PHONY : src/GraphManager.obj
-
-# target to build an object file
-src/GraphManager.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/GraphManager.cpp.obj
-.PHONY : src/GraphManager.cpp.obj
-
-src/GraphManager.i: src/GraphManager.cpp.i
-.PHONY : src/GraphManager.i
-
-# target to preprocess a source file
-src/GraphManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/GraphManager.cpp.i
-.PHONY : src/GraphManager.cpp.i
-
-src/GraphManager.s: src/GraphManager.cpp.s
-.PHONY : src/GraphManager.s
-
-# target to generate assembly for a file
-src/GraphManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/GraphManager.cpp.s
-.PHONY : src/GraphManager.cpp.s
-
-src/VertexEdge.obj: src/VertexEdge.cpp.obj
-.PHONY : src/VertexEdge.obj
-
-# target to build an object file
-src/VertexEdge.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/VertexEdge.cpp.obj
-.PHONY : src/VertexEdge.cpp.obj
-
-src/VertexEdge.i: src/VertexEdge.cpp.i
-.PHONY : src/VertexEdge.i
-
-# target to preprocess a source file
-src/VertexEdge.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/VertexEdge.cpp.i
-.PHONY : src/VertexEdge.cpp.i
-
-src/VertexEdge.s: src/VertexEdge.cpp.s
-.PHONY : src/VertexEdge.s
-
-# target to generate assembly for a file
-src/VertexEdge.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled1.dir\build.make CMakeFiles/untitled1.dir/src/VertexEdge.cpp.s
-.PHONY : src/VertexEdge.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -239,12 +191,6 @@ help:
 	@echo ... src/Graph.obj
 	@echo ... src/Graph.i
 	@echo ... src/Graph.s
-	@echo ... src/GraphManager.obj
-	@echo ... src/GraphManager.i
-	@echo ... src/GraphManager.s
-	@echo ... src/VertexEdge.obj
-	@echo ... src/VertexEdge.i
-	@echo ... src/VertexEdge.s
 .PHONY : help
 
 

@@ -12,11 +12,11 @@ int main() {
         cout << itr->getLongitude() << endl;
     }*/
 
-    // initialize empty matrix to keep the distances between each pair of nodes
+    // initialize matrix to 0 to keep the distances between each pair of nodes
     unsigned int graphSize = graph.getNumVertex();
     vector<vector<unsigned int>> distances(graphSize, vector<unsigned int>(graphSize, 0));
 
-    // fill the vector with values
+    // fill the matrix with the distances
     for (auto v : graph.getVertexSet()) {
         int sourceId = v->getId();
         for (auto e : v->getAdj()) {
@@ -27,7 +27,7 @@ int main() {
     }
 
     // Dynamically allocate a 2D array
-    unsigned int** array = new unsigned int*[graphSize];
+    /*unsigned int** array = new unsigned int*[graphSize];
     for (int i = 0; i < graphSize; i++) {
         array[i] = new unsigned int[graphSize];
     }
@@ -37,10 +37,10 @@ int main() {
         for (unsigned int j = 0; j < graphSize; j++) {
             array[i][j] = distances[i][j];
         }
-    }
+    }*/
 
-    unsigned int path[graphSize];
-    manager.tspBT(array, graphSize, path);
+    vector<unsigned int> path;
+    manager.tspBT(distances, graphSize, path);
 
     return 0;
 }

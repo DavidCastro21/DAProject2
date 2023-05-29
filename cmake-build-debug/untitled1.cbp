@@ -91,18 +91,6 @@
 		<Unit filename="C:/DA/project2/DAProject2/src/Graph.h">
 			<Option target="untitled1"/>
 		</Unit>
-		<Unit filename="C:/DA/project2/DAProject2/src/GraphManager.cpp">
-			<Option target="untitled1"/>
-		</Unit>
-		<Unit filename="C:/DA/project2/DAProject2/src/GraphManager.h">
-			<Option target="untitled1"/>
-		</Unit>
-		<Unit filename="C:/DA/project2/DAProject2/src/VertexEdge.cpp">
-			<Option target="untitled1"/>
-		</Unit>
-		<Unit filename="C:/DA/project2/DAProject2/src/VertexEdge.h">
-			<Option target="untitled1"/>
-		</Unit>
 		<Unit filename="C:/DA/project2/DAProject2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

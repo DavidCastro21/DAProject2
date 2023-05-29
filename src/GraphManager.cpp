@@ -224,7 +224,7 @@ void GraphManager::readToyGraphs(int input) {
 }
 
 
-void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
+void GraphManager::tspBTRec(const vector<vector<unsigned int>> dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, vector<unsigned int> path) {
     if(currentIndex == n) {
         // add the distance back to the initial node
         currentDist += dists[currentPath[n - 1]][currentPath[0]];
@@ -259,7 +259,7 @@ void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int currentIn
     }
 }
 
-unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path[]) {
+unsigned int GraphManager::tspBT(const vector<vector<unsigned int>> dists, unsigned int n, vector<unsigned int> &path) {
     unsigned int currentPath[10000]; // static memory allocation is faster :)
     unsigned int minDist = std::numeric_limits<unsigned int>::max();
 
