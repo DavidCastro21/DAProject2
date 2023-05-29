@@ -3,4 +3,6 @@ project(untitled1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(untitled1 main.cpp src/Graph.cpp)
+set(Headers src/Graph.h src/VertexEdge.h src/GraphManager.h)
+
+add_executable(untitled1 ${PROJECT_SOURCE_DIR}/ main.cpp src/Graph.cpp src/GraphManager.cpp src/VertexEdge.cpp)
