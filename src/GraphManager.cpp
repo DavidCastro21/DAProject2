@@ -140,6 +140,7 @@ void GraphManager::readRealWorld(int input) {
         double lat2 = stod(lat);
         double lon2 = stod(lon);
         this->graph.addVertex(id1, lon2, lat2);
+        // cout << id1 << ' ' << lat2 << ' ' << lon2 << endl;
     }
 
     ifstream file_edges(filename_edges);
@@ -160,6 +161,7 @@ void GraphManager::readRealWorld(int input) {
         int node2_ = stoi(node2);
         double weight_ = stod(weight);
         this->graph.addEdge(node1_, node2_, weight_);
+        // cout << node1_ << ' ' << node2_ << ' ' << weight_ << endl;
     }
 
     file_nodes.close();
@@ -218,13 +220,14 @@ void GraphManager::readToyGraphs(int input) {
             this->graph.addVertex(node1);
             this->graph.addVertex(node2);
             this->graph.addEdge(node1, node2, weight);
+            // cout << node1 << ' ' << node2 << ' ' << weight << endl;
         }
     }
     file.close();
 }
 
 
-void GraphManager::tspBTRec(const vector<vector<unsigned int>> dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, vector<unsigned int> path) {
+void GraphManager::tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
     if(currentIndex == n) {
         // add the distance back to the initial node
         currentDist += dists[currentPath[n - 1]][currentPath[0]];
@@ -259,7 +262,7 @@ void GraphManager::tspBTRec(const vector<vector<unsigned int>> dists, unsigned i
     }
 }
 
-unsigned int GraphManager::tspBT(const vector<vector<unsigned int>> dists, unsigned int n, vector<unsigned int> &path) {
+unsigned int GraphManager::tspBT(unsigned int **dists, unsigned int n, unsigned int path[]) {
     unsigned int currentPath[10000]; // static memory allocation is faster :)
     unsigned int minDist = std::numeric_limits<unsigned int>::max();
 
