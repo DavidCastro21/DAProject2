@@ -253,6 +253,10 @@ void tspBTRec(const unsigned int **dists, unsigned int n, unsigned int currentIn
             }
         }
     }
+
+    for(unsigned int i = 0; i < n; i++) {
+       cout << path[i] << '\t';
+    }
 }
 
 unsigned int tspBT(const unsigned int **dists, unsigned int n, unsigned int path[]) {
