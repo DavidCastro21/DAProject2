@@ -103,5 +103,10 @@ void Edge::setDest(Vertex* dest) {
 void Edge::setWeight(double weight) {
     this->weight = weight;
 }
+/*void Vertex::addEdge(Vertex* source, Vertex* dest, double weight) {
+    auto newEdge = new Edge(dest, weight);
+    source->getAdj().insert(source->getAdj().end(), newEdge);
+    // this->getAdj().push_back(newEdge);
+}*/
 
 // Path: src/GraphAlgorithms.cpp

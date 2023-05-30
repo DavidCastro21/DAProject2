@@ -141,6 +141,7 @@ void GraphManager::readRealWorld(int input) {
         double lat2 = stod(lat);
         double lon2 = stod(lon);
         this->graph.addVertex(id1, lon2, lat2);
+        // cout << id1 << ' ' << lat2 << ' ' << lon2 << endl;
     }
 
     ifstream file_edges(filename_edges);
@@ -161,6 +162,7 @@ void GraphManager::readRealWorld(int input) {
         int node2_ = stoi(node2);
         double weight_ = stod(weight);
         this->graph.addEdge(node1_, node2_, weight_);
+        // cout << node1_ << ' ' << node2_ << ' ' << weight_ << endl;
     }
 
     file_nodes.close();
@@ -219,13 +221,14 @@ void GraphManager::readToyGraphs(int input) {
             this->graph.addVertex(node1);
             this->graph.addVertex(node2);
             this->graph.addEdge(node1, node2, weight);
+            // cout << node1 << ' ' << node2 << ' ' << weight << endl;
         }
     }
     file.close();
 }
 
 
-void GraphManager::tspBTRec(const vector<vector<unsigned int>> dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, vector<unsigned int> path) {
+/*void GraphManager::tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
     if(currentIndex == n) {
         // add the distance back to the initial node
         currentDist += dists[currentPath[n - 1]][currentPath[0]];
@@ -260,7 +263,7 @@ void GraphManager::tspBTRec(const vector<vector<unsigned int>> dists, unsigned i
     }
 }
 
-unsigned int GraphManager::tspBT(const vector<vector<unsigned int>> dists, unsigned int n, vector<unsigned int> &path) {
+unsigned int GraphManager::tspBT(unsigned int **dists, unsigned int n, unsigned int path[]) {
     unsigned int currentPath[10000]; // static memory allocation is faster :)
     unsigned int minDist = std::numeric_limits<unsigned int>::max();
 
@@ -269,4 +272,44 @@ unsigned int GraphManager::tspBT(const vector<vector<unsigned int>> dists, unsig
     // ... so in the first recursive call currentIndex starts at 1 rather than 0
     tspBTRec(dists, n, 1, 0, currentPath, minDist, path);
     return minDist;
+}*/
+int GraphManager::nrNodesAlreadyVisited(set<Vertex*> vertexSet, int &count) {
+    for (auto itr : vertexSet) {
+        if (itr->isVisited())
+            count++;
+    }
+    return count;
+}
+
+double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, bool visited[], vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance) {
+    // currentNode->setVisited(true);
+    visited[currentNode->getId()] = true;
+    currentPath.push_back(currentNode->getId());        // in the first iteration, we add the initial node to the path
+    alreadyVisited++;
+
+    if (alreadyVisited == nrNodesAlreadyVisited(graph.getVertexSet(), alreadyVisited)) {
+        for (auto e : currentNode->getAdj()) {
+            if (e->getDest() == initialNode) {              // returning to the initial node
+                double totalDistance = distanceSoFar + e->getWeight();
+                if (totalDistance < minDistance) {
+                    minDistance = totalDistance;
+                    minPath = currentPath;              // update minPath
+                }
+                break;
+            }
+        }
+    }
+    else {
+        for (auto e : currentNode->getAdj()) {
+            Vertex *adjNode = e->getDest();
+            distanceSoFar += e->getWeight();
+            minDistance = tspBacktracking(adjNode, initialNode, alreadyVisited, visited, currentPath, minPath, distanceSoFar, minDistance);
+        }
+    }
+
+    // "reduce" 1 iteration, once we reach the initial node
+    currentPath.pop_back();     // pop the initialNode that was placed in currentPath twice
+    alreadyVisited--;
+
+    return minDistance;
 }

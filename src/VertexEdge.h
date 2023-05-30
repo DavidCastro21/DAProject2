@@ -34,6 +34,7 @@ public:
     void setLongitude(double lon);
     void setVisited(bool visited);
     void setPath(Edge *path);
+    // void addEdge(Vertex* source, Vertex* dest, double w);
 
 protected:
     int id;
