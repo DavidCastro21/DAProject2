@@ -220,6 +220,7 @@ void GraphManager::readToyGraphs(int input) {
             this->graph.addVertex(node1);
             this->graph.addVertex(node2);
             this->graph.addEdge(node1, node2, weight);
+            this->graph.addEdge(node2, node1, weight);
             // cout << node1 << ' ' << node2 << ' ' << weight << endl;
         }
     }
@@ -280,7 +281,7 @@ int GraphManager::nrNodesAlreadyVisited(set<Vertex*> vertexSet, int &count) {
     return count;
 }
 
-double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, bool visited[], vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance) {
+double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, vector<bool> &visited, vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance) {
     // currentNode->setVisited(true);
     visited[currentNode->getId()] = true;
     currentPath.push_back(currentNode->getId());        // in the first iteration, we add the initial node to the path

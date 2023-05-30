@@ -6,6 +6,10 @@ int main() {
     GraphManager manager = GraphManager(1, 1);
     Graph graph = manager.getGraph();
 
+    int graphSize = graph.getNumVertex();
+    /*for (auto itr : graph.getVertexSet()) {
+        cout << itr->getAdj().size() << endl;
+    }*/
 
     /* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
 
@@ -24,26 +28,26 @@ int main() {
         }
     }*/
 
-
+    /*
     int maxId = INT32_MIN;
     for (auto itr : graph.getVertexSet()) {
         if (itr->getId() > maxId) {
             maxId = itr->getId();
         }
-    }
+    }*/
     // int alreadyVisited = 0;
     Vertex* initialNode = graph.findVertex(0);
     vector<int> currentPath;
     vector<int> minPath;
-    // vector<bool> visited;
-    bool visited[maxId+2];
-    for (int i = 0; i < maxId+2; i++) {
-        visited[i] = false;
-    }
+    vector<bool> visited = {false};
+    // bool visited[maxId+2];
+    /*for (int i = 0; i < graphSize; i++) {
+        visited.push_back(false);
+    }*/
     // double distSoFar = 0.0;
     // double minDist = std::numeric_limits<double>::max();
-    double result = manager.tspBacktracking(initialNode, initialNode, 0, visited, currentPath, minPath, 0.0, std::numeric_limits<double>::max());
-    cout << "shipping: " << result << endl;
+    double result = manager.tspBacktracking(initialNode, initialNode, 0, visited, currentPath, minPath, 0.0, 10000000.0);
+    // cout << "shipping: " << result << endl;
 
     return 0;
 }

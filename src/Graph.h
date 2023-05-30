@@ -22,7 +22,6 @@ public:
     bool addVertex(const int &id, double longitude, double latitude);
     bool addVertex(const int &id, string name);
     bool addEdge(const int &sourc, const int &dest, double w) const;
-    bool addEdge(const int &sourc, const int &dest);
     bool removeVertex(const int &id);
 
     int getNumVertex() const;

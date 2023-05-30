@@ -54,8 +54,13 @@ bool Vertex::isVisited() const {
 Edge* Vertex::getPath() const {
     return this->path;
 }
-list<Edge*> Vertex::getAdj() const {
+vector<Edge*> Vertex::getAdj() const {
     return this->adj;
+}
+void Vertex::addEdge(Vertex* origin, Vertex *dest, double weight) {
+    auto newEdge = new Edge(this, dest, weight);
+    this->adj.push_back(newEdge);
+    // return newEdge;
 }
 void Vertex::setId(int id) {
     this->id = id;
@@ -83,6 +88,12 @@ Edge::Edge() {
     this->dest = nullptr;
     this->weight = 0;
 }
+Edge::Edge(Vertex* origin, Vertex* dest, double weight) {
+    this->orig = orig;
+    this->dest = dest;
+    this->weight= weight;
+}
+
 Edge::Edge(Vertex* dest, double weight) {
     this->dest = dest;
     this->weight = weight;

@@ -26,7 +26,8 @@ public:
     double getLongitude() const;
     bool isVisited() const;
     Edge* getPath() const;
-    list<Edge*> getAdj() const ;
+    vector<Edge*> getAdj() const;
+    void addEdge(Vertex* origin, Vertex* dest, double weight);
     void setId(int id);
     void setName(string name);
     void setDist(int dist);
@@ -43,7 +44,7 @@ protected:
     double longitude = 0.0;
     double latitude = 0.0;
     bool visited = false;
-    list<Edge*> adj;
+    vector<Edge*> adj;
     Edge *path = nullptr;
     bool operator<(Vertex & vertex) const;
 };
@@ -53,12 +54,14 @@ public:
     Edge();
     Edge(Vertex* dest);
     Edge(Vertex* dest, double weight);
+    Edge(Vertex* origin, Vertex* dest, double weight);
 
     Vertex* getDest() const;
     double getWeight() const;
     void setDest(Vertex* dest);
     void setWeight(double weight);
 private:
+    Vertex* orig;
     Vertex* dest;
     double weight;
 };
