@@ -6,38 +6,8 @@ int main() {
     GraphManager manager = GraphManager(1, 1);
     Graph graph = manager.getGraph();
 
-    for (auto itr : graph.getVertexSet()) {
-        // cout << itr->getId() << ' ';
-        // cout << itr->getAdj().size() << endl;
-    }
 
-    // initialize matrix to 0 to keep the distances between each pair of nodes
-    unsigned int graphSize = graph.getNumVertex();
-    // vector<vector<unsigned int>> distances(graphSize, vector<unsigned int>(graphSize, 0));
-
-    // fill the matrix with the distances
-
-
-
-    // Dynamically allocate a 2D array
-    /*unsigned int** array = new unsigned int*[graphSize];
-    for (int i = 0; i < graphSize; i++) {
-        array[i] = new unsigned int[graphSize];
-    }
-
-    // Copy the elements from the vector of vectors to the 2D array
-    for (unsigned int i = 0; i < graphSize; i++) {
-        for (unsigned int j = 0; j < graphSize; j++) {
-            array[i][j] = distances[i][j];
-        }
-    }*/
-
-    // vector<unsigned int> path;
-
-    //unsigned int** matrix;
-    unsigned int path[graphSize];
-
-    unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
+    /* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
 
     for (unsigned int i = 0; i < graphSize; i++) {
         distances[i] = new unsigned int[graphSize]; // Allocate memory for each row (columns)
@@ -52,12 +22,25 @@ int main() {
             unsigned int destId = dest->getId();
             distances[sourceId][destId] = e->getWeight();
         }
+    }*/
+
+
+    int maxId = INT32_MIN;
+    for (auto itr : graph.getVertexSet()) {
+        if (itr->getId() > maxId) {
+            maxId = itr->getId();
+        }
     }
-    //distances = matrix;
-    unsigned int result = manager.tspBT(distances, graphSize, path);
-
-
-    // cout << result << endl;
+    // int alreadyVisited = 0;
+    Vertex* initialNode = graph.findVertex(0);
+    vector<int> currentPath;
+    vector<int> minPath;
+    // vector<bool> visited;
+    bool visited[maxId];
+    // double distSoFar = 0.0;
+    // double minDist = std::numeric_limits<double>::max();
+    double result = manager.tspBacktracking(initialNode, initialNode, 0, visited, currentPath, minPath, 0.0, std::numeric_limits<double>::max());
+    cout << "shipping: " << result << endl;
 
     return 0;
 }

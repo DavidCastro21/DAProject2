@@ -227,7 +227,7 @@ void GraphManager::readToyGraphs(int input) {
 }
 
 
-void GraphManager::tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
+/*void GraphManager::tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]) {
     if(currentIndex == n) {
         // add the distance back to the initial node
         currentDist += dists[currentPath[n - 1]][currentPath[0]];
@@ -271,4 +271,44 @@ unsigned int GraphManager::tspBT(unsigned int **dists, unsigned int n, unsigned 
     // ... so in the first recursive call currentIndex starts at 1 rather than 0
     tspBTRec(dists, n, 1, 0, currentPath, minDist, path);
     return minDist;
+}*/
+int GraphManager::nrNodesAlreadyVisited(set<Vertex*> vertexSet, int &count) {
+    for (auto itr : vertexSet) {
+        if (itr->isVisited())
+            count++;
+    }
+    return count;
+}
+
+double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, bool visited[], vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance) {
+    // currentNode->setVisited(true);
+    visited[currentNode->getId()] = true;
+    currentPath.push_back(currentNode->getId());        // in the first iteration, we add the initial node to the path
+    alreadyVisited++;
+
+    if (alreadyVisited == nrNodesAlreadyVisited(graph.getVertexSet(), alreadyVisited)) {
+        for (auto e : currentNode->getAdj()) {
+            if (e->getDest() == initialNode) {              // returning to the initial node
+                double totalDistance = distanceSoFar + e->getWeight();
+                if (totalDistance < minDistance) {
+                    minDistance = totalDistance;
+                    minPath = currentPath;              // update minPath
+                }
+                break;
+            }
+        }
+    }
+    else {
+        for (auto e : currentNode->getAdj()) {
+            Vertex *adjNode = e->getDest();
+            distanceSoFar += e->getWeight();
+            minDistance = tspBacktracking(adjNode, initialNode, alreadyVisited, visited, currentPath, minPath, distanceSoFar, minDistance);
+        }
+    }
+
+    // "reduce" 1 iteration, once we reach the initial node
+    currentPath.pop_back();     // pop the initialNode that was placed in currentPath twice
+    alreadyVisited--;
+
+    return minDistance;
 }
