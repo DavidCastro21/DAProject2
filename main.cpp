@@ -36,7 +36,10 @@ int main() {
     vector<int> currentPath;
     vector<int> minPath;
     // vector<bool> visited;
-    bool visited[maxId];
+    bool visited[maxId+2];
+    for (int i = 0; i < maxId+2; i++) {
+        visited[i] = false;
+    }
     // double distSoFar = 0.0;
     // double minDist = std::numeric_limits<double>::max();
     double result = manager.tspBacktracking(initialNode, initialNode, 0, visited, currentPath, minPath, 0.0, std::numeric_limits<double>::max());
@@ -44,5 +47,3 @@ int main() {
 
     return 0;
 }
-
-

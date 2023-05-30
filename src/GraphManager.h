@@ -35,6 +35,7 @@ public:
     // unsigned int tspBT(unsigned int **dists, unsigned int n, unsigned int path[]);
     double tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, bool visited[], vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance);
     int nrNodesAlreadyVisited(set<Vertex*> vertexSet, int &count);
+
 };
 
 
