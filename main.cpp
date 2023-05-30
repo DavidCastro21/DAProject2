@@ -3,8 +3,8 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(1, 1);
-    Graph graph = manager.getGraph();
+    GraphManager manager = GraphManager(2, 3);
+    //Graph graph = manager.getGraph();
 
     /*for (auto itr : graph.getVertexSet()) {
         cout << itr->getId() << ' ';
@@ -13,7 +13,7 @@ int main() {
     }*/
 
     // initialize matrix to 0 to keep the distances between each pair of nodes
-    unsigned int graphSize = graph.getNumVertex();
+    /*unsigned int graphSize = graph.getNumVertex();
     vector<vector<unsigned int>> distances(graphSize, vector<unsigned int>(graphSize, 0));
 
     // fill the matrix with the distances
@@ -39,8 +39,9 @@ int main() {
         }
     }*/
 
-    vector<unsigned int> path;
+    /*vector<unsigned int> path;
     manager.tspBT(distances, graphSize, path);
+     */
 
     return 0;
 }
