@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <list>
 #include <set>
+#include <unordered_map>
 #include "VertexEdge.h"
 using namespace std;
 
@@ -37,6 +38,7 @@ public:
 protected:
     int numVertex;
     set<Vertex *> vertexSet;
+    unordered_map<int,Vertex*> vertexMap;
 };
 
 

@@ -112,12 +112,13 @@ void GraphManager::readRealWorld(int input) {
             filename_nodes = "../dataset/Real-world Graphs/graph1/nodes.csv";
             break;
         case 2:
-            filename_edges = "../dataset/Real_World_Graphs/graph2/edges.csv";
-            filename_nodes = "../dataset/Real_World_Graphs/graph2/nodes.csv";
+            filename_edges = "../dataset/Real-world Graphs/graph2/edges.csv";
+            filename_nodes = "../dataset/Real-world Graphs/graph2/nodes.csv";
             break;
         case 3:
-            filename_edges = "../dataset/Real_World_Graphs/graph3/edges.csv";
-            filename_nodes = "../dataset/Real_World_Graphs/graph3/nodes.csv";
+            cout<<"Here\n";
+            filename_edges = "../dataset/Real-world Graphs/graph3/edges.csv";
+            filename_nodes = "../dataset/Real-world Graphs/graph3/nodes.csv";
             break;
         default:
             cout << "Invalid input" << endl;

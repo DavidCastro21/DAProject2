@@ -16,24 +16,21 @@ Graph::Graph(int nrVertex) {
 }
 
 bool Graph::addVertex(const int &id) {
-    if (findVertex(id) != nullptr)
-        return false;
     auto *v1 = new Vertex(id);
     vertexSet.insert(v1);
+    vertexMap[id] = v1;
     return true;
 }
 bool Graph::addVertex(const int &id, double longitude, double latitude) {
-    if (findVertex(id) != nullptr)
-        return false;
     auto *v1 = new Vertex(id, longitude, latitude);
     vertexSet.insert(v1);
+    vertexMap[id] = v1;
     return true;
 }
 bool Graph::addVertex(const int &id, string name) {
-    if (findVertex(id) != nullptr)
-        return false;
     auto *v1 = new Vertex(id, std::move(name));
     vertexSet.insert(v1);
+    vertexMap[id] = v1;
     return true;
 }
 
@@ -68,10 +65,7 @@ set<Vertex *> Graph::getVertexSet() const {
 }
 
 Vertex *Graph::findVertex(const int &id) const {
-    for (auto v : vertexSet)
-        if (v->getId() == id)
-            return v;
-    return nullptr;
+    return vertexMap.at(id);
 }
 
 int Graph::findVertexIdx(const int &id) const {
