@@ -4,28 +4,28 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(1, 1);
+    GraphManager manager = GraphManager(1,3);
     Graph graph = manager.getGraph();
 
     int graphSize = graph.getNumVertex();
 
 
-    /* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
+/* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
 
-    for (unsigned int i = 0; i < graphSize; i++) {
-        distances[i] = new unsigned int[graphSize]; // Allocate memory for each row (columns)
-        for (unsigned int j = 0; j < graphSize; j++) {
-            distances[i][j] = 0;
-        }
+for (unsigned int i = 0; i < graphSize; i++) {
+    distances[i] = new unsigned int[graphSize]; // Allocate memory for each row (columns)
+    for (unsigned int j = 0; j < graphSize; j++) {
+        distances[i][j] = 0;
     }
-    for (auto v : graph.getVertexSet()) {
-        unsigned int sourceId = v->getId();
-        for (auto e : v->getAdj()) {
-            auto dest = e->getDest();
-            unsigned int destId = dest->getId();
-            distances[sourceId][destId] = e->getWeight();
-        }
-    }*/
+}
+for (auto v : graph.getVertexSet()) {
+    unsigned int sourceId = v->getId();
+    for (auto e : v->getAdj()) {
+        auto dest = e->getDest();
+        unsigned int destId = dest->getId();
+        distances[sourceId][destId] = e->getWeight();
+    }
+}*/
 
     clock_t start = clock();
 
@@ -36,6 +36,11 @@ int main() {
     double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
     cout << result << endl;
 
+    // print path
+    for (auto itr : minPath)
+        cout << itr << " -> ";
+    cout << '0' << endl;
+
     clock_t end = clock();
 
     // Calculate the duration in milliseconds
@@ -44,7 +49,7 @@ int main() {
     // Print the duration
     cout << "Time taken: " << duration << " milliseconds." << endl;
 
-    manager.triangular();
+    // manager.triangular();
 
 
 

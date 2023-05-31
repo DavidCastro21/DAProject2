@@ -60,7 +60,6 @@ vector<Edge*> Vertex::getAdj() const {
 void Vertex::addEdge(Vertex *dest, double weight) {
     auto newEdge = new Edge(this, dest, weight);
     this->adj.push_back(newEdge);
-    // return newEdge;
 }
 void Vertex::setId(int id) {
     this->id = id;

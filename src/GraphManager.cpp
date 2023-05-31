@@ -162,7 +162,7 @@ void GraphManager::readRealWorld(int input) {
         int node2_ = stoi(node2);
         double weight_ = stod(weight);
         this->graph.addEdge(node1_, node2_, weight_);
-        // cout << node1_ << ' ' << node2_ << ' ' << weight_ << endl;
+        cout << "origem: " << node1_ << ' ' << "destino: " <<  node2_ << ' ' << "distance: " << weight_ << endl;
     }
 
     file_nodes.close();
@@ -279,7 +279,7 @@ unsigned int GraphManager::tspBT(unsigned int **dists, unsigned int n, unsigned 
 
 double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance, int &graphSize) {
     currentNode->setVisited(true);
-    currentPath.push_back(currentNode->getId());        // in the first iteration, we add the initial node to the path
+    currentPath.push_back(currentNode->getId());        // in the first iteration, we add the initial node to the path, and so on
     alreadyVisited++;
 
     if (alreadyVisited == graphSize) {
@@ -311,8 +311,6 @@ double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, i
 
     return minDistance;
 }
-
-
 
 void GraphManager::triangular() {
     clock_t start = clock();

@@ -4,6 +4,7 @@
 #include <limits>
 #include <algorithm>
 #include <utility>
+#include <cmath>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ bool Graph::addVertex(const int &id, double longitude, double latitude) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, longitude, latitude);
-    vertexMap[id] = v1;
+    vertexMap.insert(make_pair(id, v1));
     return true;
 }
 bool Graph::addVertex(const int &id, string name) {
@@ -46,10 +47,6 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
     v1->addEdge(v2, w);
     return true;
 }
-
-
-
-
 
 int Graph::getNumVertex() const {
     return vertexMap.size();
