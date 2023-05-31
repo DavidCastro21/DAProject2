@@ -25,7 +25,7 @@ Vertex::Vertex(int id, double longitude, double latitude) {
 }
 Vertex::Vertex(int id, string name) {
     this->id = id;
-    this->name = std::move(name);
+    this->name = name;
     this->visited = false;
     this->path = nullptr;
 }
@@ -57,7 +57,7 @@ Edge* Vertex::getPath() const {
 vector<Edge*> Vertex::getAdj() const {
     return this->adj;
 }
-void Vertex::addEdge(Vertex* origin, Vertex *dest, double weight) {
+void Vertex::addEdge(Vertex *dest, double weight) {
     auto newEdge = new Edge(this, dest, weight);
     this->adj.push_back(newEdge);
     // return newEdge;
@@ -89,7 +89,7 @@ Edge::Edge() {
     this->weight = 0;
 }
 Edge::Edge(Vertex* origin, Vertex* dest, double weight) {
-    this->orig = orig;
+    this->orig = origin;
     this->dest = dest;
     this->weight= weight;
 }
@@ -114,10 +114,5 @@ void Edge::setDest(Vertex* dest) {
 void Edge::setWeight(double weight) {
     this->weight = weight;
 }
-/*void Vertex::addEdge(Vertex* source, Vertex* dest, double weight) {
-    auto newEdge = new Edge(dest, weight);
-    source->getAdj().insert(source->getAdj().end(), newEdge);
-    // this->getAdj().push_back(newEdge);
-}*/
 
 // Path: src/GraphAlgorithms.cpp

@@ -26,10 +26,10 @@ public:
     bool removeVertex(const int &id);
 
     int getNumVertex() const;
-    set<Vertex *> getVertexSet() const;
+    const unordered_map<int, Vertex *> getVertexMap() const;
 
     Vertex * findVertex(const int &id) const;
-    int findVertexIdx(const int &id) const;
+    // int findVertexIdx(const int &id) const;
 
     void resetVisited();
     void resetDist();
@@ -37,7 +37,6 @@ public:
 
 protected:
     int numVertex;
-    set<Vertex *> vertexSet;
     unordered_map<int,Vertex*> vertexMap;
 };
 

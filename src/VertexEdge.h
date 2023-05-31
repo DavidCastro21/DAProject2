@@ -27,7 +27,7 @@ public:
     bool isVisited() const;
     Edge* getPath() const;
     vector<Edge*> getAdj() const;
-    void addEdge(Vertex* origin, Vertex* dest, double weight);
+    void addEdge(Vertex* dest, double weight);
     void setId(int id);
     void setName(string name);
     void setDist(int dist);
@@ -35,7 +35,6 @@ public:
     void setLongitude(double lon);
     void setVisited(bool visited);
     void setPath(Edge *path);
-    // void addEdge(Vertex* source, Vertex* dest, double w);
 
 protected:
     int id;
