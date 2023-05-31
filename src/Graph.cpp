@@ -114,12 +114,12 @@ vector<pair<int,int>> Graph::prim(vector<int> &parents) {
         int min = minWeight(weights, visited);
         visited[min] = true;
         Vertex *v = vertexMap[min];
-        if(v != nullptr){
-            for(auto edge: v->getAdj()){
-                if(!visited[edge->getDest()->getId()] && edge->getWeight() < weights[edge->getDest()->getId()]){
-                    parents[edge->getDest()->getId()] = min;
-                    weights[edge->getDest()->getId()] = edge->getWeight();
-                }
+        for(auto edge: v->getAdj()){
+            int v2 = edge->getDest()->getId();
+            double weight = edge->getWeight();
+            if(!visited[v2] && weight < weights[v2]){
+                parents[v2] = min;
+                weights[v2] = weight;
             }
         }
     }
@@ -143,8 +143,14 @@ int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
 }
 
 bool Graph::haveEdge(int id1, int id2) {
-    for(int i = 0; i<vertexMap[id1]->getAdj().size(); i++){
-        if(vertexMap[id1]->getAdj()[i]->getDest()->getId() == id2){
+    int index;
+    for(int i = 0; i<vertexMap.size(); i++){
+        if(vertexMap[i]->getId() == id1){
+            index = i;
+        }
+    }
+    for(auto edge: vertexMap[index]->getAdj()){
+        if(edge->getDest()->getId() == id2){
             return true;
         }
     }
@@ -169,7 +175,7 @@ double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
 
 double Graph::getDistance(const vector<int> &path) {
     double result = 0.0;
-    for(int i = 0; i< path.size();i++){
+    for(int i = 0; i < path.size() - 1 ;i++){
         int v1 = path[i];
         int v2 = path[i+1];
         if(!haveEdge(v1, v2)){
@@ -177,11 +183,10 @@ double Graph::getDistance(const vector<int> &path) {
             continue;
         }
         Vertex *v = vertexMap[v1];
-        if (v != nullptr){
-            for(auto edge: v->getAdj()){
-                if(edge->getDest()->getId() == v2){
-                    result += edge->getWeight();
-                }
+        for(auto edge: v->getAdj()){
+            if(edge->getDest()->getId() == v2){
+                result += edge->getWeight();
+                break;
             }
         }
     }
