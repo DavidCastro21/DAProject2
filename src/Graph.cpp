@@ -16,25 +16,25 @@ Graph::Graph(int nrVertex) {
 }
 
 bool Graph::addVertex(const int &id) {
-    if (vertexMap.find(id) != vertexMap.end()) { // id does not exist in map yet
-        auto *v1 = new Vertex(id);
-        vertexMap[id] = v1;
-        return true;
-    }
-    return false;
+    if (findVertex(id) != nullptr)
+        return false;
+    auto *v1 = new Vertex(id);
+    vertexMap.insert(make_pair(id, v1));
+    return true;
 }
 bool Graph::addVertex(const int &id, double longitude, double latitude) {
+    if(findVertex(id) != nullptr)
+        return false;
     auto *v1 = new Vertex(id, longitude, latitude);
     vertexMap[id] = v1;
     return true;
 }
 bool Graph::addVertex(const int &id, string name) {
-    if (vertexMap.find(id) != vertexMap.end()) { // id does not exist in map yet
-        auto *v1 = new Vertex(id, name);
-        vertexMap[id] = v1;
-        return true;
-    }
-    return false;
+    if(findVertex(id) != nullptr)
+        return false;
+    auto *v1 = new Vertex(id, name);
+    vertexMap.insert(make_pair(id, v1));
+    return true;
 }
 
 bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
