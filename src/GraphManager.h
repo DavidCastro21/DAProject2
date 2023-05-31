@@ -34,7 +34,6 @@ public:
     // void tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]);
     // unsigned int tspBT(unsigned int **dists, unsigned int n, unsigned int path[]);
     double tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance, int &graphSize);
-    double backtrack(Vertex *current_vertex, std::vector<bool> &visited, int count, double distance, double min_distance, Vertex *start_vertex, std::vector<int> &min_path, std::vector<int> &current_path, int& size);
 
 };
 

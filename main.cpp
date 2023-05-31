@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 #include "src/GraphManager.h"
 
 
@@ -26,11 +27,22 @@ int main() {
         }
     }*/
 
+    clock_t start = clock();
 
     Vertex* initialNode = graph.findVertex(0);
     vector<int> currentPath;
     vector<int> minPath;
+
     double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
     cout << result << endl;
+
+    clock_t end = clock();
+
+    // Calculate the duration in milliseconds
+    double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
+
+    // Print the duration
+    cout << "Time taken: " << duration << " milliseconds." << endl;
+
     return 0;
 }
