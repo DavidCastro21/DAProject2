@@ -44,6 +44,7 @@ int main() {
     // Print the duration
     cout << "Time taken: " << duration << " milliseconds." << endl;
 
+    manager.triangular();
 
 
 

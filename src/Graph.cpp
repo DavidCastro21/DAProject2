@@ -206,6 +206,7 @@ double Graph::triangularApproximation() {
     }
     double distance = getDistance(path);
     cout <<"0" << endl << distance << endl;
+    return distance;
 }
 
 // Path: src/GraphAlgorithms.cpp
