@@ -98,7 +98,9 @@ void GraphManager::readExtraFully(int input) {
         cout << weight << endl;
         this->graph.addVertex(node1);
         this->graph.addVertex(node2);
-        this->graph.addEdge(node1, node2, weight);
+        this->graph.addEdge(node1, node2, weight/2);
+        this->graph.addEdge(node2, node1, weight/2);
+
     }
     file.close();
 }
@@ -161,7 +163,8 @@ void GraphManager::readRealWorld(int input) {
         int node1_ = stoi(node1);
         int node2_ = stoi(node2);
         double weight_ = stod(weight);
-        this->graph.addEdge(node1_, node2_, weight_);
+        this->graph.addEdge(node1_, node2_, weight_/2);
+        this->graph.addEdge(node2_, node1_, weight_/2);
         // cout << node1_ << ' ' << node2_ << ' ' << weight_ << endl;
     }
 

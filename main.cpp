@@ -4,10 +4,13 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(1, 1);
+    GraphManager manager = GraphManager(2,2);
+    cout << "read" << endl;
     Graph graph = manager.getGraph();
+    cout << "graph" << endl;
+    manager.triangular();
 
-    int graphSize = graph.getNumVertex();
+    //int graphSize = graph.getNumVertex();
 
 
     /* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
@@ -27,24 +30,23 @@ int main() {
         }
     }*/
 
-    clock_t start = clock();
+    //clock_t start = clock();
 
-    Vertex* initialNode = graph.findVertex(0);
-    vector<int> currentPath;
-    vector<int> minPath;
+    //Vertex* initialNode = graph.findVertex(0);
+    //vector<int> currentPath;
+    //vector<int> minPath;
 
-    double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
-    cout << result << endl;
+   //double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
+    //cout << result << endl;
 
-    clock_t end = clock();
+    //clock_t end = clock();
 
     // Calculate the duration in milliseconds
-    double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
+    //double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
 
     // Print the duration
-    cout << "Time taken: " << duration << " milliseconds." << endl;
+    //cout << "Time taken: " << duration << " milliseconds." << endl;
 
-    manager.triangular();
 
 
 

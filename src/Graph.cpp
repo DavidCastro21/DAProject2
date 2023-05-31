@@ -19,7 +19,7 @@ bool Graph::addVertex(const int &id) {
     if (findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id);
-    vertexMap.insert(make_pair(id, v1));
+    vertexMap[id] = v1;
     return true;
 }
 bool Graph::addVertex(const int &id, double longitude, double latitude) {
@@ -33,7 +33,7 @@ bool Graph::addVertex(const int &id, string name) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, name);
-    vertexMap.insert(make_pair(id, v1));
+    vertexMap[id] = v1;
     return true;
 }
 
@@ -113,10 +113,13 @@ vector<pair<int,int>> Graph::prim(vector<int> &parents) {
     for(int i = 0; i<vertexMap.size()-1; i++ ){
         int min = minWeight(weights, visited);
         visited[min] = true;
-        for(auto edge: vertexMap[min]->getAdj()){
-            if(!visited[edge->getDest()->getId()] && edge->getWeight() < weights[edge->getDest()->getId()]){
-                parents[edge->getDest()->getId()] = min;
-                weights[edge->getDest()->getId()] = edge->getWeight();
+        Vertex *v = vertexMap[min];
+        if(v != nullptr){
+            for(auto edge: v->getAdj()){
+                if(!visited[edge->getDest()->getId()] && edge->getWeight() < weights[edge->getDest()->getId()]){
+                    parents[edge->getDest()->getId()] = min;
+                    weights[edge->getDest()->getId()] = edge->getWeight();
+                }
             }
         }
     }
@@ -173,9 +176,12 @@ double Graph::getDistance(const vector<int> &path) {
             result += haversine(vertexMap[v1]->getLatitude(), vertexMap[v1]->getLongitude(),vertexMap[v2]->getLatitude(),vertexMap[v2]->getLongitude());
             continue;
         }
-        for(auto edge: vertexMap[v1]->getAdj()){
-            if(edge->getDest()->getId() == v2){
-                result += edge->getWeight();
+        Vertex *v = vertexMap[v1];
+        if (v != nullptr){
+            for(auto edge: v->getAdj()){
+                if(edge->getDest()->getId() == v2){
+                    result += edge->getWeight();
+                }
             }
         }
     }
@@ -184,9 +190,12 @@ double Graph::getDistance(const vector<int> &path) {
         result += haversine(vertexMap[final]->getLatitude(), vertexMap[final]->getLongitude(),vertexMap[path[0]]->getLatitude(),vertexMap[path[0]]->getLongitude());
     }
     else{
-        for(auto edge: vertexMap[final]->getAdj()){
-            if(edge->getDest()->getId() == path[0]){
-                result += edge->getWeight();
+        Vertex *v = vertexMap[final];
+        if (v != nullptr){
+            for(auto edge: v->getAdj()){
+                if(edge->getDest()->getId() == path[0]){
+                    result += edge->getWeight();
+                }
             }
         }
     }
@@ -205,7 +214,7 @@ double Graph::triangularApproximation() {
         cout << path[i] << " ";
     }
     double distance = getDistance(path);
-    cout <<"0" << endl << distance << endl;
+    cout <<"0" << endl<<"DISTANCE:: " << distance << endl;
     return distance;
 }
 
