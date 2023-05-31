@@ -5,10 +5,6 @@
 
 int main() {
     GraphManager manager = GraphManager(1, 1);
-    Graph graph = manager.getGraph();
-
-    int graphSize = graph.getNumVertex();
-
 
     /* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
 
@@ -27,22 +23,11 @@ int main() {
         }
     }*/
 
-    clock_t start = clock();
 
-    Vertex* initialNode = graph.findVertex(0);
-    vector<int> currentPath;
-    vector<int> minPath;
-
-    double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
-    cout << result << endl;
-
-    clock_t end = clock();
 
     // Calculate the duration in milliseconds
-    double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
 
-    // Print the duration
-    cout << "Time taken: " << duration << " milliseconds." << endl;
-
+    Graph newGraph = manager.getGraph();
+    newGraph.triangularApproximation();
     return 0;
 }

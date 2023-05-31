@@ -11,6 +11,7 @@
 #include <list>
 #include <set>
 #include <unordered_map>
+#include <stack>
 #include "VertexEdge.h"
 using namespace std;
 
@@ -34,6 +35,14 @@ public:
     void resetVisited();
     void resetDist();
     void resetPath();
+
+    double triangularApproximation();
+    void dfs(int id, const vector<int> & parents, vector<bool> & visited, stack<int> & stack, vector<int> &path);
+    vector<pair<int,int>> prim(vector<int> & parents);
+    int minWeight(vector<double>& weights, vector<bool> & visited);
+    double haversine(double lat1, double lon1, double lat2, double lon2);
+    bool haveEdge(int id1, int id2);
+    double getDistance(const vector<int>& path);
 
 protected:
     int numVertex;
