@@ -37,8 +37,8 @@ public:
     void resetPath();
 
     double triangularApproximation();
-    void dfs(int id, vector<int> &path);
-    void prim();
+    void dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path);
+    vector<Edge*> prim();
     int minWeight(vector<double>& weights, vector<bool> & visited);
     double haversine(double lat1, double lon1, double lat2, double lon2);
     bool haveEdge(int id1, int id2);
@@ -47,6 +47,13 @@ public:
 protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;
+};
+
+class WeightCompare{
+    public:
+        bool operator()(const Edge* e1, const Edge * e2) const{
+            return e1->getWeight() > e2->getWeight();
+    }
 };
 
 

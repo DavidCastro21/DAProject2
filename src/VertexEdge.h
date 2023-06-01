@@ -62,6 +62,8 @@ public:
     double getWeight() const;
     void setDest(Vertex* dest);
     void setWeight(double weight);
+    Vertex* getOrig() const;
+    void setOrig(Vertex* orig);
 private:
     Vertex* orig;
     Vertex* dest;

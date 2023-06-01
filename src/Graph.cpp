@@ -5,6 +5,7 @@
 #include <limits>
 #include <algorithm>
 #include <utility>
+#include <unordered_set>
 #include <cmath>
 
 using namespace std;
@@ -88,56 +89,53 @@ void Graph::resetPath() {
         v.second->setPath(nullptr);
 }
 
-void Graph::dfs(int id, vector<int> &path) {
-    /*visited[id] = true;
-    stack.push(id);
-    while(!stack.empty()){
-        int top = stack.top();
-        stack.pop();
-        path.push_back(top);
-        for(int i = 0; i < parent_.size(); i++){
-            if(parent_[i] == top && !visited[i]){
-                visited[i] = true;
-                stack.push(i);
-            }
-        }
-    }*/
-    Vertex* v = vertexMap[id];
-    v->setVisited(true);
+void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
+    visited[v->getId()] = true;
+    cout << v->getId() << " -> ";
     path.push_back(v->getId());
-    for (auto e : v->getAdj()) {
-        auto u = e->getDest();
-        if (!u->isVisited()) {
-            dfs(u->getId(), path);
+    for (const auto &e: mst) {
+        if (!visited[e->getDest()->getId()] && e->getOrig()->getId() == v->getId()) {
+            dfs(mst, e->getDest(), visited, path);
         }
     }
 }
-void Graph::prim() {
-    MutablePriorityQueue<Vertex> q;
-    for (auto v : vertexMap) {
-        v.second->setDist(INT_MAX);
-        v.second->setVisited(false);
-        v.second->setPath(nullptr);
-        q.insert(v.second);
-    }
+vector<Edge*> Graph::prim() {
+    vector<Edge*> mst;
 
-    vertexMap[0]->setDist(0);
-    vertexMap[0]->setPath(nullptr);
-    vertexMap[0]->setVisited(true);
-    q.decreaseKey(vertexMap[0]);
+    priority_queue<Edge*, vector<Edge*>, WeightCompare> q;
+
+    vector<bool> visited(vertexMap.size(), false);
+
+    Vertex* v1 = this->vertexMap[0];
+
+    for(const auto &e: v1->getAdj()){
+        q.push(e);
+    }
+    visited[v1->getId()] = true;
+
 
     while (!q.empty()) {
-        Vertex* u = q.extractMin();
-        for (auto e : u->getAdj()) {
-            Vertex* w = e->getDest();
-            if (!w->isVisited() && e->getWeight() < w->getDist()) {
-                w->setPath(e);                  // e is now the edge that reaches w
-                w->setDist(e->getWeight());     // distance of w was decreased
-                q.decreaseKey(w);
+        Edge* e = q.top();
+        q.pop();
+        Vertex* v = e->getDest();
+        Vertex* u = e->getOrig();
+        if (visited[v->getId()]) {
+            continue;
+        }
+        visited[v->getId()] = true;
+        mst.push_back(e);
+        for (const auto &parent: vertexMap) {
+            if (parent.second == v) {
+                for(auto edge: parent.second->getAdj()){
+                    if(!visited[edge->getDest()->getId()]){
+                        q.push(edge);
+                    }
+                }
             }
         }
-        u->setVisited(true);        // now, we can set u to visited (see my example in notebook)
+
     }
+    return mst;
 }
 
 int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
@@ -221,19 +219,17 @@ double Graph::getDistance(const vector<int> &path) {
 
 
 double Graph::triangularApproximation() {
+    double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
-    prim();
-    /*vector<bool> visited(vertexMap.size(), false);
-    stack<int> stack;*/
-    vector<int> path;
-    dfs(0, path);
-    for(int i = 0; i < path.size(); i++){
-        cout << path[i] << " -> ";
-    }
-    double distance = getDistance(path);
-    cout <<"0" << endl<<"DISTANCE:: " << distance << endl;
-    cout << "path size: " << path.size() << endl;
-    return distance;
+    vector<Edge*> mst = prim();
+
+    cout << "Preorder traversal of tree is \n";
+    vector<bool> visited(vertexMap.size(), false);
+    vector<int> preorder(vertexMap.size());
+    dfs(mst, mst[0]->getOrig(), visited, preorder);
+    cout <<endl;
+    result = getDistance(preorder);
+    cout << "Distance: " << result << endl;
 }
 
 // Path: src/GraphAlgorithms.cpp

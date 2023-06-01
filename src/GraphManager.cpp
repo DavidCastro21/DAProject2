@@ -312,9 +312,7 @@ double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, i
 
 void GraphManager::triangular() {
     clock_t start = clock();
-    double total  = this->graph.triangularApproximation();
+    this->graph.triangularApproximation();
     clock_t end = clock();
-
-    cout << "Triangular Approximation: " << total << endl;
-    cout << "Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
+    cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
 }

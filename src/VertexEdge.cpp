@@ -113,5 +113,11 @@ void Edge::setDest(Vertex* dest) {
 void Edge::setWeight(double weight) {
     this->weight = weight;
 }
+void Edge::setOrig(Vertex* orig) {
+    this->orig = orig;
+}
+Vertex* Edge::getOrig() const {
+    return this->orig;
+}
 
 // Path: src/GraphAlgorithms.cpp

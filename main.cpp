@@ -4,7 +4,7 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(2,1);
+    GraphManager manager = GraphManager(2,3);
     Graph graph = manager.getGraph();
 
     int graphSize = graph.getNumVertex();
@@ -48,7 +48,6 @@ for (auto v : graph.getVertexSet()) {
     cout << "-----------------------" << endl;*/
 
     manager.triangular();
-
 
 
 

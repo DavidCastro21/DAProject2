@@ -23,6 +23,7 @@ public:
     T * extractMin();
     void decreaseKey(T * x);
     bool empty();
+    bool contains(T * x);
 };
 
 // Index calculations
@@ -94,5 +95,10 @@ void MutablePriorityQueue<T>::set(unsigned i, T * x) {
     H[i] = x;
     x->queueIndex = i;
 }
+template <class T>
+bool MutablePriorityQueue<T>::contains(T *x) {
+    return x->queueIndex != 0;
+}
+
 
 #endif /* DA_TP_CLASSES_MUTABLEPRIORITYQUEUE */
