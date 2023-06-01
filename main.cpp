@@ -4,7 +4,7 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(2,3);
+    GraphManager manager = GraphManager(2,2);
     Graph graph = manager.getGraph();
 
     int graphSize = graph.getNumVertex();

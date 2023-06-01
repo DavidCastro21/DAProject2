@@ -7,7 +7,6 @@
 #include <utility>
 #include <unordered_set>
 #include <cmath>
-
 using namespace std;
 
 Graph::Graph() {
@@ -93,15 +92,15 @@ void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vect
     visited[v->getId()] = true;
     cout << v->getId() << " -> ";
     path.push_back(v->getId());
-    for (const auto &e: mst) {
-        if (!visited[e->getDest()->getId()] && e->getOrig()->getId() == v->getId()) {
-            dfs(mst, e->getDest(), visited, path);
+    for (const auto &e: mst_adj[v->getId()]) {
+        if (!visited[e->getId()]) {
+            dfs(mst, e, visited, path);
         }
     }
 }
 vector<Edge*> Graph::prim() {
     vector<Edge*> mst;
-
+    mst_adj.clear();
     priority_queue<Edge*, vector<Edge*>, WeightCompare> q;
 
     vector<bool> visited(vertexMap.size(), false);
@@ -124,16 +123,13 @@ vector<Edge*> Graph::prim() {
         }
         visited[v->getId()] = true;
         mst.push_back(e);
-        for (const auto &parent: vertexMap) {
-            if (parent.second == v) {
-                for(auto edge: parent.second->getAdj()){
-                    if(!visited[edge->getDest()->getId()]){
-                        q.push(edge);
-                    }
-                }
+        mst_adj[u->getId()].push_back(v);
+        mst_adj[v->getId()].push_back(u);
+        for (const auto parent: v->getAdj()) {
+            if (!visited[parent->getDest()->getId()]) {
+                q.push(parent);
             }
         }
-
     }
     return mst;
 }
@@ -190,13 +186,10 @@ double Graph::getDistance(const vector<int> &path) {
             result += haversine(vertexMap[v1]->getLatitude(), vertexMap[v1]->getLongitude(),vertexMap[v2]->getLatitude(),vertexMap[v2]->getLongitude());
             continue;
         }
-        else {
-            Vertex *v = vertexMap[v1];
-            for(auto edge: v->getAdj()){
-                if(edge->getDest()->getId() == v2){
-                    result += edge->getWeight();
-                    break;
-                }
+        for(auto edge: vertexMap[v1]->getAdj()){
+            if(edge->getDest()->getId() == v2){
+                result += edge->getWeight();
+                break;
             }
         }
     }
@@ -205,15 +198,13 @@ double Graph::getDistance(const vector<int> &path) {
         result += haversine(vertexMap[final]->getLatitude(), vertexMap[final]->getLongitude(),vertexMap[path[0]]->getLatitude(),vertexMap[path[0]]->getLongitude());
     }
     else{
-        Vertex *v = vertexMap[final];
-        if (v != nullptr){
-            for(auto edge: v->getAdj()){
-                if(edge->getDest()->getId() == path[0]){
-                    result += edge->getWeight();
-                }
+        for(auto edge: vertexMap[final]->getAdj()){
+            if(edge->getDest()->getId() == path[0]){
+                result += edge->getWeight();
             }
         }
     }
+
     return result;
 }
 
@@ -227,7 +218,7 @@ double Graph::triangularApproximation() {
     vector<bool> visited(vertexMap.size(), false);
     vector<int> preorder(vertexMap.size());
     dfs(mst, mst[0]->getOrig(), visited, preorder);
-    cout <<endl;
+    cout <<"0" <<endl;
     result = getDistance(preorder);
     cout << "Distance: " << result << endl;
 }

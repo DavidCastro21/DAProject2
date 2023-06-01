@@ -12,6 +12,7 @@
 #include <set>
 #include <unordered_map>
 #include <stack>
+#include <map>
 #include "VertexEdge.h"
 using namespace std;
 
@@ -43,7 +44,7 @@ public:
     double haversine(double lat1, double lon1, double lat2, double lon2);
     bool haveEdge(int id1, int id2);
     double getDistance(const vector<int>& path);
-
+    map<int, vector<Vertex*>> mst_adj;
 protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;
