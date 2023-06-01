@@ -114,6 +114,7 @@ Vertex * Graph::prim() {
         v->setPath(nullptr);
         v->setVisited(false);
     }
+    visited[v1->getId()] = true;
 
     // start with an arbitrary vertex
     Vertex* s = vertexSet.front();
@@ -211,13 +212,10 @@ double Graph::getDistance(const vector<int> &path) {
             result += haversine(vertexMap[v1]->getLatitude(), vertexMap[v1]->getLongitude(),vertexMap[v2]->getLatitude(),vertexMap[v2]->getLongitude());
             continue;
         }
-        else {
-            Vertex *v = vertexMap[v1];
-            for(auto edge: v->getAdj()){
-                if(edge->getDest()->getId() == v2){
-                    result += edge->getWeight();
-                    break;
-                }
+        for(auto edge: vertexMap[v1]->getAdj()){
+            if(edge->getDest()->getId() == v2){
+                result += edge->getWeight();
+                break;
             }
         }
     }
@@ -226,15 +224,13 @@ double Graph::getDistance(const vector<int> &path) {
         result += haversine(vertexMap[final]->getLatitude(), vertexMap[final]->getLongitude(),vertexMap[path[0]]->getLatitude(),vertexMap[path[0]]->getLongitude());
     }
     else{
-        Vertex *v = vertexMap[final];
-        if (v != nullptr){
-            for(auto edge: v->getAdj()){
-                if(edge->getDest()->getId() == path[0]){
-                    result += edge->getWeight();
-                }
+        for(auto edge: vertexMap[final]->getAdj()){
+            if(edge->getDest()->getId() == path[0]){
+                result += edge->getWeight();
             }
         }
     }
+
     return result;
 }
 
