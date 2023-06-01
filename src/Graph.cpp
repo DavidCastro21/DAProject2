@@ -22,6 +22,7 @@ bool Graph::addVertex(const int &id) {
     if (findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id);
+    vertexSet.push_back(v1);
     vertexMap[id] = v1;
     return true;
 }
@@ -29,6 +30,7 @@ bool Graph::addVertex(const int &id, double longitude, double latitude) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, longitude, latitude);
+    vertexSet.push_back(v1);
     vertexMap.insert(make_pair(id, v1));
     return true;
 }
@@ -36,6 +38,7 @@ bool Graph::addVertex(const int &id, string name) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, name);
+    vertexSet.push_back(v1);
     vertexMap[id] = v1;
     return true;
 }
@@ -75,8 +78,8 @@ Vertex *Graph::findVertex(const int &id) const {
 
 
 void Graph::resetVisited() {
-    for (auto v : vertexMap)
-        v.second->setVisited(false);
+    for (auto v : vertexSet)
+        v->setVisited(false);
 }
 
 void Graph::resetDist() {
@@ -89,53 +92,71 @@ void Graph::resetPath() {
         v.second->setPath(nullptr);
 }
 
-void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
-    visited[v->getId()] = true;
-    cout << v->getId() << " -> ";
-    path.push_back(v->getId());
-    for (const auto &e: mst) {
-        if (!visited[e->getDest()->getId()] && e->getOrig()->getId() == v->getId()) {
-            dfs(mst, e->getDest(), visited, path);
+void Graph::dfs(Vertex* initial, vector<int> &path) {
+    initial->setVisited(true);
+    cout << initial->getId() << " -> ";
+    path.push_back(initial->getId());
+    for (const auto &e: initial->getAdj()) {
+        Vertex* w = e->getDest();
+        if (!w->isVisited() && e->getOrig()->getId() == initial->getId()) {
+            dfs(w,path);
         }
     }
 }
-vector<Edge*> Graph::prim() {
-    vector<Edge*> mst;
-
-    priority_queue<Edge*, vector<Edge*>, WeightCompare> q;
-
-    vector<bool> visited(vertexMap.size(), false);
-
-    Vertex* v1 = this->vertexMap[0];
-
-    for(const auto &e: v1->getAdj()){
-        q.push(e);
+Vertex * Graph::prim() {
+    if (vertexMap.empty()) {
+        return nullptr;
     }
-    visited[v1->getId()] = true;
 
+    // Reset auxiliary info
+    for(auto v : vertexSet) {
+        v->setDist(INT32_MAX);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
 
-    while (!q.empty()) {
-        Edge* e = q.top();
-        q.pop();
-        Vertex* v = e->getDest();
-        Vertex* u = e->getOrig();
-        if (visited[v->getId()]) {
-            continue;
-        }
-        visited[v->getId()] = true;
-        mst.push_back(e);
-        for (const auto &parent: vertexMap) {
-            if (parent.second == v) {
-                for(auto edge: parent.second->getAdj()){
-                    if(!visited[edge->getDest()->getId()]){
-                        q.push(edge);
+    // start with an arbitrary vertex
+    Vertex* s = vertexSet.front();
+    s->setDist(0);
+    vector<Vertex*> aux;
+
+    // initialize priority queue
+    MutablePriorityQueue<Vertex> q;
+    q.insert(s);
+    // process vertices in the priority queue
+    while( ! q.empty() ) {
+        auto v = q.extractMin();
+        v->setVisited(true);
+        for(auto &e : v->getAdj()) {
+            Vertex* w = e->getDest();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if(e->getWeight() < oldDist) {
+                    w->setDist(e->getWeight());
+                    w->setPath(e);
+                    if(v == vertexSet.front()){ //vai funcionar porque ao início todos os adj do vetor inicial vao ter o path como o edge entre o nó inicial e o nó do adj
+                        aux.push_back(w);
+                    }
+                    if (oldDist == INT32_MAX) {
+                        q.insert(w);
+                    }
+                    else {
+                        q.decreaseKey(w);
                     }
                 }
             }
         }
-
     }
-    return mst;
+
+    int count = 0;
+    for(auto vertex: aux){
+        if(vertex->getPath()->getOrig()==s) {
+            cout<<vertex->getId()<<endl;
+            count++;
+        }
+    }
+    cout<<count<<endl;
+    return nullptr;
 }
 
 int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
@@ -221,12 +242,13 @@ double Graph::getDistance(const vector<int> &path) {
 double Graph::triangularApproximation() {
     double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
-    vector<Edge*> mst = prim();
+    Vertex* initial = prim();
 
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
     vector<int> preorder(vertexMap.size());
-    dfs(mst, mst[0]->getOrig(), visited, preorder);
+    resetVisited();
+    dfs(vertexSet.front(), preorder);
     cout <<endl;
     result = getDistance(preorder);
     cout << "Distance: " << result << endl;

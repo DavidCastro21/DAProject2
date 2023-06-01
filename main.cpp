@@ -6,6 +6,7 @@
 int main() {
     GraphManager manager = GraphManager(2,3);
     Graph graph = manager.getGraph();
+    cout <<"Graph read"<<endl;
 
     int graphSize = graph.getNumVertex();
 
