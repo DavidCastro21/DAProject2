@@ -100,6 +100,9 @@
 		<Unit filename="C:/DA/project2/DAProject2/src/GraphManager.h">
 			<Option target="untitled1"/>
 		</Unit>
+		<Unit filename="C:/DA/project2/DAProject2/src/MutablePriorityQueue.h">
+			<Option target="untitled1"/>
+		</Unit>
 		<Unit filename="C:/DA/project2/DAProject2/src/VertexEdge.cpp">
 			<Option target="untitled1"/>
 		</Unit>

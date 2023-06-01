@@ -91,14 +91,13 @@ void GraphManager::readExtraFully(int input) {
             tokens.push_back(token);
         }
         int node1 = stoi(tokens[0]);
-        cout << node1 << endl;
         int node2 = stoi(tokens[1]);
-        cout << node2 << endl;
         double weight = stod(tokens[2]);
-        cout << weight << endl;
         this->graph.addVertex(node1);
         this->graph.addVertex(node2);
         this->graph.addEdge(node1, node2, weight);
+        this->graph.addEdge(node2, node1, weight);
+
     }
     file.close();
 }
@@ -141,7 +140,6 @@ void GraphManager::readRealWorld(int input) {
         double lat2 = stod(lat);
         double lon2 = stod(lon);
         this->graph.addVertex(id1, lon2, lat2);
-        // cout << id1 << ' ' << lat2 << ' ' << lon2 << endl;
     }
 
     ifstream file_edges(filename_edges);
@@ -162,7 +160,7 @@ void GraphManager::readRealWorld(int input) {
         int node2_ = stoi(node2);
         double weight_ = stod(weight);
         this->graph.addEdge(node1_, node2_, weight_);
-        cout << "origem: " << node1_ << ' ' << "destino: " <<  node2_ << ' ' << "distance: " << weight_ << endl;
+        this->graph.addEdge(node2_, node1_, weight_);
     }
 
     file_nodes.close();

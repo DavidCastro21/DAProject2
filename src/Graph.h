@@ -37,8 +37,8 @@ public:
     void resetPath();
 
     double triangularApproximation();
-    void dfs(int id, const vector<int> & parents, vector<bool> & visited, stack<int> & stack, vector<int> &path);
-    vector<pair<int,int>> prim(vector<int> & parents);
+    void dfs(int id, vector<int> &path);
+    void prim();
     int minWeight(vector<double>& weights, vector<bool> & visited);
     double haversine(double lat1, double lon1, double lat2, double lon2);
     bool haveEdge(int id1, int id2);

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <vector>
+#include "MutablePriorityQueue.h"
 
 using namespace std;
 
@@ -35,6 +36,9 @@ public:
     void setLongitude(double lon);
     void setVisited(bool visited);
     void setPath(Edge *path);
+    bool operator<(Vertex & vertex) const;
+    friend class MutablePriorityQueue<Vertex*>;
+    int queueIndex = 0;
 
 protected:
     int id;
@@ -45,7 +49,6 @@ protected:
     bool visited = false;
     vector<Edge*> adj;
     Edge *path = nullptr;
-    bool operator<(Vertex & vertex) const;
 };
 
 class Edge {
