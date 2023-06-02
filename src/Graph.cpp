@@ -155,7 +155,12 @@ bool Graph::haveEdge(int id1, int id2) {
     return false;
 }
 
-double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
+double Graph::haversine(Vertex *initialNode, Vertex *finalNode) {
+    double lat1 = initialNode->getLatitude();
+    double lon1 = initialNode->getLongitude();
+    double lat2 = finalNode->getLatitude();
+    double lon2 = finalNode->getLongitude();
+
     double R = 6371e3; // metres
     double phi1 = lat1 * M_PI/180; // φ, λ in radians
     double phi2 = lat2 * M_PI/180;
@@ -177,7 +182,7 @@ double Graph::getDistance(const vector<int> &path) {
         int v1 = path[i];
         int v2 = path[i+1];
         if(!haveEdge(v1, v2)){
-            result += haversine(vertexMap[v1]->getLatitude(), vertexMap[v1]->getLongitude(),vertexMap[v2]->getLatitude(),vertexMap[v2]->getLongitude());
+            result += haversine(vertexMap[v1], vertexMap[v2]);
             continue;
         }
         for(auto edge: vertexMap[v1]->getAdj()){
@@ -189,7 +194,7 @@ double Graph::getDistance(const vector<int> &path) {
     }
     int final = path.back();
     if(!haveEdge(final,path[0])){
-        result += haversine(vertexMap[final]->getLatitude(), vertexMap[final]->getLongitude(),vertexMap[path[0]]->getLatitude(),vertexMap[path[0]]->getLongitude());
+        result += haversine(vertexMap[final], vertexMap[path[0]]);
     }
     else{
         for(auto edge: vertexMap[final]->getAdj()){
@@ -220,6 +225,50 @@ double Graph::triangularApproximation() {
     clock_t end2 = clock();
     cout << "Distance calculation time: " << double(end2 - begin2) / CLOCKS_PER_SEC << endl;
     cout << "Distance: " << result << endl;
+}
+
+int Graph::nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap) {
+    int count = 0;
+    for (auto itr : vertexMap) {
+        if (itr.second->isVisited())
+            count++;
+    }
+    return count;
+}
+
+double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector<Edge*> &path, int &graphSize, double &distance, bool allVisited) {
+    /*for (auto itr : vertexMap) {
+        itr.second->setVisited(false);
+    }*/
+
+    if (nrNodesAlreadyVisited(vertexMap) == graphSize) {    // all nodes already visited
+        allVisited = true;
+    }
+    if (allVisited) {
+        double lastDistance = haversine(currentNode, initialNode);
+        distance += lastDistance;
+        Edge *lastEdge = new Edge(currentNode, initialNode, lastDistance);
+        path.push_back(lastEdge);
+
+        return distance;
+    }
+
+    currentNode->setVisited(true);
+    sort(currentNode->getAdj().begin(), currentNode->getAdj().end(), [](Edge *e1, Edge *e2){
+        return e1->getWeight() < e2->getWeight();
+    });
+
+    Edge *minEdge;
+    for (auto e : currentNode->getAdj()) {
+        if (!e->getDest()->isVisited()) {
+            minEdge = e;
+            distance += minEdge->getWeight();
+            path.push_back(minEdge);
+            currentNode = minEdge->getDest();
+            break;
+        }
+    }
+    return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
 
 // Path: src/GraphAlgorithms.cpp

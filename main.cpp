@@ -47,7 +47,8 @@ for (auto v : graph.getVertexSet()) {
     cout << "Time taken: " << duration << " milliseconds." << endl;
     cout << "-----------------------" << endl;*/
 
-    manager.triangular();
+    // manager.triangular();
+    manager.heuristic(graphSize);
 
 
 
