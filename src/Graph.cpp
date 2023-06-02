@@ -254,20 +254,20 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
     }
 
     currentNode->setVisited(true);
-    sort(currentNode->getAdj().begin(), currentNode->getAdj().end(), [](Edge *e1, Edge *e2){
-        return e1->getWeight() < e2->getWeight();
-    });
 
-    Edge *minEdge;
+    Edge *minEdge = nullptr;
+    double minEdgeWeight = numeric_limits<double>::max();
     for (auto e : currentNode->getAdj()) {
-        if (!e->getDest()->isVisited()) {
+        if (!e->getDest()->isVisited() && e->getWeight() < minEdgeWeight) {
             minEdge = e;
-            distance += minEdge->getWeight();
-            path.push_back(minEdge);
-            currentNode = minEdge->getDest();
-            break;
+            minEdgeWeight = e->getWeight();
         }
     }
+    distance += minEdgeWeight;
+    path.push_back(minEdge);
+    currentNode = minEdge->getDest();
+    minEdge->getDest()->setVisited(true);
+
     return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
 
