@@ -92,9 +92,9 @@ void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vect
     visited[v->getId()] = true;
     cout << v->getId() << " -> ";
     path.push_back(v->getId());
-    for (const auto &e: mst_adj[v->getId()]) {
-        if (!visited[e->getId()]) {
-            dfs(mst, e, visited, path);
+    for (const auto &neighborId: mst_adj[v->getId()]) {
+        if (!visited[neighborId->getId()]) {
+            dfs(mst,vertexMap[neighborId->getId()], visited, path);
         }
     }
 }
@@ -147,13 +147,7 @@ int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
 }
 
 bool Graph::haveEdge(int id1, int id2) {
-    int index;
-    for(int i = 0; i<vertexMap.size(); i++){
-        if(vertexMap[i]->getId() == id1){
-            index = i;
-        }
-    }
-    for(auto edge: vertexMap[index]->getAdj()){
+    for(auto edge: vertexMap[id1]->getAdj()){
         if(edge->getDest()->getId() == id2){
             return true;
         }
@@ -212,14 +206,19 @@ double Graph::getDistance(const vector<int> &path) {
 double Graph::triangularApproximation() {
     double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
+    clock_t begin = clock();
     vector<Edge*> mst = prim();
-
+    clock_t end = clock();
+    cout << "Prim's algorithm time: " << double(end - begin) / CLOCKS_PER_SEC << endl;
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
     vector<int> preorder(vertexMap.size());
     dfs(mst, mst[0]->getOrig(), visited, preorder);
     cout <<"0" <<endl;
+    clock_t begin2 = clock();
     result = getDistance(preorder);
+    clock_t end2 = clock();
+    cout << "Distance calculation time: " << double(end2 - begin2) / CLOCKS_PER_SEC << endl;
     cout << "Distance: " << result << endl;
 }
 
