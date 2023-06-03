@@ -344,7 +344,7 @@ void GraphManager::Christofides(){
     clock_t start = clock();
     this->graph.Christofides();
     clock_t end = clock();
-    cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
+    cout <<"Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
 }
 
 void GraphManager::deleteGraph() {

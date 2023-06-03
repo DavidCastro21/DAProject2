@@ -221,7 +221,6 @@ double Graph::getDistance(const vector<int> &path) {
             }
         }
     }
-
     return result;
 }
 
@@ -229,13 +228,14 @@ double Graph::getDistance(const vector<int> &path) {
 double Graph::triangularApproximation() {
     double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
+    cout << "starting" << endl;
     clock_t begin = clock();
     vector<Edge*> mst = prim();
     clock_t end = clock();
     cout << "Prim's algorithm time: " << double(end - begin) / CLOCKS_PER_SEC << endl;
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
-    vector<int> preorder(vertexMap.size());
+    vector<int> preorder;
     dfs(mst, mst[0]->getOrig(), visited, preorder);
     cout <<"0" <<endl;
     clock_t begin2 = clock();
