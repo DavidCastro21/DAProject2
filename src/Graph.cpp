@@ -104,61 +104,52 @@ void Graph::resetPath() {
         v.second->setPath(nullptr);
 }
 
-void Graph::dfs(vector<int> &path, double &distance, bool nextOne, Vertex* target, double &lat, double &lon) {
-    target->setVisited(true);
-    cout << target->getId() << " -> ";
-    path.push_back(target->getId());
-    for (auto e: target->getAdj()) {
-        Vertex *w = e->getDest();
-        if (!w->isVisited() && w->getPath()->getOrig()->getId() == target->getId()) {
-            distance += w->getDist();
-            dfs(path, distance, false, w, lat, lon);
+void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
+    visited[v->getId()] = true;
+    cout << v->getId() << " -> ";
+    path.push_back(v->getId());
+    for (const auto &neighborId: mst_adj[v->getId()]) {
+        if (!visited[neighborId->getId()]) {
+            dfs(mst,vertexMap[neighborId->getId()], visited, path);
         }
     }
 
 }
+vector<Edge*> Graph::prim() {
+    vector<Edge*> mst;
+    mst_adj.clear();
+    priority_queue<Edge*, vector<Edge*>, WeightCompare> q;
 
-void Graph::prim() {
+    vector<bool> visited(vertexMap.size(), false);
+    vector<Vertex*> parent;
 
-    if (vertexSet.empty()) {
-        return ;
+    Vertex* v1 = this->vertexMap[0];
+
+    for(const auto &e: v1->getAdj()){
+        q.push(e);
     }
+    visited[v1->getId()] = true;
 
-    // Reset auxiliary info
-    for(auto v : vertexSet) {
-        v->setDist(INT32_MAX);
-        v->setPath(nullptr);
-        v->setVisited(false);
-    }
 
-    // start with an arbitrary vertex
-    Vertex* s = vertexSet.front();
-    s->setDist(0);
-
-    // initialize priority queue
-    MutablePriorityQueue<Vertex> q;
-    q.insert(s);
-    // process vertices in the priority queue
-    while( ! q.empty() ) {
-        auto v = q.extractMin();
-        v->setVisited(true);
-        for(auto &e : v->getAdj()) {
-            Vertex* w = e->getDest();
-            if (!w->isVisited()) {
-                auto oldDist = w->getDist();
-                if(e->getWeight() < oldDist) {
-                    w->setDist(e->getWeight());
-                    w->setPath(e);
-                    if (oldDist == INT32_MAX) {
-                        q.insert(w);
-                    }
-                    else {
-                        q.decreaseKey(w);
-                    }
-                }
+    while (!q.empty()) {
+        Edge* e = q.top();
+        q.pop();
+        Vertex* v = e->getDest();
+        Vertex* u = e->getOrig();
+        if (visited[v->getId()]) {
+            continue;
+        }
+        visited[v->getId()] = true;
+        mst.push_back(e);
+        mst_adj[u->getId()].push_back(v);
+        mst_adj[v->getId()].push_back(u);
+        for (const auto parent: v->getAdj()) {
+            if (!visited[parent->getDest()->getId()]) {
+                q.push(parent);
             }
         }
     }
+    return mst;
 }
 
 int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
@@ -173,22 +164,21 @@ int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
     return min_index;
 }
 
-Edge* Graph::haveEdge(int id1, int id2) {
-    int index;
-    for(int i = 0; i<vertexMap.size(); i++){
-        if(vertexMap[i]->getId() == id1){
-            index = i;
-        }
-    }
-    for(auto edge: vertexMap[index]->getAdj()){
+bool Graph::haveEdge(int id1, int id2) {
+    for(auto edge: vertexMap[id1]->getAdj()){
         if(edge->getDest()->getId() == id2){
-            return edge;
+            return true;
         }
     }
-    return nullptr;
+    return false;
 }
 
-double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
+double Graph::haversine(Vertex *initialNode, Vertex *finalNode) {
+    double lat1 = initialNode->getLatitude();
+    double lon1 = initialNode->getLongitude();
+    double lat2 = finalNode->getLatitude();
+    double lon2 = finalNode->getLongitude();
+
     double R = 6371e3; // metres
     double phi1 = lat1 * M_PI/180; // φ, λ in radians
     double phi2 = lat2 * M_PI/180;
@@ -210,7 +200,7 @@ double Graph::getDistance(const vector<int> &path) {
         int v1 = path[i];
         int v2 = path[i+1];
         if(!haveEdge(v1, v2)){
-            result += haversine(vertexMap[v1]->getLatitude(), vertexMap[v1]->getLongitude(),vertexMap[v2]->getLatitude(),vertexMap[v2]->getLongitude());
+            result += haversine(vertexMap[v1], vertexMap[v2]);
             continue;
         }
         for(auto edge: vertexMap[v1]->getAdj()){
@@ -222,7 +212,7 @@ double Graph::getDistance(const vector<int> &path) {
     }
     int final = path.back();
     if(!haveEdge(final,path[0])){
-        result += haversine(vertexMap[final]->getLatitude(), vertexMap[final]->getLongitude(),vertexMap[path[0]]->getLatitude(),vertexMap[path[0]]->getLongitude());
+        result += haversine(vertexMap[final], vertexMap[path[0]]);
     }
     else{
         for(auto edge: vertexMap[final]->getAdj()){
@@ -239,27 +229,174 @@ double Graph::getDistance(const vector<int> &path) {
 double Graph::triangularApproximation() {
     double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
-    prim();
+    clock_t begin = clock();
+    vector<Edge*> mst = prim();
+    clock_t end = clock();
+    cout << "Prim's algorithm time: " << double(end - begin) / CLOCKS_PER_SEC << endl;
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
-    vector<int> preorder;
-    resetVisited();
-    double distance = 0;
-    double latitude = vertexSet[0]->getLatitude();
-    double longitude = vertexSet[0]->getLongitude();
-    dfs( preorder, distance, true, vertexSet[0],latitude,longitude);
-    cout<< "0" <<endl;
-    Vertex* last = findVertex(preorder.back());
-    distance += haversine(last->getLatitude(),last->getLongitude(),vertexSet[0]->getLatitude(),vertexSet[0]->getLongitude());
-    cout << "Distance: " << distance << endl;
+    vector<int> preorder(vertexMap.size());
+    dfs(mst, mst[0]->getOrig(), visited, preorder);
+    cout <<"0" <<endl;
+    clock_t begin2 = clock();
+    result = getDistance(preorder);
+    clock_t end2 = clock();
+    cout << "Distance calculation time: " << double(end2 - begin2) / CLOCKS_PER_SEC << endl;
+    cout << "Distance: " << result << endl;
 }
 
-void Graph::deleteVertexMap() {
-    vertexMap.clear();
+int Graph::nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap) {
+    int count = 0;
+    for (auto itr : vertexMap) {
+        if (itr.second->isVisited())
+            count++;
+    }
+    return count;
 }
 
-void Graph::deleteVertexSet() {
-    vertexSet.clear();
+double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector<Edge*> &path, int &graphSize, double &distance, bool allVisited) {
+    if (nrNodesAlreadyVisited(vertexMap) == graphSize) {    // all nodes already visited
+        allVisited = true;
+    }
+    if (allVisited) {
+        double lastDistance = haversine(currentNode, initialNode);
+        distance += lastDistance;
+
+        return distance;
+    }
+    currentNode->setVisited(true);
+
+    Edge *minEdge = nullptr;
+    double minEdgeWeight = numeric_limits<double>::max();
+    for (auto e : currentNode->getAdj()) {
+        if (!e->getDest()->isVisited() && e->getWeight() < minEdgeWeight) {
+            minEdge = e;
+            minEdgeWeight = e->getWeight();
+        }
+    }
+
+    if (minEdge) {
+        distance += minEdgeWeight;
+        path.push_back(minEdge);
+        currentNode = minEdge->getDest();
+    }
+    else
+        return distance;
+
+    return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
 
 // Path: src/GraphAlgorithms.cpp
+
+void Graph::findOdds() {
+    for(int i = 0; i < mst_adj.size(); i++){
+        if(mst_adj[i].size() % 2 != 0){
+            odds.push_back(i);
+        }
+    }
+}
+
+void Graph:: perfectMatching() {
+    int closest, minDistance;
+    vector<int>::iterator first,itr;
+    findOdds();
+    while(!odds.empty()){
+        first = odds.begin();
+        vector<int>::iterator it2 = first + 1;
+        vector<int>::iterator it3 = odds.end();
+        minDistance = INT_MAX;
+        for(; it2 != it3; ++it2){
+            if(vertexMap[*first]->getAdj()[*it2]->getWeight() < minDistance){
+                minDistance = vertexMap[*first]->getAdj()[*it2]->getWeight();
+                closest = *it2;
+                itr = first;
+            }
+        }
+        adj[*first].push_back(vertexMap[closest]);
+        adj[closest].push_back(vertexMap[*first]);
+        odds.erase(itr);
+        odds.erase(first);
+    }
+}
+double Graph::findBestPath(int start){
+    vector<int> path;
+    euler_tour(start,path);
+    double length;
+    make_hamiltonian(path,length);
+    return length;
+}
+void Graph::euler_tour(int start, vector<int> &path){
+    map<int,vector<Vertex*>> temp_list;
+    for(int i = 0; i < mst_adj.size(); i++){
+        for(int j = 0; j < adj[i].size(); j++){
+            temp_list[i][j] = adj[i][j];
+        }
+    }
+    stack<int> stack;
+    int pos = start;
+    stack.push(pos);
+    while(!stack.empty() || temp_list[pos].size() > 0){
+        if(temp_list[pos].size() == 0){
+            path.push_back(pos);
+            pos = stack.top();
+            stack.pop();
+        }
+        else{
+            stack.push(pos);
+            int next = adj[pos].back()->getId();
+            adj[pos].pop_back();
+            for(int i = 0; i < adj[next].size(); i++){
+                if(adj[next][i]->getId() == pos){
+                    adj[next].erase(adj[next].begin() + i);
+                    break;
+                }
+            }
+            pos = next;
+        }
+    }
+    path.push_back(pos);
+}
+void Graph::make_hamiltonian(vector<int> &path, double &length){
+    vector<bool> visited(vertexMap.size(),false);
+    length = 0;
+    int root = path.front();
+    vector<int>::iterator itr = path.begin();
+    vector<int>::iterator itr2 = path.begin() + 1;
+    visited[root] = true;
+    while(itr2 != path.end()){
+        if(!visited[*itr2]){
+            length += vertexMap[*itr]->getAdj()[*itr2]->getWeight();
+            itr = itr2;
+            visited[*itr2] = true;
+            itr2 = itr + 1;
+        }
+        else{
+            itr2 = path.erase(itr2);
+        }
+    }
+    if(itr2 != path.end()){
+        length += vertexMap[*itr]->getAdj()[root]->getWeight();
+    }
+}
+
+void Graph::Christofides(){
+    vector<int> path;
+    prim();
+    perfectMatching();
+    double best = INT_MAX;
+    int best_index;
+    for(int i = 0; i < vertexMap.size(); i++){
+        double result = findBestPath(i);
+        weights[i] = result;
+        if(result < best){
+            best = result;
+            best_index = i;
+        }
+    }
+    double result = 0.0;
+    euler_tour(best_index, path);
+    make_hamiltonian(path, result);
+
+    cout << "Best path: " << result << endl;
+
+}

@@ -40,6 +40,7 @@ public:
     friend class MutablePriorityQueue<Vertex*>;
     int queueIndex = 0;
 
+
 protected:
     int id;
     string name;
@@ -62,8 +63,8 @@ public:
     double getWeight() const;
     void setDest(Vertex* dest);
     void setWeight(double weight);
-    Vertex* getOrig() const;
     void setOrig(Vertex* orig);
+    Vertex* getOrig() const;
 private:
     Vertex* orig;
     Vertex* dest;

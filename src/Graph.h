@@ -11,6 +11,7 @@
 #include <list>
 #include <set>
 #include <unordered_map>
+#include <unordered_set>
 #include <stack>
 #include <map>
 #include "VertexEdge.h"
@@ -29,8 +30,6 @@ public:
     bool addVertex(const int &id, string name);
     bool addEdge(const int &sourc, const int &dest, double w) const;
     bool removeVertex(const int &id);
-    void deleteVertexMap();
-    void deleteVertexSet();
 
     int getNumVertex() const;
     const unordered_map<int, Vertex *> getVertexMap() const;
@@ -43,18 +42,28 @@ public:
     void resetPath();
 
     double triangularApproximation();
-    void dfs(vector<int> &path, double &distance, bool nextOne, Vertex* source, double &lat, double &lon);
-    void prim();
+    void dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path);
+    vector<Edge*> prim();
     int minWeight(vector<double>& weights, vector<bool> & visited);
-    double haversine(double lat1, double lon1, double lat2, double lon2);
-    Edge* haveEdge(int id1, int id2);
+    double haversine(Vertex *initialNode, Vertex *finalNode);
+    bool haveEdge(int id1, int id2);
     double getDistance(const vector<int>& path);
-    map<int, vector<Vertex*>> mst_adj;
-    void transformMapToVertex();
-protected:
+    double nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector<Edge*> &path, int &graphSize, double &distance, bool allVisited = false);
+    int nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap);
+    void findOdds();
+    void perfectMatching();
+    void Christofides();
+    double findBestPath(int start);
+    void euler_tour(int start, vector<int> &path);
+    void make_hamiltonian(vector<int> &path, double &length);
+
+        protected:
     int numVertex;
-    vector<Vertex*> vertexSet;
     unordered_map<int,Vertex*> vertexMap;
+    map<int, vector<Vertex*>> mst_adj;
+    vector<int> odds;
+    map<int, vector<Vertex*>> adj;
+    map<int, double> weights;
 };
 
 class WeightCompare{

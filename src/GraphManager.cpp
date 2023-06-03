@@ -314,6 +314,36 @@ void GraphManager::triangular() {
     clock_t start = clock();
     this->graph.triangularApproximation();
     clock_t end = clock();
+    cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC * 1000.0 << " milliseconds" << endl;
+}
+
+double GraphManager::heuristic(int &graphSize) {
+    Vertex *initialNode = graph.findVertex(0);
+    Vertex *currentNode = graph.findVertex(0);
+    vector<Edge*> path;
+    double distance = 0.0;
+
+    clock_t start = clock();
+    this->graph.nearestNeighbor(initialNode, currentNode, path, graphSize, distance);
+
+    for (auto itr : path) {
+        cout << '[' << itr->getOrig()->getId() << ", " << itr->getDest()->getId() << "] -> ";
+    }
+    Edge* lastEdge = path.back();
+    cout << '[' << lastEdge->getDest()->getId() << ", " << initialNode->getId() << ']' << endl;
+
+    clock_t end = clock();
+    double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
+    cout << "Time taken: " << duration << " milliseconds." << endl;
+    cout << "-----------------------" << endl;
+
+    return distance;
+}
+
+void GraphManager::Christofides(){
+    clock_t start = clock();
+    this->graph.Christofides();
+    clock_t end = clock();
     cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
 }
 
