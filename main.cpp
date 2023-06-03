@@ -50,7 +50,8 @@ for (auto v : graph.getVertexSet()) {
     // -----------------------------------------------
     // manager.triangular();
     // -----------------------------------------------
-
+    // manager.Christofides();
+    // -----------------------------------------------
     double distance = manager.heuristic(graphSize);
     cout << "Distance: " << distance << endl;
 
