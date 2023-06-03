@@ -318,7 +318,7 @@ void GraphManager::triangular() {
 }
 
 void GraphManager::deleteGraph() {
-    /*for (auto vertex : graph.getVertexMap()) {
+    for (auto vertex : graph.getVertexMap()) {
         for (Edge* edge : vertex.second->getAdj()) {
             delete edge;
         }
@@ -327,5 +327,4 @@ void GraphManager::deleteGraph() {
     }
     graph.deleteVertexMap();
     graph.deleteVertexSet();
-     */
 }

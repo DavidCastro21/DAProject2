@@ -4,53 +4,66 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(2,3);
-    Graph graph = manager.getGraph();
-    cout <<"Graph read"<<endl;
+    GraphManager manager;
+    Graph graph;
 
-    int graphSize = graph.getNumVertex();
+    int input;
+    int numProblem;
+    int numGraph;
+    while(true) {
+        cout << "Bem vindo!" << endl << endl;
 
+        cout << "==========================================================================" << endl << endl;
 
+        cout << "1 -> Resolver o TSP recorrendo ao backtracking, num grafo mais pequeno" << endl;
+        cout << "2 -> Resolver o TSP recorrendo ao Aproximation Algorithm, num grafo maior" << endl;
+        cout << "3 -> Resolver o TSP recorrendo a um algoritmo secreto, num grafo maior" << endl << endl;
+        cout << "4 -> Sair" << endl << endl;
 
-/* unsigned int **distances = new unsigned int*[graphSize]; // Allocate memory for the rows
+        cin >> input;
 
-for (unsigned int i = 0; i < graphSize; i++) {
-    distances[i] = new unsigned int[graphSize]; // Allocate memory for each row (columns)
-    for (unsigned int j = 0; j < graphSize; j++) {
-        distances[i][j] = 0;
+        cout << "==========================================================================" << endl << endl;
+
+        cout << "Qual é o grafo em que deseja aplicar este algoritmo?" << endl << endl;
+
+        switch (input) {
+            case 1: {
+                int numProblem = 1;
+                cout << "1 -> Grafo shipping" << endl;
+                cout << "2 -> Grafo stadiums" << endl;
+                cout << "3 -> Grafo tourism" << endl << endl;
+                cin >> numGraph;
+                manager.readToyGraphs(numGraph);
+                graph = manager.getGraph();
+                Vertex *initialNode = graph.findVertex(0);
+                int number = graph.getNumVertex();
+                vector<int> currentPath;
+                vector<int> minPath;
+                double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0,
+                                                        10000000.0, number);
+                cout << result << endl;
+                break;
+            }
+            case 2:
+            case 3: {
+                cout << "1 -> Grafo com 1000 nós" << endl;
+                cout << "2 -> Grafo com 5000 nós" << endl;
+                cout << "3 -> Grafo com 10000 nós" << endl << endl;
+                cin >> numGraph;
+                manager.readRealWorld(numGraph);
+                if (input == 2) {
+                    manager.triangular();
+                }
+                else{
+                    //do the function of 4.3;
+                }
+                break;
+            }
+            default:
+                return 0;
+
+        }
+        manager.deleteGraph();
+
     }
-}
-for (auto v : graph.getVertexSet()) {
-    unsigned int sourceId = v->getId();
-    for (auto e : v->getAdj()) {
-        auto dest = e->getDest();
-        unsigned int destId = dest->getId();
-        distances[sourceId][destId] = e->getWeight();
-    }
-}*/
-
-    /*clock_t start = clock();
-
-    Vertex* initialNode = graph.findVertex(0);
-    vector<int> currentPath;
-    vector<int> minPath;
-
-    double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0, 10000000.0, graphSize);
-    cout << result << endl;
-    // print path
-    for (auto itr : minPath)
-        cout << itr << " -> ";
-    cout << '0' << endl;
-
-    clock_t end = clock();
-    double duration = double(end - start) / CLOCKS_PER_SEC * 1000.0;
-
-    cout << "Time taken: " << duration << " milliseconds." << endl;
-    cout << "-----------------------" << endl;*/
-
-    manager.triangular();
-
-
-
-    return 0;
 }

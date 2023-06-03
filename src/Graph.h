@@ -29,6 +29,8 @@ public:
     bool addVertex(const int &id, string name);
     bool addEdge(const int &sourc, const int &dest, double w) const;
     bool removeVertex(const int &id);
+    void deleteVertexMap();
+    void deleteVertexSet();
 
     int getNumVertex() const;
     const unordered_map<int, Vertex *> getVertexMap() const;

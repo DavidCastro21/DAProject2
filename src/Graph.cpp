@@ -254,4 +254,12 @@ double Graph::triangularApproximation() {
     cout << "Distance: " << distance << endl;
 }
 
+void Graph::deleteVertexMap() {
+    vertexMap.clear();
+}
+
+void Graph::deleteVertexSet() {
+    vertexSet.clear();
+}
+
 // Path: src/GraphAlgorithms.cpp
