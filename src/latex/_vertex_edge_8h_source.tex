@@ -25,7 +25,7 @@
 \DoxyCodeLine{44 }
 \DoxyCodeLine{50     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_vertex_a75b6b4a4afc26affea59fdae48aa30b1}{getId}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{56     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_vertex_a03742e8eafee7a45c73408c0fc0290a7}{getName}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{62     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_vertex_aa36ca926de23a6e7283be42e2930957c}{getDist}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{62     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_vertex_aa36ca926de23a6e7283be42e2930957c}{getDist}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{68     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_vertex_a7455a09de51b274867edae2254cef38d}{getLatitude}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{74     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_vertex_af1a2bee6c38f511cbfea082eb7149537}{getLongitude}}() \textcolor{keyword}{const};}
 \DoxyCodeLine{80     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_vertex_aa4bd82105b85ee53a917391f4811cd8a}{isVisited}}() \textcolor{keyword}{const};}
@@ -34,7 +34,7 @@
 \DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a41cb4235a0b09a08fb61bb3095bc4440}{addEdge}}(\mbox{\hyperlink{class_vertex}{Vertex}}* dest, \textcolor{keywordtype}{double} weight);}
 \DoxyCodeLine{105     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a0b766cc3ce251348af422c0773bb4359}{setId}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id});}
 \DoxyCodeLine{111     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a42d9dfc02d2f1a36320c6324b552420b}{setName}}(\textcolor{keywordtype}{string} name);}
-\DoxyCodeLine{117     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a187fac164b46f908dc62fd3f03ba24ca}{setDist}}(\textcolor{keywordtype}{int} dist);}
+\DoxyCodeLine{117     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a6939bef79bfe5fe5bf77d9fd1bd70085}{setDist}}(\textcolor{keywordtype}{double} dist);}
 \DoxyCodeLine{123     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a189c66c936efeab83390e2e7762f64ec}{setLatitude}}(\textcolor{keywordtype}{double} lat);}
 \DoxyCodeLine{129     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_ac3335f4658b527defb7bb20f6dc6a536}{setLongitude}}(\textcolor{keywordtype}{double} lon);}
 \DoxyCodeLine{135     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_vertex_a15eeabbbb6d517af746ae137c6d5b595}{setVisited}}(\textcolor{keywordtype}{bool} visited);}
@@ -70,12 +70,13 @@
 \DoxyCodeLine{218     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a452013a3525db6e2dbbbcb614acf728b}{setWeight}}(\textcolor{keywordtype}{double} weight);}
 \DoxyCodeLine{224     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_edge_a391bd6fe3ca81f936ac3f996303ffc3c}{setOrig}}(\mbox{\hyperlink{class_vertex}{Vertex}}* orig);}
 \DoxyCodeLine{230     \mbox{\hyperlink{class_vertex}{Vertex}}* \mbox{\hyperlink{class_edge_a6e8b08e91c0694b40edff0432fb612eb}{getOrig}}() \textcolor{keyword}{const};}
-\DoxyCodeLine{231 \textcolor{keyword}{private}:}
-\DoxyCodeLine{232     \mbox{\hyperlink{class_vertex}{Vertex}}* orig;}
-\DoxyCodeLine{233     \mbox{\hyperlink{class_vertex}{Vertex}}* dest;}
-\DoxyCodeLine{234     \textcolor{keywordtype}{double} weight;}
-\DoxyCodeLine{235 \};}
-\DoxyCodeLine{236 }
-\DoxyCodeLine{237 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//UNTITLED1\_VERTEXEDGE\_H}}
+\DoxyCodeLine{236     \mbox{\hyperlink{class_edge}{Edge}}* \mbox{\hyperlink{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}{getReverse}}();}
+\DoxyCodeLine{237 \textcolor{keyword}{private}:}
+\DoxyCodeLine{238     \mbox{\hyperlink{class_vertex}{Vertex}}* orig;}
+\DoxyCodeLine{239     \mbox{\hyperlink{class_vertex}{Vertex}}* dest;}
+\DoxyCodeLine{240     \textcolor{keywordtype}{double} weight;}
+\DoxyCodeLine{241 \};}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//UNTITLED1\_VERTEXEDGE\_H}}
 
 \end{DoxyCode}

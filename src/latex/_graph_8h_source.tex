@@ -40,8 +40,8 @@
 \DoxyCodeLine{98     \textcolor{comment}{// int findVertexIdx(const int \&id) const;}}
 \DoxyCodeLine{99 }
 \DoxyCodeLine{105     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a74ac3915ab78762e537d45657e30429b}{triangularApproximation}}();}
-\DoxyCodeLine{114     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae425a227650e2270bd2f0f57281786bc}{dfs}}(\textcolor{keyword}{const} vector<Edge*> \&mst, \mbox{\hyperlink{class_vertex}{Vertex}}* v, vector<bool> \&visited, vector<int> \&path);}
-\DoxyCodeLine{120     vector<Edge*> \mbox{\hyperlink{class_graph_aaaf65f343e3c67b1b783f82375884a8f}{prim}}();}
+\DoxyCodeLine{114     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_af7b0d3ae2544b29915a04907e460fd21}{dfs}}(unordered\_map<\mbox{\hyperlink{class_vertex}{Vertex}}*,vector<Edge*>>\& mst, \mbox{\hyperlink{class_vertex}{Vertex}}* v, vector<bool> \&visited, vector<int> \&path);}
+\DoxyCodeLine{120     unordered\_map<Vertex*,vector<Edge*>> \mbox{\hyperlink{class_graph_a05d7a5bcff0a7a01ab10d211bf54c704}{prim}}();}
 \DoxyCodeLine{128     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a7cd62df7d4eb0bc037283b3251dba797}{haversine}}(\mbox{\hyperlink{class_vertex}{Vertex}} *initialNode, \mbox{\hyperlink{class_vertex}{Vertex}} *finalNode);}
 \DoxyCodeLine{135     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad961055b22db5be113b8e8b2af402d48}{haveEdge}}(\textcolor{keywordtype}{int} id1, \textcolor{keywordtype}{int} id2);}
 \DoxyCodeLine{142     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_adc42a90658e0fe893d69ccd53c9d195a}{getDistance}}(\textcolor{keyword}{const} vector<int>\& path);}
@@ -60,8 +60,8 @@
 \DoxyCodeLine{180 \};}
 \DoxyCodeLine{184 \textcolor{keyword}{class }\mbox{\hyperlink{class_weight_compare}{WeightCompare}}\{}
 \DoxyCodeLine{185     \textcolor{keyword}{public}:}
-\DoxyCodeLine{186         \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}}* e1, \textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}} * e2)\textcolor{keyword}{ const}\{}
-\DoxyCodeLine{187             \textcolor{keywordflow}{return} e1-\/>\mbox{\hyperlink{class_edge_a1caaffca117bab3ff5b7387623a356f8}{getWeight}}() > e2-\/>\mbox{\hyperlink{class_edge_a1caaffca117bab3ff5b7387623a356f8}{getWeight}}();}
+\DoxyCodeLine{186         \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} \mbox{\hyperlink{class_vertex}{Vertex}}* e1, \textcolor{keyword}{const} \mbox{\hyperlink{class_vertex}{Vertex}} * e2)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{187             \textcolor{keywordflow}{return} e1-\/>\mbox{\hyperlink{class_vertex_aa36ca926de23a6e7283be42e2930957c}{getDist}}() > e2-\/>\mbox{\hyperlink{class_vertex_aa36ca926de23a6e7283be42e2930957c}{getDist}}();}
 \DoxyCodeLine{188     \}}
 \DoxyCodeLine{189 \};}
 \DoxyCodeLine{190 }

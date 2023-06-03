@@ -295,11 +295,7 @@ double GraphManager::heuristic(int &graphSize) {
 
     return distance;
 }
-/**
- * Complexity: O(V*E)
- * @brief deleteGraph
- * @return
- */
+
 void GraphManager::deleteGraph() {
     for (auto vertex : graph.getVertexMap()) {
         for (Edge* edge : vertex.second->getAdj()) {

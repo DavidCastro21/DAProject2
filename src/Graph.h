@@ -37,40 +37,40 @@ public:
     /**
      * Complexity: O(1)
      * Adds a vertex to the graph with a given id
-     * @param id
+     * @param id - id of the vertex
      * @return true if the vertex was added, false otherwise
      */
     bool addVertex(const int &id);
     /**
      * Complexity: O(1)
      * Adds a vertex to the graph with a given id and coordinates
-     * @param id
-     * @param longitude
-     * @param latitude
+     * @param id - id of the vertex
+     * @param longitude - longitude of the vertex
+     * @param latitude - latitude of the vertex
      * @return true if the vertex was added, false otherwise
      */
     bool addVertex(const int &id, double longitude, double latitude);
     /**
      * Complexity: O(1)
      * Adds a vertex to the graph with a given id and name
-     * @param id
-     * @param name
+     * @param id - id of the vertex
+     * @param name - name of the vertex
      * @return true if the vertex was added, false otherwise
      */
     bool addVertex(const int &id, string name);
     /**
      * Complexity: O(1)
      * Adds an edge to the graph with a given source, destination and weight
-     * @param sourc
-     * @param dest
-     * @param w
+     * @param sourc - id of the source vertex
+     * @param dest - id of the destination vertex
+     * @param w - weight of the edge
      * @return true if the edge was added, false otherwise
      */
     bool addEdge(const int &sourc, const int &dest, double w) const;
     /**
      * Complexity: O(1)
      * Removes a vertex from the graph with a given id
-     * @param id
+     * @param id - id of the vertex
      * @return true if the vertex was removed, false otherwise
      */
     bool removeVertex(const int &id);
@@ -91,7 +91,7 @@ public:
     /**
      * Complexity: O(1)
      * Gets the vertex with a given id
-     * @param id
+     * @param id - id of the vertex
      * @return the vertex with the given id
      */
     Vertex * findVertex(const int &id) const;
@@ -113,7 +113,7 @@ public:
      */
     void dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path);
     /**
-     * Complexity: O((V + E) log V)
+     * Complexity: O((E+V) log V)
      * @brief Prim algorithm to find the minimum spanning tree
      * @return vector of edges that form the minimum spanning tree
      */

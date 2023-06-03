@@ -102,12 +102,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a74ac3915ab78762e537d45657e30429b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a74ac3915ab78762e537d45657e30429b">triangularApproximation</a> ()</td></tr>
 <tr class="memdesc:a74ac3915ab78762e537d45657e30429b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the distance of the path by using the triangular inequality.  <a href="class_graph.html#a74ac3915ab78762e537d45657e30429b">More...</a><br /></td></tr>
 <tr class="separator:a74ac3915ab78762e537d45657e30429b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae425a227650e2270bd2f0f57281786bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae425a227650e2270bd2f0f57281786bc">dfs</a> (const vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &amp;mst, <a class="el" href="class_vertex.html">Vertex</a> *v, vector&lt; bool &gt; &amp;visited, vector&lt; int &gt; &amp;path)</td></tr>
-<tr class="memdesc:ae425a227650e2270bd2f0f57281786bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFS algorithm to order the minimum spanning tree.  <a href="class_graph.html#ae425a227650e2270bd2f0f57281786bc">More...</a><br /></td></tr>
-<tr class="separator:ae425a227650e2270bd2f0f57281786bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaf65f343e3c67b1b783f82375884a8f"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aaaf65f343e3c67b1b783f82375884a8f">prim</a> ()</td></tr>
-<tr class="memdesc:aaaf65f343e3c67b1b783f82375884a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prim algorithm to find the minimum spanning tree.  <a href="class_graph.html#aaaf65f343e3c67b1b783f82375884a8f">More...</a><br /></td></tr>
-<tr class="separator:aaaf65f343e3c67b1b783f82375884a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7b0d3ae2544b29915a04907e460fd21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af7b0d3ae2544b29915a04907e460fd21">dfs</a> (unordered_map&lt; <a class="el" href="class_vertex.html">Vertex</a> *, vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &gt; &amp;mst, <a class="el" href="class_vertex.html">Vertex</a> *v, vector&lt; bool &gt; &amp;visited, vector&lt; int &gt; &amp;path)</td></tr>
+<tr class="memdesc:af7b0d3ae2544b29915a04907e460fd21"><td class="mdescLeft">&#160;</td><td class="mdescRight">DFS algorithm to order the minimum spanning tree.  <a href="class_graph.html#af7b0d3ae2544b29915a04907e460fd21">More...</a><br /></td></tr>
+<tr class="separator:af7b0d3ae2544b29915a04907e460fd21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d7a5bcff0a7a01ab10d211bf54c704"><td class="memItemLeft" align="right" valign="top">unordered_map&lt; <a class="el" href="class_vertex.html">Vertex</a> *, vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a05d7a5bcff0a7a01ab10d211bf54c704">prim</a> ()</td></tr>
+<tr class="memdesc:a05d7a5bcff0a7a01ab10d211bf54c704"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prim algorithm to find the minimum spanning tree.  <a href="class_graph.html#a05d7a5bcff0a7a01ab10d211bf54c704">More...</a><br /></td></tr>
+<tr class="separator:a05d7a5bcff0a7a01ab10d211bf54c704"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cd62df7d4eb0bc037283b3251dba797"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7cd62df7d4eb0bc037283b3251dba797">haversine</a> (<a class="el" href="class_vertex.html">Vertex</a> *initialNode, <a class="el" href="class_vertex.html">Vertex</a> *finalNode)</td></tr>
 <tr class="memdesc:a7cd62df7d4eb0bc037283b3251dba797"><td class="mdescLeft">&#160;</td><td class="mdescRight">calculates the distance between two nodes using the haversine formula  <a href="class_graph.html#a7cd62df7d4eb0bc037283b3251dba797">More...</a><br /></td></tr>
 <tr class="separator:a7cd62df7d4eb0bc037283b3251dba797"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,9 +233,9 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Adds an edge to the graph with a given source, destination and weight </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">sourc</td><td></td></tr>
-    <tr><td class="paramname">dest</td><td></td></tr>
-    <tr><td class="paramname">w</td><td></td></tr>
+    <tr><td class="paramname">sourc</td><td>- id of the source vertex </td></tr>
+    <tr><td class="paramname">dest</td><td>- id of the destination vertex </td></tr>
+    <tr><td class="paramname">w</td><td>- weight of the edge </td></tr>
   </table>
   </dd>
 </dl>
@@ -260,7 +260,7 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Adds a vertex to the graph with a given id </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>- id of the vertex </td></tr>
   </table>
   </dd>
 </dl>
@@ -301,9 +301,9 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Adds a vertex to the graph with a given id and coordinates </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
-    <tr><td class="paramname">longitude</td><td></td></tr>
-    <tr><td class="paramname">latitude</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>- id of the vertex </td></tr>
+    <tr><td class="paramname">longitude</td><td>- longitude of the vertex </td></tr>
+    <tr><td class="paramname">latitude</td><td>- latitude of the vertex </td></tr>
   </table>
   </dd>
 </dl>
@@ -338,8 +338,8 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Adds a vertex to the graph with a given id and name </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
-    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>- id of the vertex </td></tr>
+    <tr><td class="paramname">name</td><td>- name of the vertex </td></tr>
   </table>
   </dd>
 </dl>
@@ -387,8 +387,8 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 
 </div>
 </div>
-<a id="ae425a227650e2270bd2f0f57281786bc" name="ae425a227650e2270bd2f0f57281786bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae425a227650e2270bd2f0f57281786bc">&#9670;&#160;</a></span>dfs()</h2>
+<a id="af7b0d3ae2544b29915a04907e460fd21" name="af7b0d3ae2544b29915a04907e460fd21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7b0d3ae2544b29915a04907e460fd21">&#9670;&#160;</a></span>dfs()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,7 +396,7 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
         <tr>
           <td class="memname">void Graph::dfs </td>
           <td>(</td>
-          <td class="paramtype">const vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &amp;&#160;</td>
+          <td class="paramtype">unordered_map&lt; <a class="el" href="class_vertex.html">Vertex</a> *, vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>mst</em>, </td>
         </tr>
         <tr>
@@ -455,7 +455,7 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Gets the vertex with a given id </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>- id of the vertex </td></tr>
   </table>
   </dd>
 </dl>
@@ -693,14 +693,14 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 
 </div>
 </div>
-<a id="aaaf65f343e3c67b1b783f82375884a8f" name="aaaf65f343e3c67b1b783f82375884a8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaaf65f343e3c67b1b783f82375884a8f">&#9670;&#160;</a></span>prim()</h2>
+<a id="a05d7a5bcff0a7a01ab10d211bf54c704" name="a05d7a5bcff0a7a01ab10d211bf54c704"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05d7a5bcff0a7a01ab10d211bf54c704">&#9670;&#160;</a></span>prim()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; Graph::prim </td>
+          <td class="memname">unordered_map&lt; <a class="el" href="class_vertex.html">Vertex</a> *, vector&lt; <a class="el" href="class_edge.html">Edge</a> * &gt; &gt; Graph::prim </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -709,7 +709,7 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 
 <p>Prim algorithm to find the minimum spanning tree. </p>
-<p >Complexity: O((V + E) log V) </p><dl class="section return"><dt>Returns</dt><dd>vector of edges that form the minimum spanning tree </dd></dl>
+<p >Complexity: O((E+V) log V) </p><dl class="section return"><dt>Returns</dt><dd>vector of edges that form the minimum spanning tree </dd></dl>
 
 </div>
 </div>
@@ -730,7 +730,7 @@ map&lt; int, double &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>w
 </div><div class="memdoc">
 <p >Complexity: O(1) Removes a vertex from the graph with a given id </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td></td></tr>
+    <tr><td class="paramname">id</td><td>- id of the vertex </td></tr>
   </table>
   </dd>
 </dl>

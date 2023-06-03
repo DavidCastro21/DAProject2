@@ -12,8 +12,9 @@ var searchData=
   ['getnumvertex_9',['getNumVertex',['../class_graph.html#abb5e0517e2979c54eebdafc2a9875e8f',1,'Graph']]],
   ['getorig_10',['getOrig',['../class_edge.html#a6e8b08e91c0694b40edff0432fb612eb',1,'Edge']]],
   ['getpath_11',['getPath',['../class_vertex.html#a6e120e57da6af94892fae44e05868794',1,'Vertex']]],
-  ['getvertexmap_12',['getVertexMap',['../class_graph.html#a6e3a3922a2566651fc18c246c4f5cdc0',1,'Graph']]],
-  ['getweight_13',['getWeight',['../class_edge.html#a1caaffca117bab3ff5b7387623a356f8',1,'Edge']]],
-  ['graph_14',['Graph',['../class_graph.html#ae4c72b8ac4d693c49800a4c7e273654f',1,'Graph::Graph()'],['../class_graph.html#a929f7f1647d14e56992a337174b39c60',1,'Graph::Graph(int nrVertex)']]],
-  ['graphmanager_15',['GraphManager',['../class_graph_manager.html#ae19de6f9936bb21d302bb8a023940822',1,'GraphManager::GraphManager()'],['../class_graph_manager.html#a7056f2082ee363147a5ba99bd16ef9c3',1,'GraphManager::GraphManager(int type, int input)']]]
+  ['getreverse_12',['getReverse',['../class_edge.html#a3794f82c97be1bbc15c5638a965d3d4c',1,'Edge']]],
+  ['getvertexmap_13',['getVertexMap',['../class_graph.html#a6e3a3922a2566651fc18c246c4f5cdc0',1,'Graph']]],
+  ['getweight_14',['getWeight',['../class_edge.html#a1caaffca117bab3ff5b7387623a356f8',1,'Edge']]],
+  ['graph_15',['Graph',['../class_graph.html#ae4c72b8ac4d693c49800a4c7e273654f',1,'Graph::Graph()'],['../class_graph.html#a929f7f1647d14e56992a337174b39c60',1,'Graph::Graph(int nrVertex)']]],
+  ['graphmanager_16',['GraphManager',['../class_graph_manager.html#ae19de6f9936bb21d302bb8a023940822',1,'GraphManager::GraphManager()'],['../class_graph_manager.html#a7056f2082ee363147a5ba99bd16ef9c3',1,'GraphManager::GraphManager(int type, int input)']]]
 ];

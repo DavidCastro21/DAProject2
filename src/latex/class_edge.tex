@@ -22,7 +22,9 @@ void \mbox{\hyperlink{class_edge_a452013a3525db6e2dbbbcb614acf728b}{set\+Weight}
 void \mbox{\hyperlink{class_edge_a391bd6fe3ca81f936ac3f996303ffc3c}{set\+Orig}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$orig)
 \begin{DoxyCompactList}\small\item\em set the origin of the edge \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a6e8b08e91c0694b40edff0432fb612eb}{get\+Orig}} () const
-\begin{DoxyCompactList}\small\item\em get the origin of the edge \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em get the origin of the edge \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge}{Edge}} $\ast$ \mbox{\hyperlink{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}{get\+Reverse}} ()
+\begin{DoxyCompactList}\small\item\em get the reverse of the edge \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
@@ -115,6 +117,19 @@ get the origin of the edge
 
 Complexity\+: O(1) \begin{DoxyReturn}{Returns}
 origin of the edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}\label{class_edge_a3794f82c97be1bbc15c5638a965d3d4c}} 
+\index{Edge@{Edge}!getReverse@{getReverse}}
+\index{getReverse@{getReverse}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getReverse()}{getReverse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_edge}{Edge}} $\ast$ Edge\+::get\+Reverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get the reverse of the edge 
+
+Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+reverse of the edge 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_edge_a1caaffca117bab3ff5b7387623a356f8}\label{class_edge_a1caaffca117bab3ff5b7387623a356f8}} 
 \index{Edge@{Edge}!getWeight@{getWeight}}

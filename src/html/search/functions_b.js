@@ -1,7 +1,7 @@
 var searchData=
 [
   ['setdest_0',['setDest',['../class_edge.html#a1ecc1e562c2f7f07d6897dd9e54e7cbd',1,'Edge']]],
-  ['setdist_1',['setDist',['../class_vertex.html#a187fac164b46f908dc62fd3f03ba24ca',1,'Vertex']]],
+  ['setdist_1',['setDist',['../class_vertex.html#a6939bef79bfe5fe5bf77d9fd1bd70085',1,'Vertex']]],
   ['setid_2',['setId',['../class_vertex.html#a0b766cc3ce251348af422c0773bb4359',1,'Vertex']]],
   ['setlatitude_3',['setLatitude',['../class_vertex.html#a189c66c936efeab83390e2e7762f64ec',1,'Vertex']]],
   ['setlongitude_4',['setLongitude',['../class_vertex.html#ac3335f4658b527defb7bb20f6dc6a536',1,'Vertex']]],

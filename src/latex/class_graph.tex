@@ -25,9 +25,9 @@ const unordered\+\_\+map$<$ int, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ 
 \item 
 double \mbox{\hyperlink{class_graph_a74ac3915ab78762e537d45657e30429b}{triangular\+Approximation}} ()
 \begin{DoxyCompactList}\small\item\em Calculates the distance of the path by using the triangular inequality. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_graph_ae425a227650e2270bd2f0f57281786bc}{dfs}} (const vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \&mst, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v, vector$<$ bool $>$ \&visited, vector$<$ int $>$ \&path)
+void \mbox{\hyperlink{class_graph_af7b0d3ae2544b29915a04907e460fd21}{dfs}} (unordered\+\_\+map$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ $>$ \&mst, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$v, vector$<$ bool $>$ \&visited, vector$<$ int $>$ \&path)
 \begin{DoxyCompactList}\small\item\em DFS algorithm to order the minimum spanning tree. \end{DoxyCompactList}\item 
-vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \mbox{\hyperlink{class_graph_aaaf65f343e3c67b1b783f82375884a8f}{prim}} ()
+unordered\+\_\+map$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ $>$ \mbox{\hyperlink{class_graph_a05d7a5bcff0a7a01ab10d211bf54c704}{prim}} ()
 \begin{DoxyCompactList}\small\item\em Prim algorithm to find the minimum spanning tree. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_graph_a7cd62df7d4eb0bc037283b3251dba797}{haversine}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$initial\+Node, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$final\+Node)
 \begin{DoxyCompactList}\small\item\em calculates the distance between two nodes using the haversine formula \end{DoxyCompactList}\item 
@@ -93,11 +93,11 @@ Complexity\+: O(1) Constructor Initializes a graph with a given number of vertic
 
 Complexity\+: O(1) Adds an edge to the graph with a given source, destination and weight 
 \begin{DoxyParams}{Parameters}
-{\em sourc} & \\
+{\em sourc} & -\/ id of the source vertex \\
 \hline
-{\em dest} & \\
+{\em dest} & -\/ id of the destination vertex \\
 \hline
-{\em w} & \\
+{\em w} & -\/ weight of the edge \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -111,7 +111,7 @@ true if the edge was added, false otherwise
 
 Complexity\+: O(1) Adds a vertex to the graph with a given id 
 \begin{DoxyParams}{Parameters}
-{\em id} & \\
+{\em id} & -\/ id of the vertex \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -125,11 +125,11 @@ true if the vertex was added, false otherwise
 
 Complexity\+: O(1) Adds a vertex to the graph with a given id and coordinates 
 \begin{DoxyParams}{Parameters}
-{\em id} & \\
+{\em id} & -\/ id of the vertex \\
 \hline
-{\em longitude} & \\
+{\em longitude} & -\/ longitude of the vertex \\
 \hline
-{\em latitude} & \\
+{\em latitude} & -\/ latitude of the vertex \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -143,9 +143,9 @@ true if the vertex was added, false otherwise
 
 Complexity\+: O(1) Adds a vertex to the graph with a given id and name 
 \begin{DoxyParams}{Parameters}
-{\em id} & \\
+{\em id} & -\/ id of the vertex \\
 \hline
-{\em name} & \\
+{\em name} & -\/ name of the vertex \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -171,11 +171,11 @@ Complexity\+: O(1) \mbox{\Hypertarget{class_graph_a6a5cfe5631eb03a36cfbace64e60f
 
 deletes the vertex set 
 
-Complexity\+: O(1) \mbox{\Hypertarget{class_graph_ae425a227650e2270bd2f0f57281786bc}\label{class_graph_ae425a227650e2270bd2f0f57281786bc}} 
+Complexity\+: O(1) \mbox{\Hypertarget{class_graph_af7b0d3ae2544b29915a04907e460fd21}\label{class_graph_af7b0d3ae2544b29915a04907e460fd21}} 
 \index{Graph@{Graph}!dfs@{dfs}}
 \index{dfs@{dfs}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{dfs()}{dfs()}}
-{\footnotesize\ttfamily void Graph\+::dfs (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ \&}]{mst,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v,  }\item[{vector$<$ bool $>$ \&}]{visited,  }\item[{vector$<$ int $>$ \&}]{path }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Graph\+::dfs (\begin{DoxyParamCaption}\item[{unordered\+\_\+map$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ $>$ \&}]{mst,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{v,  }\item[{vector$<$ bool $>$ \&}]{visited,  }\item[{vector$<$ int $>$ \&}]{path }\end{DoxyParamCaption})}
 
 
 
@@ -200,7 +200,7 @@ Complexity\+: O(V + E)
 
 Complexity\+: O(1) Gets the vertex with a given id 
 \begin{DoxyParams}{Parameters}
-{\em id} & \\
+{\em id} & -\/ id of the vertex \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -324,17 +324,17 @@ Complexity\+: O(\+V)
 \begin{DoxyReturn}{Returns}
 The count of nodes already visited 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_aaaf65f343e3c67b1b783f82375884a8f}\label{class_graph_aaaf65f343e3c67b1b783f82375884a8f}} 
+\mbox{\Hypertarget{class_graph_a05d7a5bcff0a7a01ab10d211bf54c704}\label{class_graph_a05d7a5bcff0a7a01ab10d211bf54c704}} 
 \index{Graph@{Graph}!prim@{prim}}
 \index{prim@{prim}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{prim()}{prim()}}
-{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ Graph\+::prim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily unordered\+\_\+map$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$, vector$<$ \mbox{\hyperlink{class_edge}{Edge}} $\ast$ $>$ $>$ Graph\+::prim (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Prim algorithm to find the minimum spanning tree. 
 
-Complexity\+: O((V + E) log V) \begin{DoxyReturn}{Returns}
+Complexity\+: O((E+V) log V) \begin{DoxyReturn}{Returns}
 vector of edges that form the minimum spanning tree 
 \end{DoxyReturn}
 \mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
@@ -345,7 +345,7 @@ vector of edges that form the minimum spanning tree
 
 Complexity\+: O(1) Removes a vertex from the graph with a given id 
 \begin{DoxyParams}{Parameters}
-{\em id} & \\
+{\em id} & -\/ id of the vertex \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}

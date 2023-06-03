@@ -228,6 +228,11 @@ public:
      * @return origin of the edge
      */
     Vertex* getOrig() const;
+    /**
+     * Complexity: O(1)
+     * @brief get the reverse of the edge
+     * @return reverse of the edge
+     */
     Edge* getReverse();
 private:
     Vertex* orig;
