@@ -1,0 +1,199 @@
+\hypertarget{class_graph_manager}{}\doxysection{Graph\+Manager Class Reference}
+\label{class_graph_manager}\index{GraphManager@{GraphManager}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_manager_ae19de6f9936bb21d302bb8a023940822}{Graph\+Manager}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph_manager_a7056f2082ee363147a5ba99bd16ef9c3}{Graph\+Manager}} (int type, int input)
+\begin{DoxyCompactList}\small\item\em Constructor that reads the graph from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_manager_a2a621be30b7b7c80cac5e067bad910fc}{get\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Returns the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_manager_ae6e14a4c69cf78d877863661841968d4}{delete\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em deletes the graph \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_manager_a42d0d263c6e7ec05ffcc6fb2a47f5002}{read\+Real\+World}} (int input)
+\begin{DoxyCompactList}\small\item\em Reads the graph from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_manager_a7979eb7db1d6835b65a073d5308c6364}{read\+Extra\+Fully}} (int input)
+\begin{DoxyCompactList}\small\item\em Reads the graph from a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_manager_ad07a2dfcaba21e94c4a7fd66f7d29089}{read\+Toy\+Graphs}} (int input)
+\begin{DoxyCompactList}\small\item\em Reads the graph from a file. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_manager_a182943c77e3263e1da2624ee290722e8}{tsp\+Backtracking}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$current\+Node, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$initial\+Node, int already\+Visited, vector$<$ int $>$ \&current\+Path, vector$<$ int $>$ \&min\+Path, double distance\+So\+Far, double min\+Distance, int \&graph\+Size)
+\begin{DoxyCompactList}\small\item\em Calculates the shortest path between all the nodes of the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_manager_a32d3dfc0c9079f2e6cf1f77c6ace2cce}{triangular}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the shortest path between all the nodes of the graph using triangular approximation algorithm. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_graph_manager_aa9e12c72e2909888508bb81289a079c7}{heuristic}} (int \&graph\+Size)
+\begin{DoxyCompactList}\small\item\em Calculates the shortest path between all the nodes of the graph using nearest neighbor algorithm. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_manager_ae19de6f9936bb21d302bb8a023940822}\label{class_graph_manager_ae19de6f9936bb21d302bb8a023940822}} 
+\index{GraphManager@{GraphManager}!GraphManager@{GraphManager}}
+\index{GraphManager@{GraphManager}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{GraphManager()}{GraphManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+Manager\+::\+Graph\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor. 
+
+Complexity\+: O(1) \mbox{\Hypertarget{class_graph_manager_a7056f2082ee363147a5ba99bd16ef9c3}\label{class_graph_manager_a7056f2082ee363147a5ba99bd16ef9c3}} 
+\index{GraphManager@{GraphManager}!GraphManager@{GraphManager}}
+\index{GraphManager@{GraphManager}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{GraphManager()}{GraphManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+Manager\+::\+Graph\+Manager (\begin{DoxyParamCaption}\item[{int}]{type,  }\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Constructor that reads the graph from a file. 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em type} & -\/ 0 for real world, 1 for extra fully, 2 for toy graphs \\
+\hline
+{\em input} & -\/ 0 for 1st graph, 1 for 2nd graph, 2 for 3rd graph \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_manager_ae6e14a4c69cf78d877863661841968d4}\label{class_graph_manager_ae6e14a4c69cf78d877863661841968d4}} 
+\index{GraphManager@{GraphManager}!deleteGraph@{deleteGraph}}
+\index{deleteGraph@{deleteGraph}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{deleteGraph()}{deleteGraph()}}
+{\footnotesize\ttfamily void Graph\+Manager\+::delete\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+deletes the graph 
+
+delete\+Graph
+
+Complexity\+: O($\vert$\+V$\vert$ + $\vert$\+E$\vert$)
+
+Complexity\+: O(\+V$\ast$\+E) \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_manager_a2a621be30b7b7c80cac5e067bad910fc}\label{class_graph_manager_a2a621be30b7b7c80cac5e067bad910fc}} 
+\index{GraphManager@{GraphManager}!getGraph@{getGraph}}
+\index{getGraph@{getGraph}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{getGraph()}{getGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_graph}{Graph}} Graph\+Manager\+::get\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the graph. 
+
+Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+the graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_manager_aa9e12c72e2909888508bb81289a079c7}\label{class_graph_manager_aa9e12c72e2909888508bb81289a079c7}} 
+\index{GraphManager@{GraphManager}!heuristic@{heuristic}}
+\index{heuristic@{heuristic}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{heuristic()}{heuristic()}}
+{\footnotesize\ttfamily double Graph\+Manager\+::heuristic (\begin{DoxyParamCaption}\item[{int \&}]{graph\+Size }\end{DoxyParamCaption})}
+
+
+
+Calculates the shortest path between all the nodes of the graph using nearest neighbor algorithm. 
+
+Complexity\+: O(\+V$^\wedge$2) 
+\begin{DoxyParams}{Parameters}
+{\em graph\+Size} & -\/ size of the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the heuristic value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_manager_a7979eb7db1d6835b65a073d5308c6364}\label{class_graph_manager_a7979eb7db1d6835b65a073d5308c6364}} 
+\index{GraphManager@{GraphManager}!readExtraFully@{readExtraFully}}
+\index{readExtraFully@{readExtraFully}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{readExtraFully()}{readExtraFully()}}
+{\footnotesize\ttfamily void Graph\+Manager\+::read\+Extra\+Fully (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Reads the graph from a file. 
+
+Complexity\+: O($\vert$\+E$\vert$) 
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ read the input-\/th file from the extra fully connected graphs from 1 to 12 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_manager_a42d0d263c6e7ec05ffcc6fb2a47f5002}\label{class_graph_manager_a42d0d263c6e7ec05ffcc6fb2a47f5002}} 
+\index{GraphManager@{GraphManager}!readRealWorld@{readRealWorld}}
+\index{readRealWorld@{readRealWorld}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{readRealWorld()}{readRealWorld()}}
+{\footnotesize\ttfamily void Graph\+Manager\+::read\+Real\+World (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Reads the graph from a file. 
+
+Complexity\+: O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) 
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ 1 for 1st graph, 2 for 2nd graph, 3 for 3rd graph \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_manager_ad07a2dfcaba21e94c4a7fd66f7d29089}\label{class_graph_manager_ad07a2dfcaba21e94c4a7fd66f7d29089}} 
+\index{GraphManager@{GraphManager}!readToyGraphs@{readToyGraphs}}
+\index{readToyGraphs@{readToyGraphs}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{readToyGraphs()}{readToyGraphs()}}
+{\footnotesize\ttfamily void Graph\+Manager\+::read\+Toy\+Graphs (\begin{DoxyParamCaption}\item[{int}]{input }\end{DoxyParamCaption})}
+
+
+
+Reads the graph from a file. 
+
+Complexity\+: O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) 
+\begin{DoxyParams}{Parameters}
+{\em input} & -\/ 1 for 1st graph, 2 for 2nd graph, 3 for 3rd graph \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_manager_a32d3dfc0c9079f2e6cf1f77c6ace2cce}\label{class_graph_manager_a32d3dfc0c9079f2e6cf1f77c6ace2cce}} 
+\index{GraphManager@{GraphManager}!triangular@{triangular}}
+\index{triangular@{triangular}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{triangular()}{triangular()}}
+{\footnotesize\ttfamily void Graph\+Manager\+::triangular (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the shortest path between all the nodes of the graph using triangular approximation algorithm. 
+
+Complexity\+: O($\vert$\+V$\vert$ + $\vert$\+E$\vert$) \mbox{\Hypertarget{class_graph_manager_a182943c77e3263e1da2624ee290722e8}\label{class_graph_manager_a182943c77e3263e1da2624ee290722e8}} 
+\index{GraphManager@{GraphManager}!tspBacktracking@{tspBacktracking}}
+\index{tspBacktracking@{tspBacktracking}!GraphManager@{GraphManager}}
+\doxysubsubsection{\texorpdfstring{tspBacktracking()}{tspBacktracking()}}
+{\footnotesize\ttfamily double Graph\+Manager\+::tsp\+Backtracking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{current\+Node,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{initial\+Node,  }\item[{int}]{already\+Visited,  }\item[{vector$<$ int $>$ \&}]{current\+Path,  }\item[{vector$<$ int $>$ \&}]{min\+Path,  }\item[{double}]{distance\+So\+Far,  }\item[{double}]{min\+Distance,  }\item[{int \&}]{graph\+Size }\end{DoxyParamCaption})}
+
+
+
+Calculates the shortest path between all the nodes of the graph. 
+
+Complexity\+: O(V!) 
+\begin{DoxyParams}{Parameters}
+{\em current\+Node} & -\/ current node \\
+\hline
+{\em initial\+Node} & -\/ initial node \\
+\hline
+{\em already\+Visited} & -\/ number of nodes already visited \\
+\hline
+{\em current\+Path} & -\/ current path \\
+\hline
+{\em min\+Path} & -\/ minimum path \\
+\hline
+{\em distance\+So\+Far} & -\/ distance so far \\
+\hline
+{\em min\+Distance} & -\/ minimum distance \\
+\hline
+{\em graph\+Size} & -\/ size of the graph \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the minimum distance 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Graph\+Manager.\+h\item 
+Graph\+Manager.\+cpp\end{DoxyCompactItemize}

@@ -53,18 +53,6 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
     return true;
 }
 
-void Graph::transformMapToVertex() {
-    /*vertexSet.clear();
-    vector<int> aux;
-    for (const auto& pair : vertexMap) {
-        vertexSet.
-    }
-    for (const auto& pair : vertexMap) {
-        vertexSet.
-    }
-     */
-}
-
 int Graph::getNumVertex() const {
     return vertexMap.size();
 }
@@ -89,20 +77,6 @@ Vertex *Graph::findVertex(const int &id) const {
 }*/
 
 
-void Graph::resetVisited() {
-    for (auto v : vertexSet)
-        v->setVisited(false);
-}
-
-void Graph::resetDist() {
-    for (auto v : vertexMap)
-        v.second->setDist(0);
-}
-
-void Graph::resetPath() {
-    for (auto v : vertexMap)
-        v.second->setPath(nullptr);
-}
 
 void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
     visited[v->getId()] = true;
@@ -115,6 +89,7 @@ void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vect
     }
 
 }
+
 vector<Edge*> Graph::prim() {
     vector<Edge*> mst;
     mst_adj.clear();
@@ -152,17 +127,6 @@ vector<Edge*> Graph::prim() {
     return mst;
 }
 
-int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
-    double min = numeric_limits<double>::max();
-    int min_index = -1;
-    for(int i = 0; i<weights.size(); i++){
-        if(!visited[i] && weights[i] < min){
-            min = weights[i];
-            min_index = i;
-        }
-    }
-    return min_index;
-}
 
 bool Graph::haveEdge(int id1, int id2) {
     for(auto edge: vertexMap[id1]->getAdj()){
@@ -172,6 +136,8 @@ bool Graph::haveEdge(int id1, int id2) {
     }
     return false;
 }
+
+
 
 double Graph::haversine(Vertex *initialNode, Vertex *finalNode) {
     double lat1 = initialNode->getLatitude();
@@ -285,122 +251,6 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
 
     return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
-
-// Path: src/GraphAlgorithms.cpp
-
-void Graph::findOdds() {
-    for(int i = 0; i < mst_adj.size(); i++){
-        if(mst_adj[i].size() % 2 != 0){
-            odds.push_back(i);
-        }
-    }
-}
-
-void Graph:: perfectMatching() {
-    int closest, minDistance;
-    vector<int>::iterator first,itr;
-    findOdds();
-    while(!odds.empty()){
-        first = odds.begin();
-        vector<int>::iterator it2 = first + 1;
-        vector<int>::iterator it3 = odds.end();
-        minDistance = INT_MAX;
-        for(; it2 != it3; ++it2){
-            if(vertexMap[*first]->getAdj()[*it2]->getWeight() < minDistance){
-                minDistance = vertexMap[*first]->getAdj()[*it2]->getWeight();
-                closest = *it2;
-                itr = first;
-            }
-        }
-        adj[*first].push_back(vertexMap[closest]);
-        adj[closest].push_back(vertexMap[*first]);
-        odds.erase(itr);
-        odds.erase(first);
-    }
-}
-double Graph::findBestPath(int start){
-    vector<int> path;
-    euler_tour(start,path);
-    double length;
-    make_hamiltonian(path,length);
-    return length;
-}
-void Graph::euler_tour(int start, vector<int> &path){
-    map<int,vector<Vertex*>> temp_list;
-    for(int i = 0; i < mst_adj.size(); i++){
-        for(int j = 0; j < adj[i].size(); j++){
-            temp_list[i][j] = adj[i][j];
-        }
-    }
-    stack<int> stack;
-    int pos = start;
-    stack.push(pos);
-    while(!stack.empty() || temp_list[pos].size() > 0){
-        if(temp_list[pos].size() == 0){
-            path.push_back(pos);
-            pos = stack.top();
-            stack.pop();
-        }
-        else{
-            stack.push(pos);
-            int next = adj[pos].back()->getId();
-            adj[pos].pop_back();
-            for(int i = 0; i < adj[next].size(); i++){
-                if(adj[next][i]->getId() == pos){
-                    adj[next].erase(adj[next].begin() + i);
-                    break;
-                }
-            }
-            pos = next;
-        }
-    }
-    path.push_back(pos);
-}
-void Graph::make_hamiltonian(vector<int> &path, double &length){
-    vector<bool> visited(vertexMap.size(),false);
-    length = 0;
-    int root = path.front();
-    vector<int>::iterator itr = path.begin();
-    vector<int>::iterator itr2 = path.begin() + 1;
-    visited[root] = true;
-    while(itr2 != path.end()){
-        if(!visited[*itr2]){
-            length += vertexMap[*itr]->getAdj()[*itr2]->getWeight();
-            itr = itr2;
-            visited[*itr2] = true;
-            itr2 = itr + 1;
-        }
-        else{
-            itr2 = path.erase(itr2);
-        }
-    }
-    if(itr2 != path.end()){
-        length += vertexMap[*itr]->getAdj()[root]->getWeight();
-    }
-}
-
-void Graph::Christofides(){
-    vector<int> path;
-    prim();
-    perfectMatching();
-    double best = INT_MAX;
-    int best_index;
-    for(int i = 0; i < vertexMap.size(); i++){
-        double result = findBestPath(i);
-        weights[i] = result;
-        if(result < best){
-            best = result;
-            best_index = i;
-        }
-    }
-    double result = 0.0;
-    euler_tour(best_index, path);
-    make_hamiltonian(path, result);
-
-    cout << "Best path: " << result << endl;
-
-}
-
 void Graph::deleteVertexMap(){
     vertexMap.clear();
 }
@@ -408,3 +258,6 @@ void Graph::deleteVertexMap(){
 void Graph::deleteVertexSet() {
     vertexSet.clear();
 }
+
+// Path: src/GraphAlgorithms.cpp
+
