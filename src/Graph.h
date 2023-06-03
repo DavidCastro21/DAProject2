@@ -56,10 +56,14 @@ public:
     double findBestPath(int start);
     void euler_tour(int start, vector<int> &path);
     void make_hamiltonian(vector<int> &path, double &length);
+    void transformMapToVertex();
+    void deleteVertexMap();
+    void deleteVertexSet();
 
         protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;
+    vector<Vertex*> vertexSet;
     map<int, vector<Vertex*>> mst_adj;
     vector<int> odds;
     map<int, vector<Vertex*>> adj;

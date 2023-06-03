@@ -400,3 +400,11 @@ void Graph::Christofides(){
     cout << "Best path: " << result << endl;
 
 }
+
+void Graph::deleteVertexMap(){
+    vertexMap.clear();
+}
+
+void Graph::deleteVertexSet() {
+    vertexSet.clear();
+}
