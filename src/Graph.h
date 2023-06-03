@@ -41,13 +41,14 @@ public:
     void resetPath();
 
     double triangularApproximation();
-    void dfs(Vertex* initial, vector<int> &path);
-    Vertex* prim();
+    void dfs(vector<int> &path, double &distance, bool nextOne, Vertex* source, double &lat, double &lon);
+    void prim();
     int minWeight(vector<double>& weights, vector<bool> & visited);
     double haversine(double lat1, double lon1, double lat2, double lon2);
-    bool haveEdge(int id1, int id2);
+    Edge* haveEdge(int id1, int id2);
     double getDistance(const vector<int>& path);
     map<int, vector<Vertex*>> mst_adj;
+    void transformMapToVertex();
 protected:
     int numVertex;
     vector<Vertex*> vertexSet;

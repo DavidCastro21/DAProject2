@@ -4,7 +4,7 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(2,2);
+    GraphManager manager = GraphManager(2,3);
     Graph graph = manager.getGraph();
     cout <<"Graph read"<<endl;
 

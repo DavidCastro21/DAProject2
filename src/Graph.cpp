@@ -53,6 +53,18 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
     return true;
 }
 
+void Graph::transformMapToVertex() {
+    /*vertexSet.clear();
+    vector<int> aux;
+    for (const auto& pair : vertexMap) {
+        vertexSet.
+    }
+    for (const auto& pair : vertexMap) {
+        vertexSet.
+    }
+     */
+}
+
 int Graph::getNumVertex() const {
     return vertexMap.size();
 }
@@ -92,20 +104,24 @@ void Graph::resetPath() {
         v.second->setPath(nullptr);
 }
 
-void Graph::dfs(Vertex* initial, vector<int> &path) {
-    initial->setVisited(true);
-    cout << initial->getId() << " -> ";
-    path.push_back(initial->getId());
-    for (const auto &e: initial->getAdj()) {
-        Vertex* w = e->getDest();
-        if (!w->isVisited() && e->getOrig()->getId() == initial->getId()) {
-            dfs(w,path);
+void Graph::dfs(vector<int> &path, double &distance, bool nextOne, Vertex* target, double &lat, double &lon) {
+    target->setVisited(true);
+    cout << target->getId() << " -> ";
+    path.push_back(target->getId());
+    for (auto e: target->getAdj()) {
+        Vertex *w = e->getDest();
+        if (!w->isVisited() && w->getPath()->getOrig()->getId() == target->getId()) {
+            distance += w->getDist();
+            dfs(path, distance, false, w, lat, lon);
         }
     }
+
 }
-Vertex * Graph::prim() {
-    if (vertexMap.empty()) {
-        return nullptr;
+
+void Graph::prim() {
+
+    if (vertexSet.empty()) {
+        return ;
     }
 
     // Reset auxiliary info
@@ -114,12 +130,10 @@ Vertex * Graph::prim() {
         v->setPath(nullptr);
         v->setVisited(false);
     }
-    visited[v1->getId()] = true;
 
     // start with an arbitrary vertex
     Vertex* s = vertexSet.front();
     s->setDist(0);
-    vector<Vertex*> aux;
 
     // initialize priority queue
     MutablePriorityQueue<Vertex> q;
@@ -135,9 +149,6 @@ Vertex * Graph::prim() {
                 if(e->getWeight() < oldDist) {
                     w->setDist(e->getWeight());
                     w->setPath(e);
-                    if(v == vertexSet.front()){ //vai funcionar porque ao início todos os adj do vetor inicial vao ter o path como o edge entre o nó inicial e o nó do adj
-                        aux.push_back(w);
-                    }
                     if (oldDist == INT32_MAX) {
                         q.insert(w);
                     }
@@ -148,16 +159,6 @@ Vertex * Graph::prim() {
             }
         }
     }
-
-    int count = 0;
-    for(auto vertex: aux){
-        if(vertex->getPath()->getOrig()==s) {
-            cout<<vertex->getId()<<endl;
-            count++;
-        }
-    }
-    cout<<count<<endl;
-    return nullptr;
 }
 
 int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
@@ -172,7 +173,7 @@ int Graph::minWeight(vector<double> &weights, vector<bool> &visited) {
     return min_index;
 }
 
-bool Graph::haveEdge(int id1, int id2) {
+Edge* Graph::haveEdge(int id1, int id2) {
     int index;
     for(int i = 0; i<vertexMap.size(); i++){
         if(vertexMap[i]->getId() == id1){
@@ -181,10 +182,10 @@ bool Graph::haveEdge(int id1, int id2) {
     }
     for(auto edge: vertexMap[index]->getAdj()){
         if(edge->getDest()->getId() == id2){
-            return true;
+            return edge;
         }
     }
-    return false;
+    return nullptr;
 }
 
 double Graph::haversine(double lat1, double lon1, double lat2, double lon2) {
@@ -238,16 +239,19 @@ double Graph::getDistance(const vector<int> &path) {
 double Graph::triangularApproximation() {
     double result = 0;
     //vector<int> parent_ (vertexMap.size(), -1);
-    Vertex* initial = prim();
-
+    prim();
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
-    vector<int> preorder(vertexMap.size());
+    vector<int> preorder;
     resetVisited();
-    dfs(vertexSet.front(), preorder);
-    cout <<endl;
-    result = getDistance(preorder);
-    cout << "Distance: " << result << endl;
+    double distance = 0;
+    double latitude = vertexSet[0]->getLatitude();
+    double longitude = vertexSet[0]->getLongitude();
+    dfs( preorder, distance, true, vertexSet[0],latitude,longitude);
+    cout<< "0" <<endl;
+    Vertex* last = findVertex(preorder.back());
+    distance += haversine(last->getLatitude(),last->getLongitude(),vertexSet[0]->getLatitude(),vertexSet[0]->getLongitude());
+    cout << "Distance: " << distance << endl;
 }
 
 // Path: src/GraphAlgorithms.cpp

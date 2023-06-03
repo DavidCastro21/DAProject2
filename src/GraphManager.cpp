@@ -316,3 +316,16 @@ void GraphManager::triangular() {
     clock_t end = clock();
     cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC << endl;
 }
+
+void GraphManager::deleteGraph() {
+    /*for (auto vertex : graph.getVertexMap()) {
+        for (Edge* edge : vertex.second->getAdj()) {
+            delete edge;
+        }
+        vertex.second->getAdj().clear();
+        delete vertex.second;
+    }
+    graph.deleteVertexMap();
+    graph.deleteVertexSet();
+     */
+}

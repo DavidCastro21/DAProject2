@@ -25,6 +25,7 @@ public:
     GraphManager();
     GraphManager(int type, int input);
     Graph getGraph();
+    void deleteGraph();
 
     void readRealWorld(int input);
     void readExtraFully(int input);

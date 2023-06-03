@@ -22,7 +22,7 @@ public:
 
     int getId() const;
     string getName() const;
-    int getDist() const;
+    double getDist() const;
     double getLatitude() const;
     double getLongitude() const;
     bool isVisited() const;
@@ -31,7 +31,7 @@ public:
     void addEdge(Vertex* dest, double weight);
     void setId(int id);
     void setName(string name);
-    void setDist(int dist);
+    void setDist(double dist);
     void setLatitude(double lat);
     void setLongitude(double lon);
     void setVisited(bool visited);
@@ -43,7 +43,7 @@ public:
 protected:
     int id;
     string name;
-    int dist = 0;
+    double dist = 0;
     double longitude = 0.0;
     double latitude = 0.0;
     bool visited = false;
