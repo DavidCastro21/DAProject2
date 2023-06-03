@@ -83,6 +83,10 @@ void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
+Edge* Edge::getReverse(){
+    return new Edge(dest,orig,weight);
+}
+
 Edge::Edge() {
     this->dest = nullptr;
     this->weight = 0;

@@ -78,37 +78,36 @@ Vertex *Graph::findVertex(const int &id) const {
 
 
 
-void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
+void Graph::dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
     visited[v->getId()] = true;
     cout << v->getId() << " -> ";
     path.push_back(v->getId());
-    for (const auto &neighborId: mst_adj[v->getId()]) {
-        if (!visited[neighborId->getId()]) {
-            dfs(mst,vertexMap[neighborId->getId()], visited, path);
+    for (const auto &e: mst[v]) {
+        if (!visited[e->getDest()->getId()]) {
+            dfs(mst, e->getDest(), visited, path);
         }
     }
 
 }
 
-vector<Edge*> Graph::prim() {
-    vector<Edge*> mst;
-    mst_adj.clear();
-    priority_queue<Edge*, vector<Edge*>, WeightCompare> q;
-
+unordered_map<Vertex*,vector<Edge*>> Graph::prim() {
+    unordered_map<Vertex*,vector<Edge*>> mst;
+    priority_queue<Vertex*, vector<Vertex*>, WeightCompare> q;
+/*
     vector<bool> visited(vertexMap.size(), false);
     vector<Vertex*> parent;
 
     Vertex* v1 = this->vertexMap[0];
 
     for(const auto &e: v1->getAdj()){
-        q.push(e);
+        a.push(e);
     }
     visited[v1->getId()] = true;
 
 
-    while (!q.empty()) {
-        Edge* e = q.top();
-        q.pop();
+    while (!a.empty()) {
+        Edge* e = a.top();
+        a.pop();
         Vertex* v = e->getDest();
         Vertex* u = e->getOrig();
         if (visited[v->getId()]) {
@@ -120,8 +119,54 @@ vector<Edge*> Graph::prim() {
         mst_adj[v->getId()].push_back(u);
         for (const auto parent: v->getAdj()) {
             if (!visited[parent->getDest()->getId()]) {
-                q.push(parent);
+                a.push(parent);
             }
+        }
+    }
+    return mst;
+    */
+
+    //=======================================================================
+    vector<int> ids;
+
+
+    if (vertexSet.empty()) {
+        return mst;
+    }
+
+    // Reset auxiliary info
+    for(auto v : vertexSet) {
+        v->setDist(INT32_MAX);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
+
+    // start with an arbitrary vertex
+    Vertex* s = vertexSet.front();
+    s->setDist(0);
+
+
+    q.push(s);
+    while(!q.empty()){
+        Vertex* x = q.top();
+        q.pop();
+        if(x->isVisited()) continue;
+        x->setVisited(true);
+        for(auto e: x->getAdj()){
+            if(!e->getDest()->isVisited() && e->getWeight()<e->getDest()->getDist()){
+                e->getDest()->setPath(e);
+                e->getDest()->setDist(e->getWeight());
+                q.push(e->getDest());
+            }
+        }
+    }
+
+    for(auto vertex : vertexSet){
+        if(vertex->getId()!=0){
+            Edge* e = vertex->getPath();
+            Vertex* origin = e->getOrig();
+            mst[origin].push_back(e);
+            mst[vertex].push_back(e->getReverse());
         }
     }
     return mst;
@@ -196,13 +241,13 @@ double Graph::triangularApproximation() {
     //vector<int> parent_ (vertexMap.size(), -1);
     cout << "starting" << endl;
     clock_t begin = clock();
-    vector<Edge*> mst = prim();
+    unordered_map<Vertex*,vector<Edge*>> mst = prim();
     clock_t end = clock();
     cout << "Prim's algorithm time: " << double(end - begin) / CLOCKS_PER_SEC << endl;
     cout << "Preorder traversal of tree is \n";
     vector<bool> visited(vertexMap.size(), false);
     vector<int> preorder;
-    dfs(mst, mst[0]->getOrig(), visited, preorder);
+    dfs(mst, findVertex(0), visited, preorder);
     cout <<"0" <<endl;
     clock_t begin2 = clock();
     result = getDistance(preorder);

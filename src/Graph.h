@@ -111,13 +111,13 @@ public:
      * @param visited - vector of visited vertices
      * @param path - vector of vertices in the order of the DFS
      */
-    void dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vector<int> &path);
+    void dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path);
     /**
      * Complexity: O((V + E) log V)
      * @brief Prim algorithm to find the minimum spanning tree
      * @return vector of edges that form the minimum spanning tree
      */
-    vector<Edge*> prim();
+    unordered_map<Vertex*,vector<Edge*>> prim();
     /**
      * Complexity: O(1)
      * @brief calculates the distance between two nodes using the haversine formula
@@ -183,8 +183,8 @@ protected:
  */
 class WeightCompare{
     public:
-        bool operator()(const Edge* e1, const Edge * e2) const{
-            return e1->getWeight() > e2->getWeight();
+        bool operator()(const Vertex* e1, const Vertex * e2) const{
+            return e1->getDist() > e2->getDist();
     }
 };
 

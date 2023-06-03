@@ -59,7 +59,7 @@ public:
      * @brief get the distance of the vertex
      * @return distance of the vertex
      */
-    int getDist() const;
+    double getDist() const;
     /**
      * Complexity: O(1)
      * @brief get the latitude of the vertex
@@ -114,7 +114,7 @@ public:
      * @brief set the distance of the vertex
      * @param dist - distance of the vertex
      */
-    void setDist(int dist);
+    void setDist(double dist);
     /**
      * Complexity: O(1)
      * @brief set the latitude of the vertex
@@ -228,6 +228,7 @@ public:
      * @return origin of the edge
      */
     Vertex* getOrig() const;
+    Edge* getReverse();
 private:
     Vertex* orig;
     Vertex* dest;
