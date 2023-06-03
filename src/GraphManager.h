@@ -23,20 +23,28 @@ class GraphManager {
     Graph graph;
 public:
     GraphManager();
+
     GraphManager(int type, int input);
+
     Graph getGraph();
 
     void readRealWorld(int input);
+
     void readExtraFully(int input);
+
     void readToyGraphs(int input);
 
     // vector<Vertex*> preOrderPath(Graph graph);
     // void tspBTRec(unsigned int **dists, unsigned int n, unsigned int currentIndex, unsigned int currentDist, unsigned int currentPath[], unsigned int &minDist, unsigned int path[]);
     // unsigned int tspBT(unsigned int **dists, unsigned int n, unsigned int path[]);
-    double tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, vector<int> &currentPath, vector<int> &minPath, double distanceSoFar, double minDistance, int &graphSize);
-    void triangular();
-    double heuristic(int &graphSize);
-};
+    double tspBacktracking(Vertex *currentNode, Vertex *initialNode, int alreadyVisited, vector<int> &currentPath,
+                           vector<int> &minPath, double distanceSoFar, double minDistance, int &graphSize);
 
+    void triangular();
+
+    double heuristic(int &graphSize);
+
+    void Christofides();
+};
 
 #endif //DA_2ND_PROJECT_READFILES_H

@@ -4,7 +4,7 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(2,2);
+    GraphManager manager = GraphManager(2,1);
     Graph graph = manager.getGraph();
 
     int graphSize = graph.getNumVertex();
@@ -48,7 +48,7 @@ for (auto v : graph.getVertexSet()) {
     cout << "-----------------------" << endl;*/
 
     // manager.triangular();
-    manager.heuristic(graphSize);
+    manager.Christofides();
 
 
 

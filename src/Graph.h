@@ -47,10 +47,20 @@ public:
     double getDistance(const vector<int>& path);
     double nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector<Edge*> &path, int &graphSize, double &distance, bool allVisited = false);
     int nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap);
-protected:
+    void findOdds();
+    void perfectMatching();
+    void Christofides();
+    double findBestPath(int start);
+    void euler_tour(int start, vector<int> &path);
+    void make_hamiltonian(vector<int> &path, double &length);
+
+        protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;
     map<int, vector<Vertex*>> mst_adj;
+    vector<int> odds;
+    map<int, vector<Vertex*>> adj;
+    map<int, double> weights;
 };
 
 class WeightCompare{
