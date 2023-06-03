@@ -237,18 +237,14 @@ int Graph::nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap) {
 }
 
 double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector<Edge*> &path, int &graphSize, double &distance, bool allVisited) {
-    /*for (auto itr : vertexMap) {
-        itr.second->setVisited(false);
-    }*/
-
     if (nrNodesAlreadyVisited(vertexMap) == graphSize) {    // all nodes already visited
         allVisited = true;
     }
     if (allVisited) {
         double lastDistance = haversine(currentNode, initialNode);
         distance += lastDistance;
-        Edge *lastEdge = new Edge(currentNode, initialNode, lastDistance);
-        path.push_back(lastEdge);
+        /*Edge *lastEdge = new Edge(currentNode, initialNode, lastDistance);
+        path.push_back(lastEdge);*/
 
         return distance;
     }
@@ -263,10 +259,14 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
             minEdgeWeight = e->getWeight();
         }
     }
-    distance += minEdgeWeight;
-    path.push_back(minEdge);
-    currentNode = minEdge->getDest();
-    minEdge->getDest()->setVisited(true);
+
+    if (minEdge) {
+        distance += minEdgeWeight;
+        path.push_back(minEdge);
+        currentNode = minEdge->getDest();
+    }
+    else
+        return distance;
 
     return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }

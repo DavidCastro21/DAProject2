@@ -4,7 +4,7 @@
 
 
 int main() {
-    GraphManager manager = GraphManager(1,1);
+    GraphManager manager = GraphManager(3,2);
     Graph graph = manager.getGraph();
 
     int graphSize = graph.getNumVertex();
@@ -47,10 +47,12 @@ for (auto v : graph.getVertexSet()) {
     cout << "Time taken: " << duration << " milliseconds." << endl;
     cout << "-----------------------" << endl;*/
 
+    // -----------------------------------------------
     // manager.triangular();
-    double distance = manager.heuristic(graphSize);
-    cout << distance << endl;
+    // -----------------------------------------------
 
+    double distance = manager.heuristic(graphSize);
+    cout << "Distance: " << distance << endl;
 
 
     return 0;
