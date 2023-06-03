@@ -1,0 +1,182 @@
+\hypertarget{class_edge}{}\doxysection{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_edge_a3106b11d60125009dbf7a738ce540fdf}{Edge}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor of the edge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge_aea352d0f1ad89e1820db7a8744a00807}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em Constructor of the edge with destination. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge_a9a70c8c9a6103f073b9cb810bfcf811b}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest, double weight)
+\begin{DoxyCompactList}\small\item\em Constructor of the edge with destination and weight. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge_af39d60977514c0552662539f94dcf089}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$origin, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest, double weight)
+\begin{DoxyCompactList}\small\item\em Constructor of the edge with origin, destination and weight. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a5cda44e9ba257b03963a1ac301371a59}{get\+Dest}} () const
+\begin{DoxyCompactList}\small\item\em get the destination of the edge \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_edge_a1caaffca117bab3ff5b7387623a356f8}{get\+Weight}} () const
+\begin{DoxyCompactList}\small\item\em get the weight of the edge \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a1ecc1e562c2f7f07d6897dd9e54e7cbd}{set\+Dest}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest)
+\begin{DoxyCompactList}\small\item\em set the destination of the edge \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a452013a3525db6e2dbbbcb614acf728b}{set\+Weight}} (double weight)
+\begin{DoxyCompactList}\small\item\em set the weight of the edge \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a391bd6fe3ca81f936ac3f996303ffc3c}{set\+Orig}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$orig)
+\begin{DoxyCompactList}\small\item\em set the origin of the edge \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_edge_a6e8b08e91c0694b40edff0432fb612eb}{get\+Orig}} () const
+\begin{DoxyCompactList}\small\item\em get the origin of the edge \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_edge_a3106b11d60125009dbf7a738ce540fdf}\label{class_edge_a3106b11d60125009dbf7a738ce540fdf}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Default constructor of the edge. 
+
+Complexity\+: O(1) \mbox{\Hypertarget{class_edge_aea352d0f1ad89e1820db7a8744a00807}\label{class_edge_aea352d0f1ad89e1820db7a8744a00807}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+Constructor of the edge with destination. 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em dest} & -\/ destination vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a9a70c8c9a6103f073b9cb810bfcf811b}\label{class_edge_a9a70c8c9a6103f073b9cb810bfcf811b}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest,  }\item[{double}]{weight }\end{DoxyParamCaption})}
+
+
+
+Constructor of the edge with destination and weight. 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em dest} & -\/ destination vertex \\
+\hline
+{\em weight} & -\/ weight of the edge \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_af39d60977514c0552662539f94dcf089}\label{class_edge_af39d60977514c0552662539f94dcf089}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{origin,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest,  }\item[{double}]{weight }\end{DoxyParamCaption})}
+
+
+
+Constructor of the edge with origin, destination and weight. 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em origin} & -\/ origin vertex \\
+\hline
+{\em dest} & -\/ destination vertex \\
+\hline
+{\em weight} & -\/ weight of the edge \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_edge_a5cda44e9ba257b03963a1ac301371a59}\label{class_edge_a5cda44e9ba257b03963a1ac301371a59}} 
+\index{Edge@{Edge}!getDest@{getDest}}
+\index{getDest@{getDest}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getDest()}{getDest()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Edge\+::get\+Dest (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the destination of the edge 
+
+Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+destination of the edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a6e8b08e91c0694b40edff0432fb612eb}\label{class_edge_a6e8b08e91c0694b40edff0432fb612eb}} 
+\index{Edge@{Edge}!getOrig@{getOrig}}
+\index{getOrig@{getOrig}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getOrig()}{getOrig()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ Edge\+::get\+Orig (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the origin of the edge 
+
+Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+origin of the edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a1caaffca117bab3ff5b7387623a356f8}\label{class_edge_a1caaffca117bab3ff5b7387623a356f8}} 
+\index{Edge@{Edge}!getWeight@{getWeight}}
+\index{getWeight@{getWeight}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{getWeight()}{getWeight()}}
+{\footnotesize\ttfamily double Edge\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get the weight of the edge 
+
+Complexity\+: O(1) \begin{DoxyReturn}{Returns}
+weight of the edge 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a1ecc1e562c2f7f07d6897dd9e54e7cbd}\label{class_edge_a1ecc1e562c2f7f07d6897dd9e54e7cbd}} 
+\index{Edge@{Edge}!setDest@{setDest}}
+\index{setDest@{setDest}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setDest()}{setDest()}}
+{\footnotesize\ttfamily void Edge\+::set\+Dest (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest }\end{DoxyParamCaption})}
+
+
+
+set the destination of the edge 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em dest} & -\/ destination vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a391bd6fe3ca81f936ac3f996303ffc3c}\label{class_edge_a391bd6fe3ca81f936ac3f996303ffc3c}} 
+\index{Edge@{Edge}!setOrig@{setOrig}}
+\index{setOrig@{setOrig}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setOrig()}{setOrig()}}
+{\footnotesize\ttfamily void Edge\+::set\+Orig (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{orig }\end{DoxyParamCaption})}
+
+
+
+set the origin of the edge 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em orig} & -\/ origin vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a452013a3525db6e2dbbbcb614acf728b}\label{class_edge_a452013a3525db6e2dbbbcb614acf728b}} 
+\index{Edge@{Edge}!setWeight@{setWeight}}
+\index{setWeight@{setWeight}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{setWeight()}{setWeight()}}
+{\footnotesize\ttfamily void Edge\+::set\+Weight (\begin{DoxyParamCaption}\item[{double}]{weight }\end{DoxyParamCaption})}
+
+
+
+set the weight of the edge 
+
+Complexity\+: O(1) 
+\begin{DoxyParams}{Parameters}
+{\em weight} & -\/ weight of the edge \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Vertex\+Edge.\+h\item 
+Vertex\+Edge.\+cpp\end{DoxyCompactItemize}

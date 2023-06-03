@@ -1,0 +1,45 @@
+\hypertarget{_graph_manager_8h_source}{}\doxysection{Graph\+Manager.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by David Castro on 14/05/2023.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef DA\_2ND\_PROJECT\_READFILES\_HF}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define DA\_2ND\_PROJECT\_READFILES\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}Graph.h"{}}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include <sstream>}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph_manager}{GraphManager}} \{}
+\DoxyCodeLine{23     \mbox{\hyperlink{class_graph}{Graph}} graph;}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{29     \mbox{\hyperlink{class_graph_manager_ae19de6f9936bb21d302bb8a023940822}{GraphManager}}();}
+\DoxyCodeLine{36     \mbox{\hyperlink{class_graph_manager_ae19de6f9936bb21d302bb8a023940822}{GraphManager}}(\textcolor{keywordtype}{int} type, \textcolor{keywordtype}{int} input);}
+\DoxyCodeLine{42     \mbox{\hyperlink{class_graph}{Graph}} \mbox{\hyperlink{class_graph_manager_a2a621be30b7b7c80cac5e067bad910fc}{getGraph}}();}
+\DoxyCodeLine{47     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_manager_ae6e14a4c69cf78d877863661841968d4}{deleteGraph}}();}
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_manager_a42d0d263c6e7ec05ffcc6fb2a47f5002}{readRealWorld}}(\textcolor{keywordtype}{int} input);}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_manager_a7979eb7db1d6835b65a073d5308c6364}{readExtraFully}}(\textcolor{keywordtype}{int} input);}
+\DoxyCodeLine{60 }
+\DoxyCodeLine{66     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_manager_ad07a2dfcaba21e94c4a7fd66f7d29089}{readToyGraphs}}(\textcolor{keywordtype}{int} input);}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{81     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_manager_a182943c77e3263e1da2624ee290722e8}{tspBacktracking}}(\mbox{\hyperlink{class_vertex}{Vertex}} *currentNode, \mbox{\hyperlink{class_vertex}{Vertex}} *initialNode, \textcolor{keywordtype}{int} alreadyVisited, vector<int> \&currentPath,vector<int> \&minPath, \textcolor{keywordtype}{double} distanceSoFar, \textcolor{keywordtype}{double} minDistance, \textcolor{keywordtype}{int} \&graphSize);}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{87     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_manager_a32d3dfc0c9079f2e6cf1f77c6ace2cce}{triangular}}();}
+\DoxyCodeLine{94     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_manager_aa9e12c72e2909888508bb81289a079c7}{heuristic}}(\textcolor{keywordtype}{int} \&graphSize);}
+\DoxyCodeLine{95 \};}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{97 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA\_2ND\_PROJECT\_READFILES\_H}}
+
+\end{DoxyCode}

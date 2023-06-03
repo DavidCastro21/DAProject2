@@ -159,6 +159,16 @@ public:
      * @return The count of nodes already visited
      */
     int nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap);
+    /**
+     * Complexity: O(1)
+     * @brief deletes the vertex map
+     */
+    void deleteVertexMap();
+    /**
+     * Complexity: O(1)
+     * @brief deletes the vertex set
+     */
+    void deleteVertexSet();
 protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;

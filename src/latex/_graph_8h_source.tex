@@ -1,0 +1,72 @@
+\hypertarget{_graph_8h_source}{}\doxysection{Graph.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{// By: Gonçalo Leão}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#ifndef DA\_TP\_CLASSES\_GRAPH}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#define DA\_TP\_CLASSES\_GRAPH}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <limits>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <unordered\_set>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <stack>}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{17 \textcolor{preprocessor}{\#include "{}VertexEdge.h"{}}}
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <cmath>}}
+\DoxyCodeLine{19 }
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_graph}{Graph}} \{}
+\DoxyCodeLine{24 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}();}
+\DoxyCodeLine{36     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}}(\textcolor{keywordtype}{int} nrVertex);}
+\DoxyCodeLine{43     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad354c018724ef3f137a0b8554089105e}{addVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{52     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad354c018724ef3f137a0b8554089105e}{addVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}, \textcolor{keywordtype}{double} longitude, \textcolor{keywordtype}{double} latitude);}
+\DoxyCodeLine{60     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad354c018724ef3f137a0b8554089105e}{addVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{69     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a082ecf6809d431683bee76d78eb4d717}{addEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&sourc, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w) \textcolor{keyword}{const};}
+\DoxyCodeLine{76     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{removeVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{83     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{getNumVertex}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{89     \textcolor{keyword}{const} unordered\_map<int, Vertex *> \mbox{\hyperlink{class_graph_a6e3a3922a2566651fc18c246c4f5cdc0}{getVertexMap}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{90 }
+\DoxyCodeLine{97     \mbox{\hyperlink{class_vertex}{Vertex}} * \mbox{\hyperlink{class_graph_a089f7fc73ea9976295d387846ad36c69}{findVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{98     \textcolor{comment}{// int findVertexIdx(const int \&id) const;}}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{105     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a74ac3915ab78762e537d45657e30429b}{triangularApproximation}}();}
+\DoxyCodeLine{114     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_ae425a227650e2270bd2f0f57281786bc}{dfs}}(\textcolor{keyword}{const} vector<Edge*> \&mst, \mbox{\hyperlink{class_vertex}{Vertex}}* v, vector<bool> \&visited, vector<int> \&path);}
+\DoxyCodeLine{120     vector<Edge*> \mbox{\hyperlink{class_graph_aaaf65f343e3c67b1b783f82375884a8f}{prim}}();}
+\DoxyCodeLine{128     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a7cd62df7d4eb0bc037283b3251dba797}{haversine}}(\mbox{\hyperlink{class_vertex}{Vertex}} *initialNode, \mbox{\hyperlink{class_vertex}{Vertex}} *finalNode);}
+\DoxyCodeLine{135     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ad961055b22db5be113b8e8b2af402d48}{haveEdge}}(\textcolor{keywordtype}{int} id1, \textcolor{keywordtype}{int} id2);}
+\DoxyCodeLine{142     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_adc42a90658e0fe893d69ccd53c9d195a}{getDistance}}(\textcolor{keyword}{const} vector<int>\& path);}
+\DoxyCodeLine{154     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_aa853db27b017a78ca99be67d0ebf8904}{nearestNeighbor}}(\mbox{\hyperlink{class_vertex}{Vertex}}* \&initialNode, \mbox{\hyperlink{class_vertex}{Vertex}}* \&currentNode, vector<Edge*> \&path, \textcolor{keywordtype}{int} \&graphSize, \textcolor{keywordtype}{double} \&distance, \textcolor{keywordtype}{bool} allVisited = \textcolor{keyword}{false});}
+\DoxyCodeLine{161     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_ab1ab95d4256aedce674cc796785ec14b}{nrNodesAlreadyVisited}}(unordered\_map<int, Vertex*> vertexMap);}
+\DoxyCodeLine{166     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a1b3a19d794e86d4d063adea37bc013cb}{deleteVertexMap}}();}
+\DoxyCodeLine{171     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a6a5cfe5631eb03a36cfbace64e60f865}{deleteVertexSet}}();}
+\DoxyCodeLine{172 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{173     \textcolor{keywordtype}{int} numVertex;}
+\DoxyCodeLine{174     unordered\_map<int,Vertex*> vertexMap;}
+\DoxyCodeLine{175     vector<Vertex*> vertexSet;}
+\DoxyCodeLine{176     map<int, vector<Vertex*>> mst\_adj;}
+\DoxyCodeLine{177     vector<int> odds;}
+\DoxyCodeLine{178     map<int, vector<Vertex*>> adj;}
+\DoxyCodeLine{179     map<int, double> weights;}
+\DoxyCodeLine{180 \};}
+\DoxyCodeLine{184 \textcolor{keyword}{class }\mbox{\hyperlink{class_weight_compare}{WeightCompare}}\{}
+\DoxyCodeLine{185     \textcolor{keyword}{public}:}
+\DoxyCodeLine{186         \textcolor{keywordtype}{bool} operator()(\textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}}* e1, \textcolor{keyword}{const} \mbox{\hyperlink{class_edge}{Edge}} * e2)\textcolor{keyword}{ const}\{}
+\DoxyCodeLine{187             \textcolor{keywordflow}{return} e1-\/>\mbox{\hyperlink{class_edge_a1caaffca117bab3ff5b7387623a356f8}{getWeight}}() > e2-\/>\mbox{\hyperlink{class_edge_a1caaffca117bab3ff5b7387623a356f8}{getWeight}}();}
+\DoxyCodeLine{188     \}}
+\DoxyCodeLine{189 \};}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193 \textcolor{preprocessor}{\#endif }\textcolor{comment}{/* DA\_TP\_CLASSES\_GRAPH */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

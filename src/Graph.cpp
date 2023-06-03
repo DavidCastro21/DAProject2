@@ -251,6 +251,13 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
 
     return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
+void Graph::deleteVertexMap(){
+    vertexMap.clear();
+}
+
+void Graph::deleteVertexSet() {
+    vertexSet.clear();
+}
 
 // Path: src/GraphAlgorithms.cpp
 

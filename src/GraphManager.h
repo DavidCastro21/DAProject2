@@ -42,6 +42,11 @@ public:
     Graph getGraph();
     /**
      * Complexity: O(|V| + |E|)
+     * @brief deletes the graph
+     */
+    void deleteGraph();
+    /**
+     * Complexity: O(|V| + |E|)
      * @brief Reads the graph from a file
      * @param input - 1 for 1st graph, 2 for 2nd graph, 3 for 3rd graph
      */
