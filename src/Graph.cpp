@@ -7,6 +7,7 @@
 #include <utility>
 #include <unordered_set>
 #include <cmath>
+
 using namespace std;
 
 Graph::Graph() {
@@ -21,6 +22,7 @@ bool Graph::addVertex(const int &id) {
     if (findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id);
+    vertexSet.push_back(v1);
     vertexMap[id] = v1;
     return true;
 }
@@ -28,6 +30,7 @@ bool Graph::addVertex(const int &id, double longitude, double latitude) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, longitude, latitude);
+    vertexSet.push_back(v1);
     vertexMap.insert(make_pair(id, v1));
     return true;
 }
@@ -35,6 +38,7 @@ bool Graph::addVertex(const int &id, string name) {
     if(findVertex(id) != nullptr)
         return false;
     auto *v1 = new Vertex(id, name);
+    vertexSet.push_back(v1);
     vertexMap[id] = v1;
     return true;
 }
@@ -83,6 +87,7 @@ void Graph::dfs(const vector<Edge*> &mst, Vertex* v, vector<bool> &visited, vect
             dfs(mst,vertexMap[neighborId->getId()], visited, path);
         }
     }
+
 }
 
 vector<Edge*> Graph::prim() {
@@ -154,7 +159,6 @@ double Graph::haversine(Vertex *initialNode, Vertex *finalNode) {
     double d = R * c; // in metres
     return d;
 }
-
 
 double Graph::getDistance(const vector<int> &path) {
     double result = 0.0;

@@ -266,10 +266,6 @@ double GraphManager::tspBacktracking(Vertex *currentNode, Vertex *initialNode, i
     return minDistance;
 }
 
-/**
- * Complexity: O(n!)
- * @brief Triangular approximation of the TSP problem
- */
 void GraphManager::triangular() {
     clock_t start = clock();
     this->graph.triangularApproximation();

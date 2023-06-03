@@ -15,6 +15,9 @@
 #include <stack>
 #include <map>
 #include "VertexEdge.h"
+#include <cmath>
+
+
 using namespace std;
 
 class Graph {
@@ -156,10 +159,10 @@ public:
      * @return The count of nodes already visited
      */
     int nrNodesAlreadyVisited(unordered_map<int, Vertex*> vertexMap);
-
 protected:
     int numVertex;
     unordered_map<int,Vertex*> vertexMap;
+    vector<Vertex*> vertexSet;
     map<int, vector<Vertex*>> mst_adj;
     vector<int> odds;
     map<int, vector<Vertex*>> adj;
