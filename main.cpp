@@ -16,8 +16,8 @@ int main() {
         cout << "==========================================================================" << endl << endl;
 
         cout << "1 -> Resolver o TSP recorrendo ao backtracking, num grafo mais pequeno" << endl;
-        cout << "2 -> Resolver o TSP recorrendo ao Aproximation Algorithm, num grafo maior" << endl;
-        cout << "3 -> Resolver o TSP recorrendo a um algoritmo secreto, num grafo maior" << endl << endl;
+        cout << "2 -> Resolver o TSP recorrendo ao Aproximation Algorithm, num grafo grande" << endl;
+        cout << "3 -> Resolver o TSP recorrendo ao Nearest Neighbour Algorithm , num grafo qualquer" << endl << endl;
         cout << "4 -> Sair" << endl << endl;
 
         cin >> input;
@@ -39,23 +39,40 @@ int main() {
                 int number = graph.getNumVertex();
                 vector<int> currentPath;
                 vector<int> minPath;
-                double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0,
-                                                        10000000.0, number);
+                int size = graph.getNumVertex();
+                double result = manager.tspBacktracking(initialNode, initialNode, 0, currentPath, minPath, 0.0,10000000.0, number);
                 cout << result << endl;
                 break;
             }
-            case 2:
+            case 2:{
+
+            }
             case 3: {
-                cout << "1 -> Grafo com 1000 nós" << endl;
-                cout << "2 -> Grafo com 5000 nós" << endl;
-                cout << "3 -> Grafo com 10000 nós" << endl << endl;
+                cout << "1 -> Grafo com 25 nós" << endl;
+                cout << "2 -> Grafo com 50 nós" << endl;
+                cout << "3 -> Grafo com 75 nós" << endl;
+                cout << "4 -> Grafo com 100 nós" << endl;
+                cout << "5 -> Grafo com 200 nós" << endl;
+                cout << "6 -> Grafo com 300 nós" << endl;
+                cout << "7 -> Grafo com 400 nós" << endl;
+                cout << "8 -> Grafo com 500 nós" << endl;
+                cout << "9 -> Grafo com 600 nós" << endl;
+                cout << "10 -> Grafo com 700 nós" << endl;
+                cout << "11 -> Grafo com 800 nós" << endl;
+                cout << "12 -> Grafo com 900 nós" << endl;
+                cout << "13 -> Grafo com 1000 nós" << endl;
+                cout << "14 -> Grafo com 5000 nós" << endl;
+                cout << "15 -> Grafo com 10000 nós" << endl << endl;
                 cin >> numGraph;
+                switch (numGraph) {
+                    
+                }
                 manager.readRealWorld(numGraph);
                 if (input == 2) {
                     manager.triangular();
                 }
                 else{
-                    //do the function of 4.3;
+
                 }
                 break;
             }

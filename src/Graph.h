@@ -80,7 +80,7 @@ public:
      * Gets the number of vertices in the graph
      * @return the number of vertices in the graph
      */
-    int getNumVertex() const;
+    const int getNumVertex() const;
     /**
      * Complexity: O(1)
      * Gets the vertex map of the graph

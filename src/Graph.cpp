@@ -53,7 +53,7 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) const {
     return true;
 }
 
-int Graph::getNumVertex() const {
+const int Graph::getNumVertex() const {
     return vertexMap.size();
 }
 
@@ -150,10 +150,10 @@ unordered_map<Vertex*,vector<Edge*>> Graph::prim() {
     while(!q.empty()){
         Vertex* x = q.top();
         q.pop();
-        if(x->isVisited()) continue;
+        if(x->isVisited()) continue; // um nó pode ser inserido mais que uma vez na priority queue, por isso só queremos que este seja processado uma vez.
         x->setVisited(true);
         for(auto e: x->getAdj()){
-            if(!e->getDest()->isVisited() && e->getWeight()<e->getDest()->getDist()){
+            if(!e->getDest()->isVisited() && e->getWeight() < e->getDest()->getDist()){
                 e->getDest()->setPath(e);
                 e->getDest()->setDist(e->getWeight());
                 q.push(e->getDest());
@@ -270,9 +270,12 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
         allVisited = true;
     }
     if (allVisited) {
-        double lastDistance = haversine(currentNode, initialNode);
-        distance += lastDistance;
-
+        for(auto edge: vertexMap[currentNode->getId()]->getAdj()){
+            if(edge->getDest()->getId() == initialNode->getId()){
+                distance+=edge->getWeight();
+                break;
+            }
+        }
         return distance;
     }
     currentNode->setVisited(true);
@@ -291,8 +294,15 @@ double Graph::nearestNeighbor(Vertex* &initialNode, Vertex* &currentNode, vector
         path.push_back(minEdge);
         currentNode = minEdge->getDest();
     }
-    else
+    else{
+        for(auto edge: vertexMap[currentNode->getId()]->getAdj()){
+            if(edge->getDest()->getId() == initialNode->getId()){
+                distance+=edge->getWeight();
+                break;
+            }
+        }
         return distance;
+    }
 
     return nearestNeighbor(initialNode, currentNode, path, graphSize, distance, allVisited);
 }
