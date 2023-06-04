@@ -21,10 +21,12 @@ int main() {
         cout << "4 -> Sair" << endl << endl;
 
         cin >> input;
+        if(input==1 || input==2 || input==3) {
 
-        cout << "==========================================================================" << endl << endl;
+            cout << "==========================================================================" << endl << endl;
 
-        cout << "Qual é o grafo em que deseja aplicar este algoritmo?" << endl << endl;
+            cout << "Qual é o grafo em que deseja aplicar este algoritmo?" << endl << endl;
+        }
 
         switch (input) {
             case 1: {
