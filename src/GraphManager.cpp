@@ -269,7 +269,8 @@ void GraphManager::triangular() {
     clock_t start = clock();
     this->graph.triangularApproximation();
     clock_t end = clock();
-    cout <<" Time: " << (double)(end - start) / CLOCKS_PER_SEC * 1000.0 << " milliseconds" << endl;
+    cout <<" Time taken: " << (double)(end - start) / CLOCKS_PER_SEC * 1000.0 << " milliseconds" << endl;
+    cout << "-----------------------" << endl;
 }
 
 double GraphManager::heuristic(int &graphSize) {
