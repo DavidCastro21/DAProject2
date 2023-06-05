@@ -78,11 +78,14 @@ Vertex *Graph::findVertex(const int &id) const {
 
 
 
-void Graph::dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
+void Graph::dfs(unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path) {
     visited[v->getId()] = true;
     cout << v->getId() << " -> ";
     path.push_back(v->getId());
-    for (const auto &e: mst[v]) {
+    priority_queue<Edge*, vector<Edge*>, WeightCompareEdge> q = mst[v];
+    while (!q.empty()) {
+        Edge* e = q.top();
+        q.pop();
         if (!visited[e->getDest()->getId()]) {
             dfs(mst, e->getDest(), visited, path);
         }
@@ -90,43 +93,9 @@ void Graph::dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<boo
 
 }
 
-unordered_map<Vertex*,vector<Edge*>> Graph::prim() {
-    unordered_map<Vertex*,vector<Edge*>> mst;
-    priority_queue<Vertex*, vector<Vertex*>, WeightCompare> q;
-/*
-    vector<bool> visited(vertexMap.size(), false);
-    vector<Vertex*> parent;
-
-    Vertex* v1 = this->vertexMap[0];
-
-    for(const auto &e: v1->getAdj()){
-        a.push(e);
-    }
-    visited[v1->getId()] = true;
-
-
-    while (!a.empty()) {
-        Edge* e = a.top();
-        a.pop();
-        Vertex* v = e->getDest();
-        Vertex* u = e->getOrig();
-        if (visited[v->getId()]) {
-            continue;
-        }
-        visited[v->getId()] = true;
-        mst.push_back(e);
-        mst_adj[u->getId()].push_back(v);
-        mst_adj[v->getId()].push_back(u);
-        for (const auto parent: v->getAdj()) {
-            if (!visited[parent->getDest()->getId()]) {
-                a.push(parent);
-            }
-        }
-    }
-    return mst;
-    */
-
-    //=======================================================================
+unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>> Graph::prim() {
+    unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>> mst;
+    priority_queue<Vertex*, vector<Vertex*>, WeightCompareVertex> q;
     vector<int> ids;
 
 
@@ -165,8 +134,8 @@ unordered_map<Vertex*,vector<Edge*>> Graph::prim() {
         if(vertex->getId()!=0){
             Edge* e = vertex->getPath();
             Vertex* origin = e->getOrig();
-            mst[origin].push_back(e);
-            mst[vertex].push_back(e->getReverse());
+            mst[origin].push(e);
+            mst[vertex].push(e->getReverse());
         }
     }
     return mst;
@@ -241,7 +210,7 @@ double Graph::triangularApproximation() {
     //vector<int> parent_ (vertexMap.size(), -1);
     cout << "starting" << endl;
     clock_t begin = clock();
-    unordered_map<Vertex*,vector<Edge*>> mst = prim();
+    unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>> mst = prim();
     clock_t end = clock();
     cout << "Prim's algorithm time: " << double(end - begin) / CLOCKS_PER_SEC << endl;
     cout << "Preorder traversal of tree is \n";

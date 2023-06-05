@@ -20,7 +20,17 @@
 
 using namespace std;
 
-class Graph {
+/**
+ * @brief Class that compares the weight of two edges
+ */
+class WeightCompareEdge{
+public :
+    bool operator()(const Edge* e1, const Edge * e2) const{
+        return e1->getWeight() > e2->getWeight();
+    }
+};
+
+class Graph : public WeightCompareEdge{
 public:
     /**
      * Complexity: O(1)
@@ -111,13 +121,13 @@ public:
      * @param visited - vector of visited vertices
      * @param path - vector of vertices in the order of the DFS
      */
-    void dfs(unordered_map<Vertex*,vector<Edge*>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path);
+    void dfs(unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>>& mst, Vertex* v, vector<bool> &visited, vector<int> &path);
     /**
      * Complexity: O((E+V) log V)
      * @brief Prim algorithm to find the minimum spanning tree
      * @return vector of edges that form the minimum spanning tree
      */
-    unordered_map<Vertex*,vector<Edge*>> prim();
+    unordered_map<Vertex*,priority_queue<Edge*, vector<Edge*>, WeightCompareEdge>> prim();
     /**
      * Complexity: O(1)
      * @brief calculates the distance between two nodes using the haversine formula
@@ -179,9 +189,9 @@ protected:
     map<int, double> weights;
 };
 /**
- * @brief Class that compares the weight of two edges
+ * @brief Class that compares the weight of two vertexs
  */
-class WeightCompare{
+class WeightCompareVertex{
     public:
         bool operator()(const Vertex* e1, const Vertex * e2) const{
             return e1->getDist() > e2->getDist();
